@@ -20,13 +20,13 @@ Example API Calls:
 --
 Obtaining rom list for a device:<br>
 `/api/v1/<device>/<romtype>/<romversion (optional)>`<br>
-`<device>` - Name of device. Example: d2vzw<br>
-`<romtype>` - Type of rom. Example: nightly<br>
-`<romversion>` - Version of rom. Example: 14.1<br>
+`<device>` - Name of device. Example: `d2vzw`<br>
+`<romtype>` - Type of rom. Example: `nightly`<br>
+`<romversion>` - Version of rom. Example: `14.1`(optional)<br>
 
 Requesting a file:<br>
 `/api/v1/requestfile/<id>`<br>
-`<id>` - Id of requested file. Obtained from json in the api call above.
+`<id>` - Id of requested file. Obtained from json in the api call above. Example: `586bce6c07f9d87b152c3215`
 
 
 TODO
