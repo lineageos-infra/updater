@@ -19,10 +19,14 @@ Listens on port `5000` by default, this can be changed in local_config.py<br>
 Example API Calls:
 --
 Obtaining rom list for a device:<br>
-`/api/v1/<device>/<romtype>/<romversion (optional)>`<br>
+`/api/v1/<device>/<romtype>`<br>
+Request data (optional):<br>
+`{"ro.build.date.utc": "<utc_timestamp>", "romversion": "<romversion>"}`<br><br>
 `<device>` - Name of device. Example: `d2vzw`<br>
 `<romtype>` - Type of rom. Example: `nightly`<br>
 `<romversion>` - Version of rom. Example: `14.1`(optional)<br>
+`<utc_timestamp>` - Timestamp for current build on device. Taken from build.prop usually. Example: `1483179136`(optional)
+
 
 Requesting a file:<br>
 `/api/v1/requestfile/<id>`<br>
@@ -31,5 +35,4 @@ Requesting a file:<br>
 
 TODO
 ====
-- Only present roms that are newer than the current rom
-- Lots more I'm sure
+- Lots I'm sure

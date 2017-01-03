@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import datetime
 import json
 import local_config
 import os
@@ -23,14 +24,18 @@ with open(configfile) as config_file:
 
 connect('lineage_updater', host=config['dbhost'])
 
-@app.route("/api/<string:apiversion>/<string:device>/<string:romtype>/<string:romversion>")
 @app.route("/api/<string:apiversion>/<string:device>/<string:romtype>")
-def index(apiversion, device, romtype, romversion=None):
+def index(apiversion, device, romtype):
   if apiversion == "v1":
-    if romversion:
-      roms = Rom.objects(device=device, romtype=romtype, version=romversion)
-    else:
-      roms = Rom.objects(device=device, romtype=romtype)
+    r = request.get_json()
+    roms = Rom.objects(device=device, romtype=romtype)
+
+    if r:
+      if 'ro.build.date.utc' in r and r['ro.build.date.utc'].isdigit():
+          devicedate = datetime.datetime.utcfromtimestamp(int(r['ro.build.date.utc']))
+          roms = roms(datetime__gt=devicedate)
+      if 'romversion' in r:
+        roms = roms(version=r['romversion'])
 
     return roms.to_json()
 
