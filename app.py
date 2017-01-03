@@ -45,7 +45,9 @@ def requestfile(apiversion=None, id=None):
     if apiversion == "v1":
       rom = Rom.objects.get(id=id)
       if not rom['url']:
-        url = config['baseurl'] + "/" + rom['filename']
+        url = config['baseurl']
+        if url[-1:] != "/": url += "/"
+        url += rom['filename']
       else:
         url = rom['url']
 
