@@ -14,7 +14,7 @@ To add entries a simple script has been added called `addrom.py`:<br>
 `usage: addrom.py [-h] -f FILENAME -d DEVICE -v VERSION -dt DATETIME -t ROMTYPE -m MD5SUM`<br>
 Alternatively `addon.py` can be included in another python script and the `addrom()` method can be called programatically.
 
-Listens on `http://127.0.0.1:5000` by default, this can be changed in local_config.py<br>
+Listens on port `5000` by default, this can be changed in local_config.py<br>
 
 Example API Calls:
 --

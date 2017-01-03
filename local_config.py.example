@@ -1,3 +1,2 @@
-HOST = ""
 PORT = ""
 DEBUG = "False"
