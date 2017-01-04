@@ -3,10 +3,10 @@
 from mongoengine import *
 
 class Rom(Document):
-  filename = StringField()
+  filename = StringField(required=True)
   datetime = DateTimeField(required=True)
-  device = StringField()
-  version = StringField()
-  romtype = StringField()
+  device = StringField(required=True)
+  version = StringField(required=True)
+  romtype = StringField(required=True)
+  md5sum = StringField(required=True)
   url = StringField()
-  md5sum = StringField()
