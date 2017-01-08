@@ -9,3 +9,7 @@ class Rom(Document):
     md5sum = StringField(required=True)
     available = BooleanField(required=False, default=False)
     url = StringField()
+
+class ApiKey(Document):
+    apikey = StringField(required=True)
+    comment = StringField(required=False)
