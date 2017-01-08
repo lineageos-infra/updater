@@ -3,3 +3,11 @@ __pycache__
 
 config.json
 local_config.py
+
+#virtualenv
+bin
+lib
+include
+share
+local
+pip-selfcheck.json

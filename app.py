@@ -53,4 +53,3 @@ def requestfile(apiversion=None, id=None):
 
       return jsonify({ "url": url, "md5sum": rom['md5sum']})
 
-app.run(host='0.0.0.0')

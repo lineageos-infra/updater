@@ -4,17 +4,13 @@ Copyright (c) 2017 The LineageOS Project<br>
 
 Initial set up:
 ---
-1. Requires python3, mongoengine and flask.
-2. Requires a mongoDB instance set up and accessible.
-3. Copy `config.json.example` to `config.json` and modify to your needs.
-4. Copy `local_config.py.example` to `local_config.py` and modify to your needs (flask config options).
-5. Run: `./app.py` from this directory.
+1. Install requirements with `pip install -r requirements.txt`
+2. Copy `local_config.py.example` to `local_config.py`
+3. Run with `FLASK_APP=app.py flask run`
 
 To add entries a simple script has been added called `addrom.py`:<br>
 `usage: addrom.py [-h] -f FILENAME -d DEVICE -v VERSION -dt DATETIME -t ROMTYPE -m MD5SUM`<br>
 Alternatively `addon.py` can be included in another python script and the `addrom()` method can be called programatically.
-
-Listens on port `5000` by default, this can be changed in local_config.py<br>
 
 Example API Calls:
 --
