@@ -9,6 +9,7 @@ import click
 import datetime
 import json
 import os
+import requests
 import sys
 
 
@@ -26,6 +27,9 @@ def api_key_required(f):
                 return f(*args, **kwargs)
         return abort(403)
     return decorated_function
+
+def get_devices():
+    return requests.get("https://raw.githubusercontent.com/LineageOS/hudson/master/getcm-devices/devices.json").json()
 
 @app.cli.command()
 @click.option('--filename', '-f', 'filename', required=True)
@@ -105,11 +109,24 @@ def add_build():
 
 @app.route('/')
 def web_main():
-    devices = sorted(Rom.objects().distinct(field="device"))
-    return render_template("main.html", devices=devices)
+    devices = get_devices()
+    active_devices = sorted(Rom.objects().distinct(field="device"))
+    devices = [x for x in devices if x['model'] in active_devices]
+    oems = sorted(list(set([x['oem'] for x in devices])))
+    #devices = sorted(Rom.objects().distinct(field="device"))
+    return render_template("main.html", oems=oems, devices=devices)
 
 @app.route("/<string:device>")
 def web_device(device):
-    devices = sorted(Rom.objects().distinct(field="device"))
+    #devices = sorted(Rom.objects().distinct(field="device"))
+    devices = get_devices()
+    active_devices = sorted(Rom.objects().distinct(field="device"))
+    devices = [x for x in devices if x['model'] in active_devices]
+    oems = sorted(list(set([x['oem'] for x in devices])))
+
     roms = Rom.objects(device=device)
-    return render_template("device.html", devices=devices, roms=roms)
+
+    active_oem = [x['oem'] for x in devices if x['model'] == device]
+    active_oem = active_oem[0] if active_oem else None
+    
+    return render_template("device.html", active_oem=active_oem, active_device=device, oems=oems, devices=devices, roms=roms)

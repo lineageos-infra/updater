@@ -2,35 +2,60 @@
 <html lang="en">
     <head>
         <title>LineageOS Downloads</title>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
         <link rel="stylesheet" href="static/site.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     </head>
     <body>
-        <nav role="navigation">
-            <div class="nav-wrapper container">
-                <a href="/" class="brand-logo">LineageOS Downloads</a>
-                <ul id="nav-mobile" class="right">
-                    <li><img class="top-logo" src="static/logo.png" /></li>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo center">LineageOS Downloads</a>
+                <ul id="slide-out" class="side-nav fixed">
+                    <li>
+                        <div class="userView">
+                            <div class="background">
+                                <img src="https://github.com/CyanogenMod/android_packages_apps_CMWallpapers/blob/cm-13.0/res/drawable-hdpi/iconoclast.png?raw=true">
+</div> 
+                            <a href="#!user"><img class="logo circle" src="https://lineageos.github.io/www/images/logo.png" height=128px width=128px /></a>
+                            <a href="#!name"><span class="white-text name">Devices</span></a>
+                        </div>
+                    </li>
+                    {% for oem in oems %}
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordian">
+                            <li class="bold">
+                                {% if oem == active_oem %}
+                                <a class="collapsible-header waves-effect waves-teal bold active">{{oem}}</a>
+                                {% else %}
+                                <a class="collapsible-header waves-effect waves-teal bold">{{oem}}</a>
+                                {% endif %}
+                                <div class="collapsible-body">
+                                    <ul>
+                                        {% for device in devices %}
+                                        {% if device.oem == oem %}
+                                        {% if device.model == active_device %}
+                                        <li class="active grey darken-2"><a href="/{{device.model}}">{{device.name}} ({{device.model}})</a></li>
+                                        {% else %}
+                                        <li ><a href="/{{device.model}}">{{device.name}} ({{device.model}})</a></li>
+                                        {% endif %}
+                                        {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endfor %}
                 </ul>
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div>
         </nav>
-        <div class="row">
-            <div class="col s12 m4 l2">
-                <div class="card-panel grey lighten-2">
-                    <ul>
-                        <li><h5>Devices</h5></li>
-                        {% block devices %} {% endblock %}
-                    </ul>
-                </div>
-            </div>
-            <div class="col s12 m8 l10">
-                <div class="card-panel white">
-                   {% block content %} {% endblock %}
-                </div>
-            </div>
-        </div>
-
+        <main>
+        {% block content %}
+        {% endblock %} 
+        </main>
         <footer class="page-footer">
           <div class="container">
             <div class="row">
@@ -47,10 +72,10 @@
           </div>
         </footer>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
         <script type="text/javascript">
             $(".button-collapse").sideNav();
         </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     </body>
 </html>
 
