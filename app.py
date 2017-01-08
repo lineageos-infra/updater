@@ -20,6 +20,9 @@ app.config.from_pyfile('app.cfg')
 db = MongoEngine(app)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
+with open('devices.json') as f:
+    devices = json.load(f)
+
 def api_key_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -31,7 +34,7 @@ def api_key_required(f):
     return decorated_function
 
 def get_devices():
-    return requests.get("https://raw.githubusercontent.com/LineageOS/hudson/master/getcm-devices/devices.json").json()
+    return devices
 
 @app.cli.command()
 @click.option('--filename', '-f', 'filename', required=True)

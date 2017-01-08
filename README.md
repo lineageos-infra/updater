@@ -2,6 +2,24 @@ LineageOS Updater Backend
 =======================
 Copyright (c) 2017 The LineageOS Project<br>
 
+Adding a new device
+---
+1. Add your device to devices.json, sorted alphanumerically by codename. Fields are documented below.
+2. Add a 109x124 PNG of your device to the static/device folder
+3. Submit your change to gerrit (this repository is configured for use with `git review`)
+
+### devices.json
+devices.json is an array of objects, each with several fields:
+
+* `model`: should be the first thing on the line, and is the device's codename (`PRODUCT_DEVICE`) - e.g. `i9300`.
+* `oem`: the manufacturer of the device. (`PRODUCT_BRAND`) - e.g. `Samsung`.
+* `name`: the user-friendly name of the device - e.g. `Galaxy S III (Intl)`. Long values will overflow and look bad,
+so limit this to around 25 characters.
+* `has_recovery`: (*optional*) whether or not the device has a separate recovery partition. Defaults to `true`.
+* `image`: (*optional*) the filename (excluding .png) of the device's image. Defaults to the value of `model`.
+* `wiki`: (*optional*) the name of the wiki page, exlcuding "\_Info". Defaults to the value of `model`.
+For example, "i9300" would be shown on the website as a link to https://wiki.lineageos.org/w/i9300_Info.
+
 Initial set up:
 ---
 1. Install requirements with `pip install -r requirements.txt`
