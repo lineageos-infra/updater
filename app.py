@@ -59,15 +59,14 @@ def add_api_key(comment, remove, echo):
 
 @app.route('/api/v1/<string:device>/<string:romtype>')
 def index(apiversion, device, romtype):
-    r = request.get_json()
-    roms = Rom.objects(device=device, romtype=romtype)
+    after = request.args.get("after")
+    version = request.args.get("version")
 
-    if r:
-        if 'ro.build.date.utc' in r and r['ro.build.date.utc'].isdigit():
-            devicedate = datetime.datetime.utcfromtimestamp(int(r['ro.build.date.utc']))
-            roms = roms(datetime__gt=devicedate)
-        if 'romversion' in r:
-            roms = roms(version=r['romversion'])
+    roms = Rom.objects(device=device, romtype=romtype)
+    if after:
+        roms = roms(datetime__gt=after)
+    if version:
+        roms = roms(version=version)
 
     return roms.to_json()
 
