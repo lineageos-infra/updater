@@ -1,9 +1,13 @@
 click==6.7
 Flask==0.12
+flask-mongoengine==0.8.2
+Flask-WTF==0.14
 itsdangerous==0.24
 Jinja2==2.9.1
 MarkupSafe==0.23
 mongoengine==0.11.0
+pkg-resources==0.0.0
 pymongo==3.4.0
 six==1.10.0
 Werkzeug==0.11.15
+WTForms==2.1

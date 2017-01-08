@@ -1,8 +1,7 @@
 *.pyc
 __pycache__
 
-config.json
-local_config.py
+app.cfg
 
 #virtualenv
 bin

@@ -1,28 +1,18 @@
-#!/usr/bin/python3
+from database import Rom
+
+from flask import Flask
+from flask_mongoengine import MongoEngine
 
 import datetime
 import json
-import local_config
 import os
 import sys
 
-from classes import *
-from flask import *
-from mongoengine import *
 
 app = Flask(__name__)
-app.config.from_object(local_config)
+app.config.from_pyfile('app.cfg')
 
-configfile = "config.json"
-
-if not os.path.isfile(configfile):
-  print("Could not find " + configfile + " aborting!")
-  sys.exit()
-
-with open(configfile) as config_file:
-  config = json.load(config_file)
-
-connect('lineage_updater', host=config['dbhost'])
+db = MongoEngine(app)
 
 @app.route("/api/<string:apiversion>/<string:device>/<string:romtype>")
 def index(apiversion, device, romtype):
