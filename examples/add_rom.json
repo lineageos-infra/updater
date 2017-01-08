@@ -1,0 +1,9 @@
+{
+    "device": "mako",
+    "version": "14.1",
+    "md5sum": "foobar",
+    "filename": "cm-14.1-mako-signed.zip",
+    "datetime": "2012-07-07",
+    "url": "https://mirrorbits.lineageos.org/full/mako/20120707/cm-14.1-mako-signed.zip",
+    "romtype": "nightly"
+}

@@ -1,6 +1,6 @@
 from database import Rom, ApiKey
 
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request, abort, render_template
 from flask_mongoengine import MongoEngine
 from functools import wraps
 from uuid import uuid4
@@ -31,7 +31,7 @@ def api_key_required(f):
 @click.option('--filename', '-f', 'filename', required=True)
 @click.option('--device', '-d', 'device', required=True)
 @click.option('--version', '-v', 'version', required=True)
-@click.option('--datetime,', '-t', 'datetime', required=True)
+@click.option('--datetime', '-t', 'datetime', required=True)
 @click.option('--romtype', '-r', 'romtype', required=True)
 @click.option('--md5sum', '-m', 'md5sum', required=True)
 @click.option('--url', '-u', 'url', required=True)
@@ -102,3 +102,14 @@ def add_build():
     rom.available = False
     rom.save()
     return "ok", 200
+
+@app.route('/')
+def web_main():
+    devices = sorted(Rom.objects().distinct(field="device"))
+    return render_template("main.html", devices=devices)
+
+@app.route("/<string:device>")
+def web_device(device):
+    devices = sorted(Rom.objects().distinct(field="device"))
+    roms = Rom.objects(device=device)
+    return render_template("device.html", devices=devices, roms=roms)

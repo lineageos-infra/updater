@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block devices %}
+{% for device in devices %}
+<li><a href="/{{device}}">{{device}}</a></li>
+{% endfor %}
+{% endblock %}
+
+{% block content %}
+<table class="striped bordered">
+    <tr>
+    <th>Build Type</th>
+    <th>Version</th>
+    <th>File</th>
+    <th>Date</th>
+    </tr>
+
+    {% for rom in roms %}
+    <tr>
+        <td>{{rom.romtype}}</td>
+        <td>{{rom.version}}</td>
+        <td>
+            <a href="{{rom.url}}">{{rom.filename}}</a> <br /><small>md5sum: {{rom.md5sum}}</small>
+        </td>
+        <td>{{rom.datetime}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
