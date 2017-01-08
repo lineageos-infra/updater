@@ -2,6 +2,7 @@ from database import Rom, ApiKey
 
 from flask import Flask, jsonify, request, abort, render_template
 from flask_mongoengine import MongoEngine
+from flask_cache import Cache
 from functools import wraps
 from uuid import uuid4
 
@@ -17,6 +18,7 @@ app = Flask(__name__)
 app.config.from_pyfile('app.cfg')
 
 db = MongoEngine(app)
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 def api_key_required(f):
     @wraps(f)
@@ -108,6 +110,7 @@ def add_build():
     return "ok", 200
 
 @app.route('/')
+@cache.cached(timeout=3600)
 def web_main():
     devices = get_devices()
     active_devices = sorted(Rom.objects().distinct(field="device"))
@@ -117,6 +120,7 @@ def web_main():
     return render_template("main.html", oems=oems, devices=devices)
 
 @app.route("/<string:device>")
+@cache.cached(timeout=3600)
 def web_device(device):
     #devices = sorted(Rom.objects().distinct(field="device"))
     devices = get_devices()
