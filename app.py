@@ -88,3 +88,18 @@ def requestfile(file_id):
 @api_key_required
 def test_auth():
     return "pass"
+
+@app.route('/api/v1/add_build', methods=['POST',])
+@api_key_required
+def add_build():
+    data = request.get_json()
+    #validate
+    if not 'filename' in data or not 'device' in data or not 'version' in data \
+       or not 'datetime' in data or not 'md5sum' in data or not 'url' in data \
+       or not 'romtype' in data:
+       return "malformed json", 500
+
+    rom = Rom(**data)
+    rom.available = False
+    rom.save()
+    return "ok", 200
