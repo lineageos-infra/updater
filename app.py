@@ -20,7 +20,7 @@ db = MongoEngine(app)
 def api_key_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        print request.headers
+        print(request.headers)
         if 'Apikey' in request.headers:
             if ApiKey.objects(apikey=request.headers.get('Apikey')).first():
                 return f(*args, **kwargs)
