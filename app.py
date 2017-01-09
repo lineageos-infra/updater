@@ -12,7 +12,7 @@ import json
 import os
 import requests
 import sys
-
+import time
 
 app = Flask(__name__)
 app.config.from_pyfile('app.cfg')
@@ -64,17 +64,28 @@ def add_api_key(comment, remove, echo):
         print("comment or print required")
 
 @app.route('/api/v1/<string:device>/<string:romtype>')
-def index(apiversion, device, romtype):
+def index(device, romtype):
     after = request.args.get("after")
     version = request.args.get("version")
 
-    roms = Rom.objects(device=device, romtype=romtype)
+    roms = Rom.objects(device=device, romtype=romtype, available=True)
     if after:
         roms = roms(datetime__gt=after)
     if version:
         roms = roms(version=version)
 
-    return roms.to_json()
+    data = []
+
+    for rom in roms:
+        data.append({
+            "id": str(rom.id),
+            "url": rom.url,
+            "romtype": rom.romtype,
+            "datetime": time.mktime(rom.datetime.timetuple()),
+            "version": rom.version,
+            "filename": rom.filename
+        })
+    return jsonify(data)
 
 @app.route('/api/v1/requestfile/<string:file_id>')
 def requestfile(file_id):
