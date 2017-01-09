@@ -85,7 +85,7 @@ def index(device, romtype):
             "version": rom.version,
             "filename": rom.filename
         })
-    return jsonify(data)
+    return jsonify({'response': data })
 
 @app.route('/api/v1/requestfile/<string:file_id>')
 def requestfile(file_id):
