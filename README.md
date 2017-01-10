@@ -5,7 +5,7 @@ Copyright (c) 2017 The LineageOS Project<br>
 Initial set up:
 ---
 1. Install requirements with `pip install -r requirements.txt`
-2. Copy `local_config.py.example` to `local_config.py`
+2. Copy `app.cfg.example` to `app.cfg`
 3. Run with `FLASK_APP=app.py flask run`
 
 To add entries a simple script has been added called `addrom.py`:<br>
