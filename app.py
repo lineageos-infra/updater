@@ -81,7 +81,7 @@ def index(device, romtype):
             "id": str(rom.id),
             "url": rom.url,
             "romtype": rom.romtype,
-            "datetime": time.mktime(rom.datetime.timetuple()),
+            "datetime": int(time.mktime(rom.datetime.timetuple())),
             "version": rom.version,
             "filename": rom.filename
         })
