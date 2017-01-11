@@ -139,7 +139,7 @@ def web_device(device):
     devices = [x for x in devices if x['model'] in active_devices]
     oems = sorted(list(set([x['oem'] for x in devices])))
 
-    roms = Rom.objects(device=device)
+    roms = Rom.objects(device=device).order_by('-datetime')
 
     active_oem = [x['oem'] for x in devices if x['model'] == device]
     active_oem = active_oem[0] if active_oem else None
