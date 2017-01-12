@@ -63,8 +63,8 @@ def add_api_key(comment, remove, echo):
     else:
         print("comment or print required")
 
-@app.route('/api/v1/<string:device>/<string:romtype>')
-def index(device, romtype):
+@app.route('/api/v1/<string:device>/<string:romtype>/<string:incrementalversion>')
+def index(device, romtype, incrementalversion):
     after = request.args.get("after")
     version = request.args.get("version")
 
