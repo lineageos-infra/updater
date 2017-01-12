@@ -7,22 +7,26 @@
             <div class="card-panel">
                 <h4>Builds</h4>
                 <table class="striped bordered responsive-table">
-                    <tr>
-                        <th>Type</th>
-                        <th>Version</th>
-                        <th>File</th>
-                        <th>Date</th>
-                    </tr>
-                    {% for rom in roms %}
-                    <tr>
-                        <td>{{rom.romtype}}</td>
-                        <td>{{rom.version}}</td>
-                        <td>
-                            <a href="{{rom.url}}">{{rom.filename}}</a> <br /><small>md5sum: {{rom.md5sum}}</small>
-                        </td>
-                        <td>{{rom.datetime}}</td>
-                    </tr>
-                    {% endfor %}
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Version</th>
+                            <th>File</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for rom in roms %}
+                        <tr>
+                            <td>{{rom.romtype}}</td>
+                            <td>{{rom.version}}</td>
+                            <td>
+                                <a href="{{rom.url}}">{{rom.filename}}</a> <br /><small>md5sum: {{rom.md5sum}}</small>
+                            </td>
+                            <td>{{rom.datetime}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
             </div>
         </div>
