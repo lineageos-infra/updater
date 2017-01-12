@@ -6,28 +6,30 @@
         <div class="col s12 m12 l12">
             <div class="card-panel">
                 <h4>Builds</h4>
-                <table class="striped bordered responsive-table">
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Version</th>
-                            <th>File</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for rom in roms %}
-                        <tr>
-                            <td>{{rom.romtype}}</td>
-                            <td>{{rom.version}}</td>
-                            <td>
-                                <a href="{{rom.url}}">{{rom.filename}}</a> <br /><small>md5sum: {{rom.md5sum}}</small>
-                            </td>
-                            <td>{{rom.datetime}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                <div class="scrollable-table">
+                    <table class="striped bordered">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Version</th>
+                                <th>File</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rom in roms %}
+                            <tr>
+                                <td>{{rom.romtype}}</td>
+                                <td>{{rom.version}}</td>
+                                <td>
+                                    <a href="{{rom.url}}">{{rom.filename}}</a> <br /><small>md5sum: {{rom.md5sum}}</small>
+                                </td>
+                                <td>{{rom.datetime}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
