@@ -297,6 +297,7 @@
   {  "model": "robyn", "oem": "Sony Ericsson", "name": "Xperia X10 Mini", "has_recovery": false},
   {  "model": "roth", "oem": "Nvidia", "name": "Shield Portable", "has_recovery": false},
   {  "model": "ruby", "oem": "HTC", "name": "Amaze 4G", "image": "ruby2"},
+  {  "model": "s2", "oem": "LeEco", "name": "Le 2"},
   {  "model": "s3ve3g", "oem": "Samsung", "name": "Galaxy S III NEO"},
   {  "model": "s5670", "oem": "Samsung", "name": "Galaxy Fit"},
   {  "model": "saga", "oem": "HTC", "name": "Desire S", "image": "desires"},
