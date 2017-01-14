@@ -1,5 +1,5 @@
-MONGODB_DB = 'descent'
-MONGODB_USERNAME = 'into'
-MONGODB_PASSWORD = 'madness'
-MONGODB_HOST = 'with'
-MONGODB_PORT = 'kittens'
+MONGODB_DB = 'lineageos_updater'
+MONGODB_USERNAME = 'user'
+MONGODB_PASSWORD = 'pass'
+MONGODB_HOST = '127.0.0.1'
+MONGODB_PORT = 27017
