@@ -49,6 +49,11 @@ def addrom(filename, device, version, datetime, romtype, md5sum, url, available)
     Rom(filename=filename, datetime=datetime, device=device, version=version, romtype=romtype, md5sum=md5sum, url=url, available=available).save()
 
 @app.cli.command()
+@click.option('--filename', '-f', 'filename', required=True)
+def delrom(filename):
+    Rom.objects(filename=filename).delete()
+
+@app.cli.command()
 @click.option("--comment", 'comment', required=False)
 @click.option("--remove", "remove", default=False)
 @click.option("--print", "echo", flag_value='echo', default=False)
