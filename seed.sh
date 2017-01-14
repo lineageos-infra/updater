@@ -1,6 +1,6 @@
 export FLASK_APP=app.py
 
-DEVICES=(mako bullhead angler shamu whale potato orange cabbage cat dog pillow orangutang i9300 glass phone pen wheatthins thingy mangos DONGS stool cabinent desk table counter fridge copper iron silver lego eggo waffle)
+DEVICES=(bacon flo deb i9300 i9305 d2att d2vzw d2spr d2tmo jflte jfltespr jfltetmo jflteatt jfltevzw klte klteusc klteatt kltevzw kltespr kltetmo tenderloin n5100 n5110 n5120 evita mako hammerhead angler bullhead marlin sailfish cancro)
 
 for i in {0..99}; do
 
