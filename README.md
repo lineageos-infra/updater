@@ -26,12 +26,34 @@ Initial set up:
 2. Copy `app.cfg.example` to `app.cfg`
 3. Run with `FLASK_APP=app.py flask run`
 
-To add entries a simple script has been added called `addrom.py`:<br>
-`usage: addrom.py [-h] -f FILENAME -d DEVICE -v VERSION -dt DATETIME -t ROMTYPE -m MD5SUM`<br>
-Alternatively `addon.py` can be included in another python script and the `addrom()` method can be called programatically.
+Adding and removing entries:
+---
+To add use `FLASK_APP=app.py flask addrom [OPTIONS]`
+
+```
+Options:
+  -f, --filename TEXT   [required] (Example: lineage-14.1-20170114-NIGHTLY-v500.zip)
+  -d, --device TEXT     [required] (Example: v500)
+  -v, --version TEXT    [required] (Example: 14.1)
+  -t, --datetime TEXT   [required] (Example: "2017-01-14 13:59:25")
+  -r, --romtype TEXT    [required] (Example: nightly)
+  -m, --md5sum TEXT     [required] (Example: 0f80ec88915e8d02f13cfe83d05f4a05)
+  -u, --url TEXT        [required] (Example: https://mirrobits.lineageos.org/full/lineage-14.1-20170114-NIGHTLY-v500.zip)
+  -a, --available TEXT             (Example: true)
+  --help                Show this message and exit.
+```
+
+To remove use `FLASK_APP=app.py flask delrom [OPTIONS]`
+
+```
+Options:
+  -f, --filename TEXT  [required]
+  --help               Show this message and exit.
+```
+
 
 Example API Calls:
---
+---
 Obtaining rom list for a device:<br>
 `/api/v1/<device>/<romtype>`<br>
 Request data (optional):<br>
