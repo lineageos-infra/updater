@@ -20,7 +20,7 @@ app.config.from_pyfile('app.cfg')
 db = MongoEngine(app)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
-with open('devices.json') as f:
+with open(os.path.join(sys.path[0], 'devices.json')) as f:
     devices = json.load(f)
 
 def api_key_required(f):
