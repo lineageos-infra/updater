@@ -20,11 +20,29 @@ so limit this to around 25 characters.
 * `wiki`: (*optional*) the name of the wiki page, exlcuding "\_Info". Defaults to the value of `model`.
 For example, "i9300" would be shown on the website as a link to https://wiki.lineageos.org/w/i9300_Info.
 
+This file is no longer read from disk by the application and must be loaded into mongo. To do so, run: 
+
+`FLASK_APP=app.py flask import_devices`
+
 Initial set up:
 ---
 1. Install requirements with `pip install -r requirements.txt`
 2. Copy `app.cfg.example` to `app.cfg`
 3. Run with `FLASK_APP=app.py flask run`
+
+
+API Keys
+---
+Any method with the `@api_key_required` decorate requires an API key. You can generate one by running: <br>
+`FLASK_APP=app.py flask api_key [OPTIONS]"` <br>
+
+```
+Options:
+  --comment TEXT
+  --remove TEXT
+  --print
+  --help          Show this message and exit.
+```
 
 Adding and removing entries:
 ---
@@ -54,18 +72,36 @@ Options:
 Example API Calls:
 ---
 Obtaining rom list for a device:<br>
-`/api/v1/<device>/<romtype>`<br>
-Request data (optional):<br>
-`{"ro.build.date.utc": "<utc_timestamp>", "romversion": "<romversion>"}`<br><br>
+`GET /api/v1/<device>/<romtype>/<incremental>?after=<utc_timestamp>&version=<14.1>` (incremental can be anything, it is currently unused)<br>
 `<device>` - Name of device. Example: `d2vzw`<br>
 `<romtype>` - Type of rom. Example: `nightly`<br>
+`<incremental>` - Caller device's incremental ID (ro.build.incr). Can be anything. <br>
+`<after>` - Timestamp for current build on device. (optional) <br> 
 `<romversion>` - Version of rom. Example: `14.1`(optional)<br>
-`<utc_timestamp>` - Timestamp for current build on device. Taken from build.prop usually. Example: `1483179136`(optional)
 
+Adding a build (requires an API key, see above) <br>
+`POST /api/v1/add_build` <br>
+```
+{
+  "device": "str",
+  "filename": "str",
+  "md5sum": "str",
+  "romtype": "str",
+  "url": "str",
+  "version": "str"
+}
+```
 
-Requesting a file:<br>
-`/api/v1/requestfile/<id>`<br>
-`<id>` - Id of requested file. Obtained from json in the api call above. Example: `586bce6c07f9d87b152c3215`
+To remove a build (requires an API key, see above) <br>
+`POST /api/v1/del_build`
+```
+{
+  "id": "str"
+}
+
+```
+
+where "id" is a value returned by `/api/v1/<device>/<romtype>/<incremental>`.
 
 
 TODO
