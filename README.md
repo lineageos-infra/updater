@@ -39,7 +39,6 @@ Options:
   -r, --romtype TEXT    [required] (Example: nightly)
   -m, --md5sum TEXT     [required] (Example: 0f80ec88915e8d02f13cfe83d05f4a05)
   -u, --url TEXT        [required] (Example: https://mirrobits.lineageos.org/full/lineage-14.1-20170114-NIGHTLY-v500.zip)
-  -a, --available TEXT             (Example: true)
   --help                Show this message and exit.
 ```
 

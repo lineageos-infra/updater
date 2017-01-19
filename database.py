@@ -7,7 +7,6 @@ class Rom(Document):
     version = StringField(required=True)
     romtype = StringField(required=True)
     md5sum = StringField(required=True)
-    available = BooleanField(required=False, default=False)
     url = StringField()
 
 class ApiKey(Document):

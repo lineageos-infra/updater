@@ -44,9 +44,8 @@ def get_devices():
 @click.option('--romtype', '-r', 'romtype', required=True)
 @click.option('--md5sum', '-m', 'md5sum', required=True)
 @click.option('--url', '-u', 'url', required=True)
-@click.option('--available', '-a', 'available', default=False)
-def addrom(filename, device, version, datetime, romtype, md5sum, url, available):
-    Rom(filename=filename, datetime=datetime, device=device, version=version, romtype=romtype, md5sum=md5sum, url=url, available=available).save()
+def addrom(filename, device, version, datetime, romtype, md5sum, url):
+    Rom(filename=filename, datetime=datetime, device=device, version=version, romtype=romtype, md5sum=md5sum, url=url).save()
 
 @app.cli.command()
 @click.option('--filename', '-f', 'filename', required=True)
@@ -76,7 +75,7 @@ def index(device, romtype, incrementalversion):
     after = request.args.get("after")
     version = request.args.get("version")
 
-    roms = Rom.objects(device=device, romtype=romtype, available=True)
+    roms = Rom.objects(device=device, romtype=romtype)
     if after:
         roms = roms(datetime__gt=after)
     if version:
@@ -124,7 +123,6 @@ def add_build():
        return "malformed json", 500
 
     rom = Rom(**data)
-    rom.available = False
     rom.save()
     return "ok", 200
 
