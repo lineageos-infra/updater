@@ -56,7 +56,7 @@ def delrom(filename):
 @click.option("--comment", 'comment', required=False)
 @click.option("--remove", "remove", default=False)
 @click.option("--print", "echo", flag_value='echo', default=False)
-def add_api_key(comment, remove, echo):
+def api_key(comment, remove, echo):
     if echo:
         for i in ApiKey.objects():
             print(i.apikey, i.comment)
