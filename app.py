@@ -81,7 +81,7 @@ def index(device, romtype, incrementalversion):
     after = request.args.get("after")
     version = request.args.get("version")
 
-    roms = Rom.objects(device=device, romtype=romtype)
+    roms = Rom.get_roms(device=device, romtype=romtype, before=app.config['BUILD_SYNC_TIME'])
     if after:
         roms = roms(datetime__gt=after)
     if version:
@@ -145,23 +145,17 @@ def add_build():
 @app.route('/')
 @cache.cached(timeout=3600)
 def web_main():
-    devices = get_devices()
-    active_devices = sorted(Rom.objects().distinct(field="device"))
-    devices = [x for x in devices if x['model'] in active_devices]
-    oems = sorted(list(set([x['oem'] for x in devices])))
-    #devices = sorted(Rom.objects().distinct(field="device"))
-    return render_template("main.html", oems=oems, devices=devices)
+    devices = sorted([x for x in Device.get_devices() if x in Rom.get_devices()], key=lambda device: device['model'])
+    oems = [x['oem'] for x in devices]
+    return render_template("main.html", oems=oems, devices=active_devices)
 
 @app.route("/<string:device>")
 @cache.cached(timeout=3600)
 def web_device(device):
-    #devices = sorted(Rom.objects().distinct(field="device"))
-    devices = get_devices()
-    active_devices = sorted(Rom.objects().distinct(field="device"))
-    devices = [x for x in devices if x['model'] in active_devices]
-    oems = sorted(list(set([x['oem'] for x in devices])))
+    devices = sorted([x for x in Device.get_devices() if x in Rom.get_devices()], key=lambda device: device['model'])
+    oems = [x['oem'] for x in devices]
 
-    roms = Rom.objects(device=device).order_by('-datetime')
+    roms = Rom.get_roms(device=device, before=app.config['BUILD_SYNC_TIME'])
 
     active_oem = [x['oem'] for x in devices if x['model'] == device]
     active_oem = active_oem[0] if active_oem else None
