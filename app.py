@@ -4,6 +4,7 @@ from flask import Flask, jsonify, request, abort, render_template
 from flask_mongoengine import MongoEngine
 from flask_cache import Cache
 from functools import wraps
+from pydoc import locate
 from uuid import uuid4
 
 import click
@@ -121,12 +122,22 @@ def test_auth():
 @api_key_required
 def add_build():
     data = request.get_json()
-    #validate
-    if not 'filename' in data or not 'device' in data or not 'version' in data \
-       or not 'datetime' in data or not 'md5sum' in data or not 'url' in data \
-       or not 'romtype' in data:
-       return "malformed json", 500
+    validate = {"filename": "str", "device": "str", "version": "str", "md5sum": "str", "url": "str", "romtype": "str"}
 
+    #bad data sent
+    if not data:
+        return jsonify(validate), 400
+    #validate keys all exist
+    for key in validate.keys():
+        if key not in data:
+            return jsonify(validate), 406
+
+    # validate types
+    for key in validate.keys():
+        try:
+            locate(validate[key])(data[key])
+        except:
+            return jsonify({"error": "{} must be parseable by python's {} class".format(key, validate[key])}), 406
     rom = Rom(**data)
     rom.save()
     return "ok", 200
