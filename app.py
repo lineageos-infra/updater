@@ -145,15 +145,15 @@ def add_build():
 @app.route('/')
 @cache.cached(timeout=3600)
 def web_main():
-    devices = sorted([x for x in Device.get_devices() if x in Rom.get_devices()], key=lambda device: device['model'])
-    oems = [x['oem'] for x in devices]
-    return render_template("main.html", oems=oems, devices=active_devices)
+    devices = sorted([x for x in Device.get_devices() if x['model'] in Rom.get_devices()], key=lambda device: device['model'])
+    oems = sorted(list(set([x['oem'] for x in devices])))
+    return render_template("main.html", oems=oems, devices=devices)
 
 @app.route("/<string:device>")
 @cache.cached(timeout=3600)
 def web_device(device):
-    devices = sorted([x for x in Device.get_devices() if x in Rom.get_devices()], key=lambda device: device['model'])
-    oems = [x['oem'] for x in devices]
+    devices = sorted([x for x in Device.get_devices() if x['model'] in Rom.get_devices()], key=lambda device: device['model'])
+    oems = sorted(list(set([x['oem'] for x in devices])))
 
     roms = Rom.get_roms(device=device, before=app.config['BUILD_SYNC_TIME'])
 

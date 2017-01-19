@@ -21,7 +21,7 @@ class Rom(Document):
     @classmethod
     def get_devices(cls):
         #TODO change this to an aggregate
-        cls.objects().distinct(field="device")
+        return cls.objects().distinct(field="device")
 
 class Device(Document):
     model = StringField(required=True, unique=True)
