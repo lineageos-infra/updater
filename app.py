@@ -1,4 +1,4 @@
-from database import Rom, ApiKey
+from database import Rom, ApiKey, Device
 
 from flask import Flask, jsonify, request, abort, render_template
 from flask_mongoengine import MongoEngine
@@ -20,9 +20,6 @@ app.config.from_pyfile('app.cfg')
 db = MongoEngine(app)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
-with open(os.path.join(sys.path[0], 'devices.json')) as f:
-    devices = json.load(f)
-
 def api_key_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -32,9 +29,6 @@ def api_key_required(f):
                 return f(*args, **kwargs)
         return abort(403)
     return decorated_function
-
-def get_devices():
-    return devices
 
 @app.cli.command()
 @click.option('--filename', '-f', 'filename', required=True)
@@ -69,6 +63,17 @@ def api_key(comment, remove, echo):
         print(key)
     else:
         print("comment or print required")
+
+@app.cli.command()
+def import_devices():
+    with open("devices.json", "r") as f:
+        data = json.load(f)
+        for device in data:
+            d = Device.objects(model=device['model'])
+            if d:
+                d.update(**device)
+            else:
+                Device(**device).save()
 
 @app.route('/api/v1/<string:device>/<string:romtype>/<string:incrementalversion>')
 def index(device, romtype, incrementalversion):

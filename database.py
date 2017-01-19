@@ -9,6 +9,18 @@ class Rom(Document):
     md5sum = StringField(required=True)
     url = StringField()
 
+class Device(Document):
+    model = StringField(required=True, unique=True)
+    oem = StringField(required=True)
+    name = StringField(required=True)
+    image = StringField(required=False)
+    has_recovery = BooleanField(required=False, default=True)
+    wiki = StringField(required=False)
+
+    @classmethod
+    def get_devices(cls):
+        return cls.objects()
+
 class ApiKey(Document):
     apikey = StringField(required=True)
     comment = StringField(required=False)
