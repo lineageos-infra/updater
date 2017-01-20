@@ -100,6 +100,13 @@ def index(device, romtype, incrementalversion):
         })
     return jsonify({'response': data })
 
+@app.route('/api/v1/types/<string:device>/')
+def get_types(device):
+    types = set(["nightly"])
+    for rtype in Rom.get_types(device):
+        types.add(rtype)
+    return jsonify({'response': list(types)})
+
 @app.route('/api/v1/requestfile/<string:file_id>')
 def requestfile(file_id):
     rom = Rom.objects.get(id=id)

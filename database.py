@@ -23,6 +23,10 @@ class Rom(Document):
         #TODO change this to an aggregate
         return cls.objects().distinct(field="device")
 
+    @classmethod
+    def get_types(cls, device):
+        return cls.objects().distinct(field="romtype")
+
 class Device(Document):
     model = StringField(required=True, unique=True)
     oem = StringField(required=True)
