@@ -169,6 +169,7 @@
   {  "model": "jordan", "oem": "Motorola", "name": "Defy"},
   {  "model": "jordan_plus", "oem": "Motorola", "name": "Defy+", "image": "jordan"},
   {  "model": "kenzo", "oem": "Xiaomi", "name": "Redmi Note 3"},
+  {  "model": "kingdom", "oem": "Lenovo", "name": "Vibe Z2 Pro"},
   {  "model": "kipper", "oem": "Wileyfox", "name": "Storm"},
   {  "model": "kiwi", "oem": "Huawei", "name": "Honor 5X"},
   {  "model": "klimtlte", "oem": "Samsung", "name": "Galaxy Tab S 8.4 (LTE)", "image": "klimtwifi"},
