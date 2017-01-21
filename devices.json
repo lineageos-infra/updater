@@ -404,6 +404,7 @@
   {  "model": "yuga", "oem": "Sony", "name": "Xperia Z"},
   {  "model": "Z008", "oem": "Asus", "name": "Zenfone 2 (720p)", "image": "Z00T"},
   {  "model": "Z00A", "oem": "Asus", "name": "Zenfone 2 (1080p)", "image": "Z00T"},
+  {  "model": "Z00D", "oem": "Asus", "name": "Zenfone 2 (Z00D)", "image": "Z00T"},
   {  "model": "Z00L", "oem": "Asus", "name": "Zenfone 2 Laser (720p)", "image": "Z00T"},
   {  "model": "Z00T", "oem": "Asus", "name": "Zenfone 2 Laser/Selfie (1080p)"},
   {  "model": "z3", "oem": "Sony", "name": "Xperia Z3"},
