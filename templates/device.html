@@ -24,7 +24,7 @@
                                 <td>
                                     <a href="{{rom.url}}">{{rom.filename}}</a> <br /><small>md5sum: {{rom.md5sum}}</small>
                                 </td>
-                                <td>{{rom.datetime}}</td>
+                                <td>{{rom.datetime.strftime("%Y-%m-%d %H:%M:%S %Z")}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
