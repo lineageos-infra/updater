@@ -17,8 +17,8 @@ devices.json is an array of objects, each with several fields:
 so limit this to around 25 characters.
 * `has_recovery`: (*optional*) whether or not the device has a separate recovery partition. Defaults to `true`.
 * `image`: (*optional*) the filename (excluding .png) of the device's image. Defaults to the value of `model`.
-* `wiki`: (*optional*) the name of the wiki page, exlcuding "\_Info". Defaults to the value of `model`.
-For example, "i9300" would be shown on the website as a link to https://wiki.lineageos.org/w/i9300_Info.
+* `wiki`: (*optional*) the name of the wiki page, excluding "\_info". Defaults to the value of `model`.
+For example, `i9300` would be shown on the website as a link to http://wiki.lineageos.org/i9300_info.html.
 
 This file is no longer read from disk by the application and must be loaded into mongo. To do so, run: 
 
