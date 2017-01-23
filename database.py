@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 class Rom(Document):
     filename = StringField(required=True)
-    datetime = DateTimeField(required=True, default=datetime.now())
+    datetime = DateTimeField(required=True, default=datetime.now)
     device = StringField(required=True)
     version = StringField(required=True)
     romtype = StringField(required=True)
