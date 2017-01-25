@@ -2,9 +2,12 @@ from mongoengine import Document, BooleanField, DateTimeField, StringField
 
 from datetime import datetime, timedelta
 
+def default_time():
+    return datetime.now() - timedelta(minutes=60)
+
 class Rom(Document):
     filename = StringField(required=True)
-    datetime = DateTimeField(required=True, default=datetime.now)
+    datetime = DateTimeField(required=True, default=default_time)
     device = StringField(required=True)
     version = StringField(required=True)
     romtype = StringField(required=True)
