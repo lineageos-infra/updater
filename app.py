@@ -75,6 +75,15 @@ def import_devices():
                 d.update(**device)
             else:
                 Device(**device).save()
+    if os.path.isfile("devices_local.json"):
+        with open("devices_local.json", "r") as f:
+            data = json.load(f)
+            for device in data:
+                d = Device.objects(model=device['model'])
+                if d:
+                    d.update(**device)
+                else:
+                    Device(**device).save()
 
 @app.route('/api/v1/<string:device>/<string:romtype>/<string:incrementalversion>')
 def index(device, romtype, incrementalversion):
