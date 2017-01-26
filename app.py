@@ -168,3 +168,11 @@ def web_device(device):
     active_oem = active_oem[0] if active_oem else None
 
     return render_template("device.html", active_oem=active_oem, active_device=device, oems=oems, devices=devices, roms=roms)
+
+@app.route("/extras")
+@cache.cached(timeout=3600)
+def web_extras():
+    devices = sorted([x for x in Device.get_devices() if x['model'] in Rom.get_devices()], key=lambda device: device['model'])
+    oems = sorted(list(set([x['oem'] for x in devices])))
+
+    return render_template("extras.html", oems=oems, devices=devices, extras=True)
