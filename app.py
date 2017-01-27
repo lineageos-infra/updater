@@ -211,7 +211,9 @@ def web_device(device):
     active_oem = [x['oem'] for x in devices if x['model'] == device]
     active_oem = active_oem[0] if active_oem else None
 
-    return render_template("device.html", active_oem=active_oem, active_device=device, oems=oems, devices=devices, roms=roms, get_timestamp=get_timestamp)
+    active_device = Device.objects(model=device).first()
+
+    return render_template("device.html", active_oem=active_oem, active_device=active_device, oems=oems, devices=devices, roms=roms, get_timestamp=get_timestamp)
 
 @app.route("/extras")
 @cache.cached(timeout=3600)

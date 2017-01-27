@@ -40,7 +40,7 @@
                                     <ul>
                                         {% for device in devices %}
                                         {% if device.oem == oem %}
-                                        {% if device.model == active_device %}
+                                        {% if device.model == active_device.model %}
                                         <li class="active grey darken-2"><a href="/{{device.model}}">{{device.name}} ({{device.model}})</a></li>
                                         {% else %}
                                         <li ><a href="/{{device.model}}">{{device.name}} ({{device.model}})</a></li>
