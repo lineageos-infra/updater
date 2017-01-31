@@ -25,7 +25,7 @@ class Rom(Document):
             del args['datetime__lt']
         if not romtype:
             del args['romtype']
-        return cls.objects(**args)
+        return cls.objects(**args).order_by('-datetime')
 
     @classmethod
     def get_devices(cls):
