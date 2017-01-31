@@ -158,6 +158,11 @@ def add_build():
     rom.save()
     return "ok", 200
 
+@app.route('/api/v1/devices')
+@cache.cached(timeout=3600)
+def api_v1_devices():
+    return jsonify(Rom.get_current_devices_by_version())
+
 @app.route('/')
 @cache.cached(timeout=3600)
 def web_main():

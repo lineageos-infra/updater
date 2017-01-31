@@ -30,6 +30,14 @@ class Rom(Document):
     def get_types(cls, device):
         return cls.objects().distinct(field="romtype")
 
+    @classmethod
+    def get_current_devices_by_version(cls):
+        # db.rom.aggregate({'$group': {'_id': '$version', 'device': {'$push': '$device'}}})
+        versions = {}
+        for version in cls.objects().aggregate({'$group': {'_id': '$version', 'devices': {'$push': '$device'}}}):
+            versions[version['_id']] = version['devices']
+        return versions
+
 class Device(Document):
     model = StringField(required=True, unique=True)
     oem = StringField(required=True)
