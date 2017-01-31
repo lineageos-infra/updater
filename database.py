@@ -16,10 +16,16 @@ class Rom(Document):
 
     @classmethod
     def get_roms(cls, device, romtype=None, before=3600):
-        if romtype:
-            return cls.objects(device=device, romtype=romtype, datetime__lt=datetime.now()-timedelta(seconds=before))
-        else:
-            return cls.objects(device=device, datetime__lt=datetime.now()-timedelta(seconds=before))
+        args = {
+            'device': device,
+            'romtype': romtype,
+            'datetime__lt': datetime.now()-timedelta(seconds=before)
+        }
+        if before == 0:
+            del args['datetime__lt']
+        if not romtype:
+            del args['romtype']
+        return cls.objects(**args)
 
     @classmethod
     def get_devices(cls):
