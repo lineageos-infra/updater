@@ -169,6 +169,11 @@ def api_v1_delete_file(filename):
     Rom.objects(filename=filename).delete()
     return '', 200
 
+@app.route('/api/v1/purgecache', methods=('POST',))
+@api_key_required
+def purge_cache():
+    cache.clear()
+
 @app.route('/')
 @cache.cached(timeout=3600)
 def web_main():
