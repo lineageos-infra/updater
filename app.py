@@ -163,13 +163,13 @@ def add_build():
 def api_v1_devices():
     return jsonify(Rom.get_current_devices_by_version())
 
-@app.route('/api/v1/<string:filename>', methods=('DELETE',))
+@app.route('/api/v1/<string:filename>', methods=['DELETE',])
 @api_key_required
 def api_v1_delete_file(filename):
     Rom.objects(filename=filename).delete()
     return '', 200
 
-@app.route('/api/v1/purgecache', methods=('POST',))
+@app.route('/api/v1/purgecache', methods=['POST',])
 @api_key_required
 def purge_cache():
     cache.clear()
