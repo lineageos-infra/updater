@@ -2,7 +2,7 @@ from database import Rom, ApiKey, Device
 
 from flask import Flask, jsonify, request, abort, render_template
 from flask_mongoengine import MongoEngine
-from flask_cache import Cache
+from flask_caching import Cache
 from functools import wraps
 from pydoc import locate
 from uuid import uuid4
