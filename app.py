@@ -19,7 +19,7 @@ app = Flask(__name__)
 app.config.from_pyfile('app.cfg')
 
 db = MongoEngine(app)
-cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+cache = Cache(app, config=app.config['CACHE_CONFIG'])
 
 def api_key_required(f):
     @wraps(f)
