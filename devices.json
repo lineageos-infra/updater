@@ -293,6 +293,7 @@
   {  "model": "peregrine", "oem": "Motorola", "name": "Moto G 4G"},
   {  "model": "picassowifi", "oem": "Samsung", "name": "Galaxy Tab Pro 10.1 (Wi-Fi)"},
   {  "model": "piccolo", "oem": "BQ", "name": "Aquaris M5"},
+  {  "model": "pme", "oem": "HTC", "name": "HTC 10"},
   {  "model": "pollux", "oem": "Sony", "name": "Xperia Tablet Z"},
   {  "model": "pollux_windy", "oem": "Sony", "name": "Xperia Tablet Z (Wi-Fi)", "image": "pollux"},
   {  "model": "porridge", "oem": "Wileyfox", "name": "Spark"},
