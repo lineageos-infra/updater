@@ -28,7 +28,8 @@ Initial set up:
 ---
 1. Install requirements with `pip install -r requirements.txt`
 2. Copy `app.cfg.example` to `app.cfg`
-3. Run with `FLASK_APP=app.py flask run`
+3. Import the devices list with `FLASK_APP=app.py flask import_devices`
+4. Run with `FLASK_APP=app.py flask run`
 
 
 API Keys
