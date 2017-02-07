@@ -173,6 +173,7 @@ def api_v1_delete_file(filename):
 @api_key_required
 def purge_cache():
     cache.clear()
+    return 'ok', 200
 
 @app.route('/')
 @cache.cached(timeout=3600)
