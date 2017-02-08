@@ -13,6 +13,7 @@
   {  "model": "aries", "oem": "Xiaomi", "name": "Mi 2"},
   {  "model": "armani", "oem": "Xiaomi", "name": "Redmi 1S"},
   {  "model": "athene", "oem": "Motorola", "name": "Moto G4/G4 Plus"},
+  {  "model": "axon7", "oem": "ZTE", "name": "Axon 7"},
   {  "model": "bacon", "oem": "OnePlus", "name": "One"},
   {  "model": "blade", "oem": "ZTE", "name": "Blade"},
   {  "model": "bravo", "oem": "HTC", "name": "Desire (GSM)", "image": "desire"},
