@@ -28,6 +28,10 @@ header, main, footer {
     }
 }
 
+.collection li {
+    list-style: none;
+}
+
 .scrollable-table {
     display: block;
     width: 100%;
@@ -39,4 +43,60 @@ header, main, footer {
     display: flex;
     align-items: center;
     line-height: 1.3;
+}
+
+.flex-dynamic {
+    display: flex;
+    flex-direction: row;
+}
+
+.project-name {
+    font-size: 0.75em;
+    text-align: right;
+}
+
+.collection.with-header .collection-item {
+    padding-left: 20px !important;
+}
+
+.collection .collection-item {
+    padding: 5px 20px;
+}
+
+.collection-header:nth-child(2n), .collection-item:nth-child(2n) {
+    background-color: #eeeeee !important;
+}
+
+@media only screen and (max-width: 700px) {
+    /* flex-dynamic becomes flex-col */
+    .flex-dynamic {
+        flex-direction: column;
+    }
+
+    .project-name {
+        text-align: left;
+    }
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row *, .flex-dynamic * {
+    flex: 1 1 auto;
+}
+
+.flex-row .secondary-content {
+    align-self: flex-end;
+    flex: 0 1 auto;
+}
+
+img.voter {
+    margin: 2px;
 }

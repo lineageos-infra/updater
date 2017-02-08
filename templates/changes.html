@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block script %}
+<script>
+device = "{{ device }}";
+lastChangeTime = {{ before }};
+</script>
+<script type="text/javascript" src="/static/js/main.js" ></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div id="changes" class="collection with-header">
+        {% set back = device %}
+        {% if device == "all" %}
+        {% set device = "all devices" %}
+        {% set back = 0 %}
+        {% endif %}
+        <li class="collection-header"><h4>Changes for {{ device }}</h4>{% if back != 0 %}<a id="back" href="/{{ back }}">back</a>{% endif %}</li>
+    </div>
+
+</div>
+{% endblock %}

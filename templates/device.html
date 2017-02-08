@@ -5,7 +5,8 @@
     <div class="row">
         <div class="col s12 m12 l12">
             <div class="card-panel">
-                <h4>Builds</h4>
+                <h4>Builds for {{active_device}}</h4>
+                <strong><a href="/{{active_device}}/changes/">Show all merged changes for {{active_device}}</a></strong>
                 <div class="scrollable-table">
                     <table class="striped bordered">
                         <thead>
@@ -14,6 +15,7 @@
                                 <th>Version</th>
                                 <th>File</th>
                                 <th>Date</th>
+                                <th><!-- changelog --></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,6 +27,7 @@
                                     <a href="{{rom.url}}">{{rom.filename}}</a> <br /><small>md5sum: {{rom.md5sum}}</small>
                                 </td>
                                 <td>{{rom.datetime.strftime("%Y-%m-%d %H:%M:%S %Z")}}</td>
+                                <td><a href="/{{rom.device}}/changes/{{int(rom.datetime.timestamp())}}">Changelog</a></td>
                             </tr>
                             {% endfor %}
                         </tbody>

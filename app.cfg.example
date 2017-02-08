@@ -4,5 +4,6 @@ MONGODB_PASSWORD = 'pass'
 MONGODB_HOST = '127.0.0.1'
 MONGODB_PORT = 27017
 
+GERRIT_URL = 'https://review.lineageos.org'
 BUILD_SYNC_TIME = 3600
 CACHE_TYPE = "simple"
