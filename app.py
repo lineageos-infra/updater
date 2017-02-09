@@ -178,14 +178,14 @@ def purge_cache():
 @app.route('/')
 @cache.cached(timeout=3600)
 def web_main():
-    devices = sorted([x for x in Device.get_devices() if x['model'] in Rom.get_devices()], key=lambda device: device['model'])
+    devices = sorted([x for x in Device.get_devices() if x['model'] in Rom.get_devices()], key=lambda device: device['name'])
     oems = sorted(list(set([x['oem'] for x in devices])))
     return render_template("main.html", oems=oems, devices=devices)
 
 @app.route("/<string:device>")
 @cache.cached(timeout=3600)
 def web_device(device):
-    devices = sorted([x for x in Device.get_devices() if x['model'] in Rom.get_devices()], key=lambda device: device['model'])
+    devices = sorted([x for x in Device.get_devices() if x['model'] in Rom.get_devices()], key=lambda device: device['name'])
     oems = sorted(list(set([x['oem'] for x in devices])))
 
     roms = Rom.get_roms(device=device, before=app.config['BUILD_SYNC_TIME'])
@@ -198,7 +198,7 @@ def web_device(device):
 @app.route("/extras")
 @cache.cached(timeout=3600)
 def web_extras():
-    devices = sorted([x for x in Device.get_devices() if x['model'] in Rom.get_devices()], key=lambda device: device['model'])
+    devices = sorted([x for x in Device.get_devices() if x['model'] in Rom.get_devices()], key=lambda device: device['name'])
     oems = sorted(list(set([x['oem'] for x in devices])))
 
     return render_template("extras.html", oems=oems, devices=devices, extras=True)
