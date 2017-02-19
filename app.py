@@ -1,5 +1,5 @@
 from changelog.gerrit import GerritServer, GerritJSONEncoder
-from changelog import get_changes
+from changelog import get_changes, get_timestamp
 from database import Rom, ApiKey, Device
 
 from flask import Flask, jsonify, request, abort, render_template
@@ -16,6 +16,8 @@ import os
 import requests
 import sys
 import time
+
+os.environ['TZ'] = 'UTC'
 
 app = Flask(__name__)
 app.config.from_pyfile('app.cfg')
@@ -209,7 +211,7 @@ def web_device(device):
     active_oem = [x['oem'] for x in devices if x['model'] == device]
     active_oem = active_oem[0] if active_oem else None
 
-    return render_template("device.html", int=int, active_oem=active_oem, active_device=device, oems=oems, devices=devices, roms=roms)
+    return render_template("device.html", active_oem=active_oem, active_device=device, oems=oems, devices=devices, roms=roms, get_timestamp=get_timestamp)
 
 @app.route("/extras")
 @cache.cached(timeout=3600)

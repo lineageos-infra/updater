@@ -36,7 +36,7 @@ def is_related_change(gerrit, device, curbranch, project, branch):
         return True
 
     deps = dependencies[device]
-    if project.split('/', maxsplit=1)[1] in deps:
+    if project.split('/', 1)[1] in deps:
         # device explicitly depends on it
         return True
 
@@ -73,10 +73,12 @@ def is_related_change(gerrit, device, curbranch, project, branch):
 
     return qcom
 
+def get_timestamp(ts):
+    return int((ts - datetime(1970, 1, 1)).total_seconds())
+
 def get_changes(gerrit, device=None, before=-1, version='14.1'):
     last_release = -1
 
-    # load 50 changes at a time
     query = 'status:merged'
     if last_release != -1:
         query += ' after:' + datetime_to_gerrit(last_release)
@@ -88,12 +90,12 @@ def get_changes(gerrit, device=None, before=-1, version='14.1'):
     nightly_changes = []
     last = 0
     for c in changes:
-        last = int(c.updated.timestamp())
+        last = get_timestamp(c.updated)
         if is_related_change(gerrit, device, version, c.project, c.branch):
             nightly_changes.append({
                 'project': c.project,
                 'subject': c.subject,
-                'updated': int(c.updated.timestamp()),
+                'updated': get_timestamp(c.updated),
                 'url': c.url,
                 'owner': c.owner,
                 'labels': c.labels

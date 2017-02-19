@@ -134,6 +134,8 @@ class GerritListing(GerritThing):
         self._item_index += 1
         return self._item_cache[self._item_index - 1]
 
+    next = __next__
+
     def __str__(self):
         return 'GerritListing[path={},params={},clazz={},index={},cache_len={}]'.format(self.path, self.params,
                 self._clazz, self._item_index, len(self._item_cache))
