@@ -36,7 +36,7 @@ def parse_gerrit_datetime(d):
 def datetime_to_gerrit(d):
     return d.strftime('"%Y-%m-%d %H:%M:%S"')
 
-class GerritThing:
+class GerritThing(object):
     def __init__(self, url):
         self._url = url
 
