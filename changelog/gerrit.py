@@ -52,7 +52,7 @@ class GerritThing:
 class GerritUser(GerritThing):
     """Represents a user"""
     def __init__(self, url, obj):
-        super().__init__(url)
+        super(GerritUser, self).__init__(url)
         self.id = obj['_account_id']
         try:
             self.username = obj.get('username', obj['name'])
@@ -73,7 +73,7 @@ class GerritUser(GerritThing):
 class GerritChange(GerritThing):
     """Represents a single change."""
     def __init__(self, url, obj):
-        super().__init__(url)
+        super(GerritChange, self).__init__(url)
         self._id = obj['id']
         self.project = obj['project']
         self.branch = obj['branch']
@@ -100,7 +100,7 @@ class GerritChange(GerritThing):
 class GerritListing(GerritThing):
     """Represents a listing page on Gerrit (e.g. /changes/ or /projects/)"""
     def __init__(self, url, path, params, clazz, limit=-1):
-        super().__init__(url)
+        super(GerritListing, self).__init__(url)
         self.params = params
         self.path = path
         self._item_cache = []
@@ -141,7 +141,7 @@ class GerritListing(GerritThing):
 class GerritServer(GerritThing):
     """Represents a Gerrit server"""
     def __init__(self, url):
-        super().__init__(url)
+        super(GerritServer ,self).__init__(url)
 
     def changes(self, query='status:merged', n=50, limit=-1):
         # O is a bitmask in hex - see https://github.com/gerrit-review/gerrit/blob/master/gerrit-extension-api/src/main/java/com/google/gerrit/extensions/client/ListChangesOption.java
