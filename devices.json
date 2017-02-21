@@ -403,6 +403,7 @@
   {  "model": "w7", "oem": "LG", "name": "Optimus L90"},
   {  "model": "wt88047", "oem": "Wingtech", "name": "Redmi 2"},
   {  "model": "wingray", "oem": "Motorola", "name": "Xoom (Wi-Fi)"},
+  {  "model": "x2", "oem": "LeEco", "name": "Le Max 2"},
   {  "model": "xt1053", "oem": "Motorola", "name": "Moto X 2013 (TMO)", "image": "ghost"},
   {  "model": "xt1060", "oem": "Motorola", "name": "Moto X 2013 Developer Edition", "image": "ghost"},
   {  "model": "xt897", "oem": "Motorola", "name": "Photon Q"},
@@ -424,5 +425,6 @@
   {  "model": "zeppelin", "oem": "Motorola", "name": "Cliq XT"},
   {  "model": "zero", "oem": "Geeksphone", "name": "Zero"},
   {  "model": "zeus", "oem": "Sony Ericsson", "name": "Xperia Play (GSM)", "has_recovery": false},
-  {  "model": "zeusc", "oem": "Sony Ericsson", "name": "Xperia Play (CDMA)", "has_recovery": false, "image": "zeus"}
+  {  "model": "zeusc", "oem": "Sony Ericsson", "name": "Xperia Play (CDMA)", "has_recovery": false, "image": "zeus"},
+  {  "model": "zl1", "oem": "LeEco", "name": "Le Pro 3"}
 ]
