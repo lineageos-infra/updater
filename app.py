@@ -181,7 +181,7 @@ def changes(device='all', before=-1):
 def show_changelog(device='all', before=-1):
     devices = sorted([x for x in Device.get_devices() if x['model'] in Rom.get_devices()], key=lambda device: device['name'])
     oems = sorted(list(set([x['oem'] for x in devices])))
-    return render_template('changes.html', oems=oems, devices=devices, device=device, before=before, changelog=True)
+    return render_template('changes.html', active_device=None, oems=oems, devices=devices, device=device, before=before, changelog=True)
 
 @app.route('/api/v1/devices')
 @cache.cached(timeout=3600)
@@ -221,4 +221,4 @@ def web_extras():
     devices = sorted([x for x in Device.get_devices() if x['model'] in Rom.get_devices()], key=lambda device: device['name'])
     oems = sorted(list(set([x['oem'] for x in devices])))
 
-    return render_template("extras.html", oems=oems, devices=devices, extras=True)
+    return render_template("extras.html", active_device=None, oems=oems, devices=devices, extras=True)
