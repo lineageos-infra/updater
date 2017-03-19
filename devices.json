@@ -1,6 +1,7 @@
 [
   {  "model": "a5", "oem": "HTC", "name": "Desire 816"},
   {  "model": "a5dwg", "oem": "HTC", "name": "Desire 816 Dual SIM", "image": "a5"},
+  {  "model": "A6020", "oem": "Lenovo", "name": "Vibe K5 / K5 Plus"},
   {  "model": "a700", "oem": "Acer", "name": "Iconia Tab A700"},
   {  "model": "acclaim", "oem": "Barnes & Noble", "name": "Nook Tablet"},
   {  "model": "ace", "oem": "HTC", "name": "Desire HD / Inspire 4G"},
