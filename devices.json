@@ -350,6 +350,8 @@
   {  "model": "surnia", "oem": "Motorola", "name": "Moto E LTE (2015)"},
   {  "model": "t0lte", "oem": "Samsung", "name": "Galaxy Note II (GSM LTE)", "image": "n7100"},
   {  "model": "t0lteatt", "oem": "Samsung", "name": "Galaxy Note II (AT&T)", "image": "n7100"},
+  {  "model": "t0ltektt", "oem": "Samsung", "name": "Galaxy Note II (Korea)", "image": "n7100"},
+  {  "model": "t0lteskt", "oem": "Samsung", "name": "Galaxy Note II (SK Telecom)", "image": "n7100"},
   {  "model": "t0ltetmo", "oem": "Samsung", "name": "Galaxy Note II (TMO)", "image": "n7100"},
   {  "model": "t6", "oem": "HTC", "name": "One Max"},
   {  "model": "t6spr", "oem": "HTC", "name": "One Max (Sprint)", "image": "t6"},
