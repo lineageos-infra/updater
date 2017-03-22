@@ -93,9 +93,9 @@ def import_devices():
 
 @app.cli.command()
 def check_builds():
-    for d in Device.objects():
-        if requests.head(d.url).status_code == 404:
-            print("Rom.objects(filename={}).delete()".format(d.filename))
+    for r in Rom.objects():
+        if requests.head(r.url).status_code == 404:
+            print("Rom.objects(filename={}).delete()".format(r.filename))
 
 @app.route('/api/v1/<string:device>/<string:romtype>/<string:incrementalversion>')
 def index(device, romtype, incrementalversion):
