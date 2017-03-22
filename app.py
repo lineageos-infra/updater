@@ -131,7 +131,7 @@ def get_types(device):
 
 @app.route('/api/v1/requestfile/<string:file_id>')
 def requestfile(file_id):
-    rom = Rom.objects.get(id=id)
+    rom = Rom.objects.get(id=file_id)
     if not rom['url']:
         url = config['baseurl']
         if url[-1:] != '/':
