@@ -107,6 +107,7 @@
   {  "model": "gemini", "oem": "Xiaomi", "name": "Mi 5"},
   {  "model": "ghost", "oem": "Motorola", "name": "Moto X 2013"},
   {  "model": "glacier", "oem": "T-Mobile", "name": "myTouch 4G"},
+  {  "model": "griffin", "oem": "Motorola", "name": "Moto Z"},
   {  "model": "grouper", "oem": "Google", "name": "Nexus 7 (Wi-Fi)"},
   {  "model": "gts210ltexx", "oem": "Samsung", "name": "Galaxy Tab S2 9.7 (LTE)", "image": "gts2"},
   {  "model": "gts210vewifi", "oem": "Samsung", "name": "Galaxy Tab S2 9.7 2016 (Wi-Fi)", "image": "gts2"},
