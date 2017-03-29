@@ -40,6 +40,9 @@ function renderChanges(data, textStatus, xhr) {
         if (res[el].subject == "Automatic translation import") {
             continue;
         }
+        if (res[el].submitted == null) {
+            continue;
+        }
         let date = new Date(res[el].submitted * 1000);
         if (currentBuildIndex >= 0 && currentBuildIndex < builds.length && shouldPutBuildLabel(lastChangeTime, res[el].submitted, builds[currentBuildIndex].datetime)) {
             document.getElementById("changes").innerHTML += String.format('<li class="collection-header"><strong>Changes included in {release}</strong></li>',

@@ -74,6 +74,8 @@ def is_related_change(gerrit, device, curbranch, project, branch):
     return qcom
 
 def get_timestamp(ts):
+    if not ts:
+        return None
     return int((ts - datetime(1970, 1, 1)).total_seconds())
 
 def get_changes(gerrit, device=None, before=-1, version='14.1'):
