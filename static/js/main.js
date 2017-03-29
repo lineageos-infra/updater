@@ -40,13 +40,13 @@ function renderChanges(data, textStatus, xhr) {
         if (res[el].subject == "Automatic translation import") {
             continue;
         }
-        let date = new Date(res[el].updated * 1000);
-        if (currentBuildIndex >= 0 && currentBuildIndex < builds.length && shouldPutBuildLabel(lastChangeTime, res[el].updated, builds[currentBuildIndex].datetime)) {
+        let date = new Date(res[el].submitted * 1000);
+        if (currentBuildIndex >= 0 && currentBuildIndex < builds.length && shouldPutBuildLabel(lastChangeTime, res[el].submitted, builds[currentBuildIndex].datetime)) {
             document.getElementById("changes").innerHTML += String.format('<li class="collection-header"><strong>Changes included in {release}</strong></li>',
                     { 'release': builds[currentBuildIndex].filename });
             currentBuildIndex--;
         }
-        lastChangeTime = res[el].updated - 1;
+        lastChangeTime = res[el].submitted - 1;
         let args = {
             'url': res[el].url,
             'subject': res[el].subject,
