@@ -5,6 +5,7 @@
   {  "model": "a700", "oem": "Acer", "name": "Iconia Tab A700"},
   {  "model": "acclaim", "oem": "Barnes & Noble", "name": "Nook Tablet"},
   {  "model": "ace", "oem": "HTC", "name": "Desire HD / Inspire 4G"},
+  {  "model": "addison", "oem": "Motorola", "name": "Moto Z Play"},
   {  "model": "amami", "oem": "Sony", "name": "Xperia Z1 Compact"},
   {  "model": "angler", "oem": "Google", "name": "Nexus 6P"},
   {  "model": "anzu", "oem": "Sony Ericsson", "name": "Xperia Arc / Arc S", "has_recovery": false},
