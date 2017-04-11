@@ -41,7 +41,7 @@ def is_related_change(gerrit, device, curbranch, project, branch):
         return True
 
     if '_kernel_' in project or '_device_' in project or 'samsung' in project or 'nvidia' in project \
-            or '_omap' in project or 'FlipFlap' in project:
+            or '_omap' in project or 'FlipFlap' in project or 'lge-kernel-mako' in project:
         return False
 
     if not ('hardware_qcom_' in project or project.endswith('-caf')):
