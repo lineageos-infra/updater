@@ -58,20 +58,23 @@
         "android_device_bn_acclaim",
         "android_kernel_bn_acclaim"
     ],
+    "addison": [
+        "android_device_motorola_addison",
+        "android_device_qcom_common",
+        "android_external_bson",
+        "android_kernel_motorola_msm8953",
+        "android_packages_resources_devicesettings"
+    ],
     "amami": [
         "android_device_qcom_common",
         "android_device_sony_amami",
         "android_device_sony_common",
         "android_device_sony_msm8974-common",
         "android_device_sony_rhine-common",
-        "android_hardware_qcom_display",
+        "android_external_stlport",
         "android_hardware_qcom_fm",
-        "android_hardware_qcom_media",
-        "android_hardware_sony_camera",
         "android_hardware_sony_macaddrsetup",
-        "android_hardware_sony_thermanager",
-        "android_hardware_sony_timekeep",
-        "android_kernel_sony_msm"
+        "android_hardware_sony_thermanager"
     ],
     "angler": [
         "android_device_huawei_angler",
@@ -138,13 +141,11 @@
         "android_device_sony_common",
         "android_device_sony_msm8974-common",
         "android_device_sony_shinano-common",
-        "android_hardware_qcom_display",
-        "android_hardware_qcom_media",
-        "android_hardware_sony_camera",
+        "android_external_stlport",
+        "android_hardware_broadcom_fm",
         "android_hardware_sony_macaddrsetup",
         "android_hardware_sony_thermanager",
-        "android_hardware_sony_timekeep",
-        "android_kernel_sony_msm"
+        "android_kernel_sony_msm8974"
     ],
     "castor_windy": [
         "android_device_qcom_common",
@@ -152,13 +153,11 @@
         "android_device_sony_common",
         "android_device_sony_msm8974-common",
         "android_device_sony_shinano-common",
-        "android_hardware_qcom_display",
-        "android_hardware_qcom_media",
-        "android_hardware_sony_camera",
+        "android_external_stlport",
+        "android_hardware_broadcom_fm",
         "android_hardware_sony_macaddrsetup",
         "android_hardware_sony_thermanager",
-        "android_hardware_sony_timekeep",
-        "android_kernel_sony_msm"
+        "android_kernel_sony_msm8974"
     ],
     "chagalllte": [
         "android_device_samsung_chagalllte"
@@ -513,11 +512,14 @@
     "foster": [
         "android_device_nvidia_foster",
         "android_device_nvidia_shield-common",
+        "android_hardware_nvidia_libstagefrighthw",
         "android_hardware_nvidia_power",
+        "android_hardware_nvidia_thermal",
         "android_kernel_nvidia_shield"
     ],
     "fugu": [
-        "android_device_asus_fugu"
+        "android_device_asus_fugu",
+        "android_kernel_asus_fugu"
     ],
     "full": [
         "android_device_cyanogen_full"
@@ -664,6 +666,16 @@
         "android_vendor_nxp-nfc_opensource_frameworks",
         "android_vendor_nxp-nfc_opensource_libnfc-nci"
     ],
+    "h872": [
+        "android_device_lge_g6-common",
+        "android_device_lge_h872",
+        "android_device_lge_msm8996-common",
+        "android_device_qcom_common",
+        "android_kernel_lge_msm8996",
+        "android_vendor_nxp-nfc_opensource_Nfc",
+        "android_vendor_nxp-nfc_opensource_frameworks",
+        "android_vendor_nxp-nfc_opensource_libnfc-nci"
+    ],
     "h901": [
         "android_device_lge_h901",
         "android_device_lge_v10-common",
@@ -796,14 +808,10 @@
         "android_device_sony_honami",
         "android_device_sony_msm8974-common",
         "android_device_sony_rhine-common",
-        "android_hardware_qcom_display",
+        "android_external_stlport",
         "android_hardware_qcom_fm",
-        "android_hardware_qcom_media",
-        "android_hardware_sony_camera",
         "android_hardware_sony_macaddrsetup",
-        "android_hardware_sony_thermanager",
-        "android_hardware_sony_timekeep",
-        "android_kernel_sony_msm"
+        "android_hardware_sony_thermanager"
     ],
     "huashan": [
         "android_device_qcom_common",
@@ -1313,6 +1321,16 @@
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
+    "lt02ltespr": [
+        "android_device_samsung_lt02lte-common",
+        "android_device_samsung_lt02ltespr",
+        "android_device_samsung_msm8930-common",
+        "android_device_samsung_qcom-common",
+        "android_external_stlport",
+        "android_hardware_samsung",
+        "android_kernel_samsung_msm8930-common",
+        "android_packages_resources_devicesettings"
+    ],
     "lt03lte": [
         "android_device_qcom_common",
         "android_device_samsung_lt03lte",
@@ -1403,7 +1421,8 @@
         "android_device_qcom_common",
         "android_external_sony_boringssl-compat",
         "android_external_stlport",
-        "android_kernel_motorola_msm8960-common"
+        "android_kernel_motorola_msm8960-common",
+        "android_packages_resources_devicesettings"
     ],
     "merlin": [
         "android_device_motorola_merlin",
@@ -1797,6 +1816,7 @@
     "s2": [
         "android_device_leeco_s2",
         "android_device_qcom_common",
+        "android_hardware_sony_thermanager",
         "android_kernel_leeco_msm8976"
     ],
     "s3ve3g": [
@@ -1828,13 +1848,11 @@
         "android_device_sony_scorpion",
         "android_device_sony_scorpion_windy",
         "android_device_sony_shinano-common",
-        "android_hardware_qcom_display",
-        "android_hardware_qcom_media",
-        "android_hardware_sony_camera",
+        "android_external_stlport",
+        "android_hardware_broadcom_fm",
         "android_hardware_sony_macaddrsetup",
         "android_hardware_sony_thermanager",
-        "android_hardware_sony_timekeep",
-        "android_kernel_sony_msm"
+        "android_kernel_sony_msm8974"
     ],
     "scorpion_windy": [
         "android_device_qcom_common",
@@ -1842,13 +1860,11 @@
         "android_device_sony_msm8974-common",
         "android_device_sony_scorpion_windy",
         "android_device_sony_shinano-common",
-        "android_hardware_qcom_display",
-        "android_hardware_qcom_media",
-        "android_hardware_sony_camera",
+        "android_external_stlport",
+        "android_hardware_broadcom_fm",
         "android_hardware_sony_macaddrsetup",
         "android_hardware_sony_thermanager",
-        "android_hardware_sony_timekeep",
-        "android_kernel_sony_msm"
+        "android_kernel_sony_msm8974"
     ],
     "seagull": [
         "android_device_sony_seagull"
@@ -1904,7 +1920,9 @@
     "shieldtablet": [
         "android_device_nvidia_shield-common",
         "android_device_nvidia_shieldtablet",
+        "android_hardware_nvidia_libstagefrighthw",
         "android_hardware_nvidia_power",
+        "android_hardware_nvidia_thermal",
         "android_kernel_nvidia_shield"
     ],
     "sirius": [
@@ -1913,13 +1931,11 @@
         "android_device_sony_msm8974-common",
         "android_device_sony_shinano-common",
         "android_device_sony_sirius",
-        "android_hardware_qcom_display",
-        "android_hardware_qcom_media",
-        "android_hardware_sony_camera",
+        "android_external_stlport",
+        "android_hardware_broadcom_fm",
         "android_hardware_sony_macaddrsetup",
         "android_hardware_sony_thermanager",
-        "android_hardware_sony_timekeep",
-        "android_kernel_sony_msm"
+        "android_kernel_sony_msm8974"
     ],
     "sprout4": [
         "android_device_google_sprout-common",
@@ -1960,6 +1976,15 @@
         "android_device_samsung_smdk4412-common",
         "android_device_samsung_smdk4412-qcom-common",
         "android_device_samsung_t0lte",
+        "android_external_stlport",
+        "android_hardware_samsung",
+        "android_kernel_samsung_smdk4412"
+    ],
+    "t0ltekor": [
+        "android_device_samsung_smdk4412-common",
+        "android_device_samsung_smdk4412-qcom-common",
+        "android_device_samsung_t0lte",
+        "android_device_samsung_t0ltekor",
         "android_external_stlport",
         "android_hardware_samsung",
         "android_kernel_samsung_smdk4412"
@@ -2070,14 +2095,10 @@
         "android_device_sony_msm8974-common",
         "android_device_sony_rhine-common",
         "android_device_sony_togari",
-        "android_hardware_qcom_display",
+        "android_external_stlport",
         "android_hardware_qcom_fm",
-        "android_hardware_qcom_media",
-        "android_hardware_sony_camera",
         "android_hardware_sony_macaddrsetup",
-        "android_hardware_sony_thermanager",
-        "android_hardware_sony_timekeep",
-        "android_kernel_sony_msm"
+        "android_hardware_sony_thermanager"
     ],
     "togari_gpe": [
         "android_device_qcom_common",
@@ -2086,14 +2107,10 @@
         "android_device_sony_rhine-common",
         "android_device_sony_togari",
         "android_device_sony_togari_gpe",
-        "android_hardware_qcom_display",
+        "android_external_stlport",
         "android_hardware_qcom_fm",
-        "android_hardware_qcom_media",
-        "android_hardware_sony_camera",
         "android_hardware_sony_macaddrsetup",
-        "android_hardware_sony_thermanager",
-        "android_hardware_sony_timekeep",
-        "android_kernel_sony_msm"
+        "android_hardware_sony_thermanager"
     ],
     "tomato": [
         "android_device_cyanogen_msm8916-common",
@@ -2307,7 +2324,8 @@
         "android_device_qcom_common",
         "android_external_sony_boringssl-compat",
         "android_external_stlport",
-        "android_kernel_motorola_msm8960-common"
+        "android_kernel_motorola_msm8960-common",
+        "android_packages_resources_devicesettings"
     ],
     "xt907": [
         "android_device_motorola_msm8960-common",
@@ -2316,7 +2334,8 @@
         "android_device_qcom_common",
         "android_external_sony_boringssl-compat",
         "android_external_stlport",
-        "android_kernel_motorola_msm8960dt-common"
+        "android_kernel_motorola_msm8960dt-common",
+        "android_packages_resources_devicesettings"
     ],
     "xt925": [
         "android_device_motorola_msm8960-common",
@@ -2325,7 +2344,8 @@
         "android_device_qcom_common",
         "android_external_sony_boringssl-compat",
         "android_external_stlport",
-        "android_kernel_motorola_msm8960dt-common"
+        "android_kernel_motorola_msm8960dt-common",
+        "android_packages_resources_devicesettings"
     ],
     "xt926": [
         "android_device_motorola_msm8960-common",
@@ -2334,7 +2354,8 @@
         "android_device_qcom_common",
         "android_external_sony_boringssl-compat",
         "android_external_stlport",
-        "android_kernel_motorola_msm8960dt-common"
+        "android_kernel_motorola_msm8960dt-common",
+        "android_packages_resources_devicesettings"
     ],
     "yuga": [
         "android_device_qcom_common",
@@ -2363,13 +2384,11 @@
         "android_device_sony_msm8974-common",
         "android_device_sony_shinano-common",
         "android_device_sony_z3",
-        "android_hardware_qcom_display",
-        "android_hardware_qcom_media",
-        "android_hardware_sony_camera",
+        "android_external_stlport",
+        "android_hardware_broadcom_fm",
         "android_hardware_sony_macaddrsetup",
         "android_hardware_sony_thermanager",
-        "android_hardware_sony_timekeep",
-        "android_kernel_sony_msm"
+        "android_kernel_sony_msm8974"
     ],
     "z3c": [
         "android_device_qcom_common",
@@ -2377,13 +2396,11 @@
         "android_device_sony_msm8974-common",
         "android_device_sony_shinano-common",
         "android_device_sony_z3c",
-        "android_hardware_qcom_display",
-        "android_hardware_qcom_media",
-        "android_hardware_sony_camera",
+        "android_external_stlport",
+        "android_hardware_broadcom_fm",
         "android_hardware_sony_macaddrsetup",
         "android_hardware_sony_thermanager",
-        "android_hardware_sony_timekeep",
-        "android_kernel_sony_msm"
+        "android_kernel_sony_msm8974"
     ],
     "z3dual": [
         "android_device_qcom_common",
@@ -2392,13 +2409,11 @@
         "android_device_sony_shinano-common",
         "android_device_sony_z3",
         "android_device_sony_z3dual",
-        "android_hardware_qcom_display",
-        "android_hardware_qcom_media",
-        "android_hardware_sony_camera",
+        "android_external_stlport",
+        "android_hardware_broadcom_fm",
         "android_hardware_sony_macaddrsetup",
         "android_hardware_sony_thermanager",
-        "android_hardware_sony_timekeep",
-        "android_kernel_sony_msm"
+        "android_kernel_sony_msm8974"
     ],
     "zara": [
         "android_device_htc_msm8960-common",
