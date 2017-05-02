@@ -114,6 +114,7 @@
   {  "model": "gts210vewifi", "oem": "Samsung", "name": "Galaxy Tab S2 9.7 2016 (Wi-Fi)", "image": "gts2"},
   {  "model": "gts210wifi", "oem": "Samsung", "name": "Galaxy Tab S2 9.7 (Wi-Fi)", "image": "gts2"},
   {  "model": "gts28vewifi", "oem": "Samsung", "name": "Galaxy Tab S2 8.0 2016 (Wi-Fi)", "image": "gts2"},
+  {  "model": "ha3g", "oem": "Samsung", "name": "Samsung Galaxy Note 3 (International 3G) ", "image": "hlte"},
   {  "model": "haida", "oem": "Sony Ericsson", "name": "Xperia Neo V", "has_recovery": false},
   {  "model": "hallon", "oem": "Sony Ericsson", "name": "Xperia Neo", "has_recovery": false},
   {  "model": "h811", "oem": "LG", "name": "G4 (TMO)", "image": "h815"},
