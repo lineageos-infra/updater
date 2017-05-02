@@ -251,6 +251,7 @@
   {  "model": "n7100", "oem": "Samsung", "name": "Galaxy Note II (GSM Non-LTE)"},
   {  "model": "n8000", "oem": "Samsung", "name": "Galaxy Note 10.1 (GSM)", "image": "n8000_landscape"},
   {  "model": "n8013", "oem": "Samsung", "name": "Galaxy Note 10.1 (Wi-Fi)", "image": "n8000_landscape"},
+  {  "model": "natrium", "oem": "Xiaomi", "name": "Mi 5s Plus"},
   {  "model": "nicki", "oem": "Sony", "name": "Xperia M"},
   {  "model": "nozomi", "oem": "Sony", "name": "Xperia S"},
   {  "model": "nx510j", "oem": "ZTE", "name": "Nubia Z9 Max"},
