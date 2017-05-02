@@ -207,6 +207,7 @@
   {  "model": "ls970", "oem": "LG", "name": "Optimus G (Sprint)", "image": "e970"},
   {  "model": "ls980", "oem": "LG", "name": "G2 (Sprint)", "image": "d800"},
   {  "model": "ls990", "oem": "LG", "name": "G3 (Sprint)", "image": "d850"},
+  {  "model": "lt02ltespr", "oem": "Samsung", "name": "Samsung Galaxy Tab 3 7.0 (Sprint) ", "image": "lt02ltespr"},
   {  "model": "lt03lte", "oem": "Samsung", "name": "Galaxy Note 10.1 2014 (LTE)", "image": "lt03wifi"},
   {  "model": "lux", "oem": "Motorola", "name": "Moto X Play"},
   {  "model": "m4", "oem": "HTC", "name": "One Mini"},
