@@ -95,7 +95,7 @@ def import_devices():
 def check_builds():
     for r in Rom.objects():
         if requests.head(r.url).status_code == 404:
-            print("Rom.objects(filename={}).delete()".format(r.filename))
+            print("Rom.objects(filename=\"{}\").delete()".format(r.filename))
 
 @cache.memoize(timeout=3600)
 def get_build_types(device, romtype, after, version):
