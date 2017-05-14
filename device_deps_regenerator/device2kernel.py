@@ -33,7 +33,7 @@ def simplify_reverse_deps(repo):
 
 for repo in reverse_deps:
     if 'kernel' in repo:
-        kernels[repo] = list(simplify_reverse_deps(repo))
+        kernels[repo] = sorted(list(simplify_reverse_deps(repo)))
 
 with open('kernels.json', 'w') as f:
     json.dump(kernels, f, indent=4, sort_keys=True)
