@@ -18,9 +18,9 @@ so limit this to around 25 characters.
 * `has_recovery`: (*optional*) whether or not the device has a separate recovery partition. Defaults to `true`.
 * `image`: (*optional*) the filename (excluding .png) of the device's image. Defaults to the value of `model`.
 * `wiki`: (*optional*) the name of the wiki page, excluding "\_info". Defaults to the value of `model`.
-For example, `i9300` would be shown on the website as a link to http://wiki.lineageos.org/i9300_info.html.
+For example, `i9300` would be shown on the website as a link to http://wiki.lineageos.org/devices/i9300
 * `special_instructions_url`: (*optional*) a url with special instructions for a user to read before downloading. - 
-e.g. `http://wiki.lineageos.org/i9300_install.html#installing-a-custom-recovery`. This will show in a lightbox on the
+e.g. `http://wiki.lineageos.org/devices/i9300/install#installing-a-custom-recovery`. This will show in a lightbox on the
 device's download page.
 
 This file is no longer read from disk by the application and must be loaded into mongo. To do so, run: 
