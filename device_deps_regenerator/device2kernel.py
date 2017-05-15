@@ -1,7 +1,15 @@
 import json
 
+# Define device repos that have repos that depend on them,
+# otherwise the script will remove these on the assumption
+# they are common repos
 COMMON_DEVICE = [
     'android_device_asus_flo',
+    'android_device_asus_grouper',
+    'android_device_google_marlin',
+    'android_device_samsung_espressowifi',
+    'android_device_samsung_n1awifi',
+    'android_device_samsung_t0lte',
 ]
 
 with open('out.json') as f:
