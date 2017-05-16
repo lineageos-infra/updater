@@ -28,9 +28,8 @@ for device in mapping:
             reverse_deps[repo['repo']] = []
         reverse_deps[repo['repo']].append(device)
 
-
 def simplify_reverse_deps(repo):
-    if len(reverse_deps[repo]) == 0:
+    if len(reverse_deps[repo]) == 0 and '-common' not in repo:
         return {repo,}
     res = set()
     for i in reverse_deps[repo]:
