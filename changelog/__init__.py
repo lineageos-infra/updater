@@ -19,7 +19,7 @@ from changelog.gerrit import GerritServer, datetime_to_gerrit
 
 import json
 
-# device_deps.json is generated using https://github.com/fourkbomb/lineage_dependencies
+# device_deps.json is generated using https://github.com/LineageOS/scripts/tree/master/device-deps-regenerator
 with open('device_deps.json') as f:
     dependencies = json.load(f)
 is_qcom = {}
