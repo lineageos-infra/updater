@@ -61,6 +61,7 @@
   {  "model": "dlx", "oem": "HTC", "name": "Droid DNA"},
   {  "model": "dogo", "oem": "Sony", "name": "Xperia ZR"},
   {  "model": "doubleshot", "oem": "T-Mobile", "name": "myTouch 4G Slide"},
+  {  "model": "dragon", "oem": "Google", "name": "Pixel C"},
   {  "model": "dream_sapphire", "oem": "HTC", "name": "Dream / Magic", "image": "dream"},
   {  "model": "droid2", "oem": "Motorola", "name": "Droid 2"},
   {  "model": "droid2we", "oem": "Motorola", "name": "Droid 2 Global", "image": "droid2"},
