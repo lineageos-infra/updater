@@ -371,6 +371,7 @@
   {  "model": "tass", "oem": "Samsung", "name": "Galaxy Mini"},
   {  "model": "tate", "oem": "Amazon", "name": "Kindle Fire HD 7"},
   {  "model": "tenderloin", "oem": "HP", "name": "Touchpad"},
+  {  "model": "tenshi", "oem": "BQ", "name": "Aquaris U Plus", "image": "tenshi"},
   {  "model": "tf101", "oem": "Asus", "name": "Eee Pad Transformer"},
   {  "model": "tf201", "oem": "Asus", "name": "Eee Pad Transformer Prime"},
   {  "model": "tf300t", "oem": "Asus", "name": "Transformer Pad TF300T"},
