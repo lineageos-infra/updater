@@ -1962,6 +1962,7 @@
         "android_external_stlport",
         "android_hardware_samsung",
         "android_kernel_samsung_msm8930-common",
+        "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
     "serranodsdd": [
@@ -1972,6 +1973,7 @@
         "android_external_stlport",
         "android_hardware_samsung",
         "android_kernel_samsung_msm8930-common",
+        "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
     "serranoltexx": [
@@ -1982,6 +1984,7 @@
         "android_external_stlport",
         "android_hardware_samsung",
         "android_kernel_samsung_msm8930-common",
+        "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
     "shamrock": [
