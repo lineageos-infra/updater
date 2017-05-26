@@ -25,6 +25,7 @@
   {  "model": "c660", "oem": "LG", "name": "Optimus Pro"},
   {  "model": "c800", "oem": "LG", "name": "myTouch Q"},
   {  "model": "cancro", "oem": "Xiaomi", "name": "Mi 3w and Mi 4"},
+  {  "model": "capricorn", "oem": "Xiaomi", "name": "Mi 5s"},
   {  "model": "captivatemtd", "oem": "Samsung", "name": "Captivate", "has_recovery": false},
   {  "model": "castor", "oem": "Sony", "name": "Xperia Z2 Tablet (LTE)"},
   {  "model": "castor_windy", "oem": "Sony", "name": "Xperia Z2 Tablet (Wi-Fi)", "image": "castor"},
