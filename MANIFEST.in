@@ -1,0 +1,2 @@
+recursive-include updater/templates *
+recursive-include updater/static *
