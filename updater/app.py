@@ -1,6 +1,6 @@
-from changelog.gerrit import GerritServer, GerritJSONEncoder
-from changelog import get_changes, get_timestamp
-from database import Rom, ApiKey, Device
+from updater.changelog.gerrit import GerritServer, GerritJSONEncoder
+from updater.changelog import get_changes, get_timestamp
+from updater.database import Rom, ApiKey, Device
 
 from flask import Flask, jsonify, request, abort, render_template
 from flask_mongoengine import MongoEngine
@@ -20,7 +20,7 @@ import time
 os.environ['TZ'] = 'UTC'
 
 app = Flask(__name__)
-app.config.from_pyfile('app.cfg')
+app.config.from_pyfile("{}/app.cfg".format(os.getcwd()))
 app.json_encoder = GerritJSONEncoder
 
 db = MongoEngine(app)

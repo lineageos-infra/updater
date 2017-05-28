@@ -13,9 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from database import Rom
+from updater.database import Rom
+from updater.changelog.gerrit import GerritServer, datetime_to_gerrit
+
 from datetime import datetime, timedelta
-from changelog.gerrit import GerritServer, datetime_to_gerrit
 
 import json
 

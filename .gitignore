@@ -11,3 +11,8 @@ include
 share
 local
 pip-selfcheck.json
+
+build/
+dist/
+*.egg-info
+venv/
