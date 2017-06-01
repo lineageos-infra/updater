@@ -39,6 +39,11 @@ header, main, footer {
     -ms-overflow-style: -ms-autohiding-scrollbar; // See https://github.com/twbs/bootstrap/pull/10057
 }
 
+.side-nav {
+    height: calc(100%);
+    height: -webkit-calc(100% + 60px);
+}
+
 .side-nav a {
     display: flex;
     align-items: center;
