@@ -2303,6 +2303,9 @@
     "v1awifi": [
         "android_device_samsung_v1awifi"
     ],
+    "v2awifi": [
+        "android_device_samsung_v2awifi"
+    ],
     "v400": [
         "android_device_lge_v400",
         "android_device_lge_v4xx-common",
