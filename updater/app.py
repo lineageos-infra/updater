@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 from updater.changelog.gerrit import GerritServer, GerritJSONEncoder
 from updater.changelog import get_changes, get_timestamp
 from updater.database import Rom, ApiKey, Device

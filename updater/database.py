@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 from mongoengine import Document, BooleanField, DateTimeField, StringField
 
 from datetime import datetime, timedelta
