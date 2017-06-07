@@ -1,2 +1,3 @@
 recursive-include updater/templates *
 recursive-include updater/static *
+recursive-include updater/changelog *
