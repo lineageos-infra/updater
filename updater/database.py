@@ -46,6 +46,12 @@ class Rom(Document):
             versions[version['_id']] = version['devices']
         return versions
 
+    @classmethod
+    def get_device_version(cls, device):
+        if not device:
+            return None
+        return cls.objects(device=device).first()['version']
+
 class Device(Document):
     model = StringField(required=True, unique=True)
     oem = StringField(required=True)

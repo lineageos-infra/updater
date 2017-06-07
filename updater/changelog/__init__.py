@@ -31,7 +31,7 @@ def is_related_change(gerrit, device, curbranch, project, branch):
         return False
 
     # branch = "cm-14.1-caf-msm8996" or "cm-14.1" or "stable/cm-13.0-ZNH5Y"
-    if curbranch not in branch or "/" in branch:
+    if curbranch and (curbranch not in branch or "/" in branch):
         return False
 
     if device not in dependencies:
