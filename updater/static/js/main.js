@@ -26,11 +26,12 @@ function parseGerritDate(s) {
 }
 
 function shouldPutBuildLabel(last, next, buildDate) {
-    return last != -1 && last >= buildDate && next <= buildDate
+    return (last == -1 || last >= buildDate) && next <= buildDate
 }
 
 currentBuildIndex = 0;
 changesUpdated = [];
+prevChangeTime = -1;
 function renderChanges(data, textStatus, xhr) {
     var res = []
     let now = Date.now() / 1000;
@@ -71,12 +72,13 @@ function renderChanges(data, textStatus, xhr) {
             continue;
         }
         let date = new Date(res[el].submitted * 1000);
-        if (currentBuildIndex >= 0 && currentBuildIndex < builds.length && shouldPutBuildLabel(lastChangeTime, res[el].submitted, builds[currentBuildIndex].datetime)) {
+        if (currentBuildIndex >= 0 && currentBuildIndex < builds.length && shouldPutBuildLabel(prevChangeTime, res[el].submitted, builds[currentBuildIndex].datetime)) {
             document.getElementById("changes").innerHTML += String.format('<li class="collection-header"><strong>Changes included in {release}</strong></li>',
                     { 'release': builds[currentBuildIndex].filename });
             currentBuildIndex--;
         }
         lastChangeTime = res[el].submitted - 1;
+        prevChangeTime = lastChangeTime;
         let args = {
             'url': res[el].url,
             'subject': res[el].subject,
