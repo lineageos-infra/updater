@@ -30,17 +30,44 @@ function shouldPutBuildLabel(last, next, buildDate) {
 }
 
 currentBuildIndex = 0;
+changesUpdated = [];
 function renderChanges(data, textStatus, xhr) {
-    var res = data.res;
+    var res = []
     let now = Date.now() / 1000;
+
+    // Gerrit returns a list of changes sorted by "update date", while we
+    // need a list sorted by "submit date". Remove the changes positioned
+    // incorrectly from the list and insert them as soon as we find a change
+    // with an older "submit date".
+    for (var el in data.res) {
+        if (data.res[el].updated == null || data.res[el].submitted == null) {
+            continue;
+        }
+        if (data.res[el].updated != data.res[el].submitted) {
+            var i = 0;
+            for (; i < changesUpdated.length; i++) {
+                if (changesUpdated[i].submitted < data.res[el].submitted) {
+                    break;
+                }
+            }
+            changesUpdated.splice(i, 0, data.res[el]);
+        } else {
+            while (changesUpdated.length > 0) {
+                if (data.res[el].submitted < changesUpdated[0].submitted) {
+                    res.push(changesUpdated.shift());
+                } else {
+                    break;
+                }
+            }
+            res.push(data.res[el]);
+        }
+    }
+
     for (var el in res) {
         if (!res.hasOwnProperty(el)) {
             continue;
         }
         if (res[el].subject == "Automatic translation import") {
-            continue;
-        }
-        if (res[el].submitted == null) {
             continue;
         }
         let date = new Date(res[el].submitted * 1000);

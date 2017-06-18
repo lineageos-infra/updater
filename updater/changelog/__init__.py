@@ -100,6 +100,7 @@ def get_changes(gerrit, device=None, before=-1, version='14.1'):
                 'project': c.project,
                 'subject': c.subject,
                 'submitted': get_timestamp(c.submitted),
+                'updated': get_timestamp(c.updated),
                 'url': c.url,
                 'owner': c.owner,
                 'labels': c.labels
