@@ -2415,7 +2415,6 @@
         "android_device_cyanogen_msm8916-common",
         "android_device_qcom_common",
         "android_device_wingtech_wt88047",
-        "android_external_sony_boringssl-compat",
         "android_external_stlport",
         "android_kernel_wingtech_msm8916"
     ],
