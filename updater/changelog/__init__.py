@@ -94,7 +94,7 @@ def get_changes(gerrit, device=None, before=-1, version='14.1'):
     nightly_changes = []
     last = 0
     for c in changes:
-        last = get_timestamp(c.submitted)
+        last = get_timestamp(c.updated)
         if is_related_change(gerrit, device, version, c.project, c.branch):
             nightly_changes.append({
                 'project': c.project,
