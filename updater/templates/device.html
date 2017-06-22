@@ -24,7 +24,7 @@
                                 <td>{{rom.romtype}}</td>
                                 <td>{{rom.version}}</td>
                                 <td>
-                                    <a href="{{rom.url}}">{{rom.filename}}</a> <br /><small>md5sum: {{rom.md5sum}}</small>
+                                    <a href="{{rom.url}}">{{rom.filename}}</a> <br /><small><a href="{{rom.url}}?sha256">sha256</a> <a href="{{rom.url}}?sha1">sha1</a></small>
                                 </td>
                                 <td>{{rom.datetime.strftime("%Y-%m-%d %H:%M:%S %Z")}}</td>
                                 <td><a href="/{{rom.device}}/changes/{{get_timestamp(rom.datetime)}}">Changelog</a></td>
