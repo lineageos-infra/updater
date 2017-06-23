@@ -116,6 +116,7 @@
   {  "model": "gprimeltexx", "oem": "Samsung", "name": "Galaxy GRAND Prime (LTE)", "image": "grandprime"},
   {  "model": "griffin", "oem": "Motorola", "name": "Moto Z"},
   {  "model": "grouper", "oem": "Google", "name": "Nexus 7 (Wi-Fi)"},
+  {  "model": "gtelwifiue", "oem": "Samsung", "name": "Galaxy Tab E 9.6 (Wi-Fi)"},
   {  "model": "gts210ltexx", "oem": "Samsung", "name": "Galaxy Tab S2 9.7 (LTE)", "image": "gts2"},
   {  "model": "gts210vewifi", "oem": "Samsung", "name": "Galaxy Tab S2 9.7 2016 (Wi-Fi)", "image": "gts2"},
   {  "model": "gts210wifi", "oem": "Samsung", "name": "Galaxy Tab S2 9.7 (Wi-Fi)", "image": "gts2"},
