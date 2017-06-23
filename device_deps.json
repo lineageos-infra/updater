@@ -564,6 +564,15 @@
     "goldfish": [
         "android_device_generic_goldfish"
     ],
+    "gprimelte": [
+        "android_device_samsung_gprimelte"
+    ],
+    "gprimeltespr": [
+        "android_device_samsung_gprimeltespr"
+    ],
+    "gprimeltexx": [
+        "android_device_samsung_gprimeltexx"
+    ],
     "griffin": [
         "android_device_motorola_griffin",
         "android_device_qcom_common",
@@ -575,6 +584,12 @@
     "grouper": [
         "android_device_asus_grouper",
         "android_kernel_asus_grouper"
+    ],
+    "gtelwifiue": [
+        "android_device_samsung_gtelwifiue"
+    ],
+    "gtesqltespr": [
+        "android_device_samsung_gtesqltespr"
     ],
     "gts210ltexx": [
         "android_device_samsung_gts2-common",
@@ -1497,6 +1512,9 @@
         "android_external_bson",
         "android_kernel_motorola_msm8916",
         "android_packages_resources_devicesettings"
+    ],
+    "mido": [
+        "android_device_xiaomi_mido"
     ],
     "mint": [
         "android_device_qcom_common",
