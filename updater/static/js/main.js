@@ -72,7 +72,7 @@ function renderChanges(data, textStatus, xhr) {
             continue;
         }
         let date = new Date(res[el].submitted * 1000);
-        if (currentBuildIndex >= 0 && currentBuildIndex < builds.length && shouldPutBuildLabel(prevChangeTime, res[el].submitted, builds[currentBuildIndex].datetime)) {
+        while (currentBuildIndex >= 0 && currentBuildIndex < builds.length && shouldPutBuildLabel(prevChangeTime, res[el].submitted, builds[currentBuildIndex].datetime)) {
             document.getElementById("changes").innerHTML += String.format('<li class="collection-header"><strong>Changes included in {release}</strong></li>',
                     { 'release': builds[currentBuildIndex].filename });
             currentBuildIndex--;
