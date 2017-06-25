@@ -237,6 +237,7 @@
   {  "model": "memul", "oem": "HTC", "name": "One Mini 2"},
   {  "model": "merlin", "oem": "Motorola", "name": "Moto G3 Turbo"},
   {  "model": "mesmerizemtd", "oem": "Samsung", "name": "Mesmerize", "image": "mesmerize"},
+  {  "model": "mido", "oem": "Xiaomi", "name": "Redmi Note 4"},
   {  "model": "mimmi", "oem": "Sony Ericsson", "name": "Xperia X10 Mini Pro", "has_recovery": false},
   {  "model": "mint", "oem": "Sony", "name": "Xperia T"},
   {  "model": "mondrianwifi", "oem": "Samsung", "name": "Galaxy Tab Pro 8.4"},
