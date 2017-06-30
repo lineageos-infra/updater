@@ -565,13 +565,40 @@
         "android_device_generic_goldfish"
     ],
     "gprimelte": [
-        "android_device_samsung_gprimelte"
+        "android_device_qcom_common",
+        "android_device_samsung_gprimelte",
+        "android_device_samsung_gprimelte-common",
+        "android_device_samsung_msm8916-common",
+        "android_device_samsung_qcom-common",
+        "android_external_sony_boringssl-compat",
+        "android_external_stlport",
+        "android_hardware_samsung",
+        "android_kernel_samsung_msm8916",
+        "android_packages_resources_devicesettings"
     ],
     "gprimeltespr": [
-        "android_device_samsung_gprimeltespr"
+        "android_device_qcom_common",
+        "android_device_samsung_gprimelte-common",
+        "android_device_samsung_gprimeltespr",
+        "android_device_samsung_msm8916-common",
+        "android_device_samsung_qcom-common",
+        "android_external_sony_boringssl-compat",
+        "android_external_stlport",
+        "android_hardware_samsung",
+        "android_kernel_samsung_msm8916",
+        "android_packages_resources_devicesettings"
     ],
     "gprimeltexx": [
-        "android_device_samsung_gprimeltexx"
+        "android_device_qcom_common",
+        "android_device_samsung_gprimelte-common",
+        "android_device_samsung_gprimeltexx",
+        "android_device_samsung_msm8916-common",
+        "android_device_samsung_qcom-common",
+        "android_external_sony_boringssl-compat",
+        "android_external_stlport",
+        "android_hardware_samsung",
+        "android_kernel_samsung_msm8916",
+        "android_packages_resources_devicesettings"
     ],
     "griffin": [
         "android_device_motorola_griffin",
@@ -586,10 +613,28 @@
         "android_kernel_asus_grouper"
     ],
     "gtelwifiue": [
-        "android_device_samsung_gtelwifiue"
+        "android_device_qcom_common",
+        "android_device_samsung_gte-common",
+        "android_device_samsung_gtelwifiue",
+        "android_device_samsung_msm8916-common",
+        "android_device_samsung_qcom-common",
+        "android_external_sony_boringssl-compat",
+        "android_external_stlport",
+        "android_hardware_samsung",
+        "android_kernel_samsung_msm8916",
+        "android_packages_resources_devicesettings"
     ],
     "gtesqltespr": [
-        "android_device_samsung_gtesqltespr"
+        "android_device_qcom_common",
+        "android_device_samsung_gte-common",
+        "android_device_samsung_gtesqltespr",
+        "android_device_samsung_msm8916-common",
+        "android_device_samsung_qcom-common",
+        "android_external_sony_boringssl-compat",
+        "android_external_stlport",
+        "android_hardware_samsung",
+        "android_kernel_samsung_msm8916",
+        "android_packages_resources_devicesettings"
     ],
     "gts210ltexx": [
         "android_device_samsung_gts2-common",
