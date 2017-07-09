@@ -92,8 +92,12 @@ class GerritChange(GerritThing):
         for lbl in obj['labels']:
             self.labels[lbl] = {}
             for k, v in obj['labels'][lbl].items():
-                if k == 'value': continue
-                self.labels[lbl][k] = GerritUser(url, v)
+                if k in ('blocking', 'value', 'default_value'):
+                    self.labels[lbl][k] = v
+                elif k in ('approved', 'rejected', 'recommended', 'disliked'):
+                    self.labels[lbl][k] = GerritUser(url, v)
+                else:
+                    print("Unknown label: %s" % k)
 
     def __str__(self):
         return 'GerritChange[status={},url={},project={},branch={},change_id={}]'.format(self.status, self._url, self.project,
