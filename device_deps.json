@@ -194,6 +194,17 @@
         "android_device_qcom_common",
         "android_kernel_huawei_msm8916"
     ],
+    "cheeseburger": [
+        "android_device_oneplus_cheeseburger",
+        "android_device_oppo_common",
+        "android_device_qcom_common",
+        "android_kernel_oneplus_msm8998",
+        "android_packages_resources_devicesettings",
+        "android_vendor_nxp-nfc_opensource_Nfc",
+        "android_vendor_nxp-nfc_opensource_frameworks",
+        "android_vendor_nxp-nfc_opensource_libnfc-nci",
+        "android_vendor_oneplus_cheeseburger"
+    ],
     "cherry": [
         "android_device_cyanogen_msm8916-common",
         "android_device_huawei_cherry",
@@ -784,7 +795,8 @@
     "ham": [
         "android_device_qcom_common",
         "android_device_zuk_ham",
-        "android_kernel_cyanogen_msm8974"
+        "android_kernel_cyanogen_msm8974",
+        "android_packages_resources_devicesettings"
     ],
     "hammerhead": [
         "android_device_lge_hammerhead",
