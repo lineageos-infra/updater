@@ -145,7 +145,7 @@
   {  "model": "himawl", "oem": "HTC", "name": "One M9 (VZW)", "image": "hima"},
   {  "model": "hlte", "oem": "Samsung", "name": "Galaxy Note 3 (Unified)"},
   {  "model": "hltespr", "oem": "Samsung", "name": "Galaxy Note 3 (Sprint)", "image": "hlte"},
-  {  "model": "hltetmo", "oem": "Samsung", "name": "Galaxy Note 3 (TMO)", "image": "hlte"},
+  {  "model": "hltetmo", "oem": "Samsung", "name": "Galaxy Note 3 LTE (N900T/V/W8)", "image": "hlte"},
   {  "model": "hlteusc", "oem": "Samsung", "name": "Galaxy Note 3 (US-Cellular)", "image": "hlte"},
   {  "model": "hltevzw", "oem": "Samsung", "name": "Galaxy note 3 (VZW)", "image": "hlte"},
   {  "model": "hltexx", "oem": "Samsung", "name": "Galaxy Note 3 (Intl)", "image": "hlte"},
