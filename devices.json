@@ -143,7 +143,7 @@
   {  "model": "hiaeul", "oem": "HTC", "name": "One A9 (GSM US)", "image": "hiae"},
   {  "model": "himaul", "oem": "HTC", "name": "One M9 (GSM)", "image": "hima"},
   {  "model": "himawl", "oem": "HTC", "name": "One M9 (VZW)", "image": "hima"},
-  {  "model": "hlte", "oem": "Samsung", "name": "Galaxy Note 3 (Unified)"},
+  {  "model": "hlte", "oem": "Samsung", "name": "Galaxy Note 3 LTE (N9005/P)", "image": "hlte"},
   {  "model": "hltespr", "oem": "Samsung", "name": "Galaxy Note 3 (Sprint)", "image": "hlte"},
   {  "model": "hltetmo", "oem": "Samsung", "name": "Galaxy Note 3 LTE (N900T/V/W8)", "image": "hlte"},
   {  "model": "hlteusc", "oem": "Samsung", "name": "Galaxy Note 3 (US-Cellular)", "image": "hlte"},
