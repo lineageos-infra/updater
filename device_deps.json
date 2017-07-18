@@ -743,6 +743,16 @@
         "android_vendor_nxp-nfc_opensource_frameworks",
         "android_vendor_nxp-nfc_opensource_libnfc-nci"
     ],
+    "h870": [
+        "android_device_lge_g6-common",
+        "android_device_lge_h870",
+        "android_device_lge_msm8996-common",
+        "android_device_qcom_common",
+        "android_kernel_lge_msm8996",
+        "android_vendor_nxp-nfc_opensource_Nfc",
+        "android_vendor_nxp-nfc_opensource_frameworks",
+        "android_vendor_nxp-nfc_opensource_libnfc-nci"
+    ],
     "h872": [
         "android_device_lge_g6-common",
         "android_device_lge_h872",
@@ -897,6 +907,7 @@
         "android_external_stlport",
         "android_hardware_samsung",
         "android_kernel_samsung_hlte",
+        "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
     "hltespr": [
@@ -908,6 +919,7 @@
         "android_external_stlport",
         "android_hardware_samsung",
         "android_kernel_samsung_hlte",
+        "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
     "hltetmo": [
@@ -919,6 +931,7 @@
         "android_external_stlport",
         "android_hardware_samsung",
         "android_kernel_samsung_hlte",
+        "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
     "honami": [
@@ -2371,6 +2384,16 @@
         "android_device_lge_msm8996-common",
         "android_device_lge_us996",
         "android_device_lge_v20-common",
+        "android_device_qcom_common",
+        "android_kernel_lge_msm8996",
+        "android_vendor_nxp-nfc_opensource_Nfc",
+        "android_vendor_nxp-nfc_opensource_frameworks",
+        "android_vendor_nxp-nfc_opensource_libnfc-nci"
+    ],
+    "us997": [
+        "android_device_lge_g6-common",
+        "android_device_lge_msm8996-common",
+        "android_device_lge_us997",
         "android_device_qcom_common",
         "android_kernel_lge_msm8996",
         "android_vendor_nxp-nfc_opensource_Nfc",
