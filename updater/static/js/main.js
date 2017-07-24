@@ -71,6 +71,12 @@ function renderChanges(data, textStatus, xhr) {
         if (res[el].subject == "Automatic translation import") {
             continue;
         }
+        if (res[el].project == null) {
+            // Gerrit is down
+            document.getElementById("changes").innerHTML += String.format(FORMAT, {'url': res[el].url, 'subject': 'Failed to connect to gerrit', 'project': ''});
+            // Don't try and load anything else - leave loading set to true.
+            return;
+        }
         let date = new Date(res[el].submitted * 1000);
         while (currentBuildIndex >= 0 && currentBuildIndex < builds.length && shouldPutBuildLabel(prevChangeTime, res[el].submitted, builds[currentBuildIndex].datetime)) {
             document.getElementById("changes").innerHTML += String.format('<li class="collection-header"><strong>Changes included in {release}</strong></li>',

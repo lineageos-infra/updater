@@ -16,6 +16,7 @@
 from __future__ import absolute_import
 from updater.database import Rom
 from updater.changelog.gerrit import GerritServer, datetime_to_gerrit
+from requests.exceptions import ConnectionError
 
 from datetime import datetime, timedelta
 
@@ -80,7 +81,7 @@ def get_timestamp(ts):
         return None
     return int((ts - datetime(1970, 1, 1)).total_seconds())
 
-def get_changes(gerrit, device=None, before=-1, version='14.1'):
+def get_changes(gerrit, device=None, before=-1, version='14.1', status_url='#'):
     last_release = -1
 
     query = 'status:merged'
@@ -93,16 +94,27 @@ def get_changes(gerrit, device=None, before=-1, version='14.1'):
 
     nightly_changes = []
     last = 0
-    for c in changes:
-        last = get_timestamp(c.updated)
-        if is_related_change(gerrit, device, version, c.project, c.branch):
-            nightly_changes.append({
-                'project': c.project,
-                'subject': c.subject,
-                'submitted': get_timestamp(c.submitted),
-                'updated': get_timestamp(c.updated),
-                'url': c.url,
-                'owner': c.owner,
-                'labels': c.labels
+    try:
+        for c in changes:
+            last = get_timestamp(c.updated)
+            if is_related_change(gerrit, device, version, c.project, c.branch):
+                nightly_changes.append({
+                    'project': c.project,
+                    'subject': c.subject,
+                    'submitted': get_timestamp(c.submitted),
+                    'updated': get_timestamp(c.updated),
+                    'url': c.url,
+                    'owner': c.owner,
+                    'labels': c.labels
+                })
+    except ConnectionError as e:
+        nightly_changes.append({
+            'project': None,
+            'subject': None,
+            'submitted': 0,
+            'updated': 0,
+            'url': status_url,
+            'owner': None,
+            'labels': None
             })
     return {'last': last, 'res': nightly_changes }
