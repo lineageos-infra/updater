@@ -8,6 +8,12 @@
         "android_kernel_lenovo_msm8916",
         "android_packages_resources_devicesettings"
     ],
+    "FP2": [
+        "android_device_fairphone_FP2",
+        "android_device_qcom_common",
+        "android_kernel_fairphone_msm8974",
+        "android_packages_resources_devicesettings"
+    ],
     "P024": [
         "android_device_asus_P024",
         "android_device_qcom_common",
@@ -1047,6 +1053,18 @@
         "android_hardware_broadcom_fm",
         "android_hardware_sony_timekeep",
         "android_kernel_sony_msm8994"
+    ],
+    "j7ltespr": [
+        "android_device_qcom_common",
+        "android_device_samsung_j7lte-common",
+        "android_device_samsung_j7ltespr",
+        "android_device_samsung_msm8916-common",
+        "android_device_samsung_qcom-common",
+        "android_external_sony_boringssl-compat",
+        "android_external_stlport",
+        "android_hardware_samsung",
+        "android_kernel_samsung_msm8916",
+        "android_packages_resources_devicesettings"
     ],
     "jag3gds": [
         "android_device_lge_jag3gds",
