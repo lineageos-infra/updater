@@ -186,7 +186,7 @@ def add_build():
 def changes(device='all', before=-1):
     if device == 'all':
         device = None
-    return jsonify(get_changes(gerrit, device, before, Rom.get_device_version(device), app.config['STATUS_URL'] or '#'))
+    return jsonify(get_changes(gerrit, device, before, Rom.get_device_version(device), app.config.get('STATUS_URL', '#')))
 
 @app.route('/<device>/changes/<int:before>/')
 @app.route('/<device>/changes/')
