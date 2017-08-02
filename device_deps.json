@@ -916,6 +916,18 @@
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
+    "hltechn": [
+        "android_device_qcom_common",
+        "android_device_samsung_hlte-common",
+        "android_device_samsung_hltechn",
+        "android_device_samsung_msm8974-common",
+        "android_device_samsung_qcom-common",
+        "android_external_stlport",
+        "android_hardware_samsung",
+        "android_kernel_samsung_hlte",
+        "android_packages_apps_FlipFlap",
+        "android_packages_resources_devicesettings"
+    ],
     "hltespr": [
         "android_device_qcom_common",
         "android_device_samsung_hlte-common",
@@ -1414,6 +1426,11 @@
         "android_kernel_samsung_ks01lte",
         "android_packages_resources_devicesettings"
     ],
+    "kuntao": [
+        "android_device_lenovo_kuntao",
+        "android_device_qcom_common",
+        "android_kernel_lenovo_msm8953"
+    ],
     "l01f": [
         "android_device_lge_g2-common",
         "android_device_lge_l01f",
@@ -1762,6 +1779,13 @@
         "android_device_qcom_common",
         "android_device_zte_nx510j",
         "android_kernel_zte_msm8994"
+    ],
+    "nx512j": [
+        "android_device_nubia_nx512j",
+        "android_device_qcom_common",
+        "android_external_sony_boringssl-compat",
+        "android_external_stlport",
+        "android_kernel_nubia_msm8939"
     ],
     "nx531j": [
         "android_device_nubia_nx531j",
