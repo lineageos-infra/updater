@@ -261,6 +261,7 @@
   {  "model": "nicki", "oem": "Sony", "name": "Xperia M"},
   {  "model": "nozomi", "oem": "Sony", "name": "Xperia S"},
   {  "model": "nx510j", "oem": "ZTE", "name": "Nubia Z9 Max"},
+  {  "model": "nx512j", "oem": "Nubia", "name": "Nubia Z9 Max"},
   {  "model": "obake", "oem": "Motorola", "name": "Droid Ultra/MAXX"},
   {  "model": "odin", "oem": "Sony", "name": "Xperia ZL"},
   {  "model": "odroidu2", "oem": "Hardkernel", "name": "ODROID-U2"},
