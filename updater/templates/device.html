@@ -35,26 +35,6 @@
         </div>
     </div>
 </div>
-
-{% if active_device.special_instructions_url %}
-<div id="modal1" class="modal">
-    <div class="modal-content">
-        <h4>Important</h4>
-        <p>This device has some important information that should be read before proceeding.</p>
-        <p>This could include steps to prevent losing data or turning your device into a paperweight.</p>
-        <p>Please <a href="{{ active_device.special_instructions_url }}" target="_blank">click here</a> to visit the LineageOS wiki for more information.</p>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
-    </div>
-</div>
-<script>
-document.addEventListener("DOMContentLoaded", function(event) {
-    $('#modal1').modal().modal('open');
-});
-</script>
-{% endif %}
-
 {% endblock %}
 
 {% block footer %}

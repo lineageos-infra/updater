@@ -58,7 +58,6 @@ class Device(Document):
     name = StringField(required=True)
     has_recovery = BooleanField(required=False, default=True)
     wiki = StringField(required=False)
-    special_instructions_url = StringField(required=False)
 
     @classmethod
     def get_devices(cls):
