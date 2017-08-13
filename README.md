@@ -5,8 +5,7 @@ Copyright (c) 2017 The LineageOS Project<br>
 Adding a new device
 ---
 1. Add your device to devices.json, sorted alphanumerically by codename. Fields are documented below.
-2. Add a 109x124 PNG of your device to the static/device folder
-3. Submit your change to gerrit (this repository is configured for use with `git review`)
+2. Submit your change to gerrit (this repository is configured for use with `git review`)
 
 ### devices.json
 devices.json is an array of objects, each with several fields:
@@ -16,7 +15,6 @@ devices.json is an array of objects, each with several fields:
 * `name`: the user-friendly name of the device - e.g. `Galaxy S III (Intl)`. Long values will overflow and look bad,
 so limit this to around 25 characters.
 * `has_recovery`: (*optional*) whether or not the device has a separate recovery partition. Defaults to `true`.
-* `image`: (*optional*) the filename (excluding .png) of the device's image. Defaults to the value of `model`.
 * `wiki`: (*optional*) the name of the wiki page, excluding "\_info". Defaults to the value of `model`.
 For example, `i9300` would be shown on the website as a link to http://wiki.lineageos.org/devices/i9300
 * `special_instructions_url`: (*optional*) a url with special instructions for a user to read before downloading. - 

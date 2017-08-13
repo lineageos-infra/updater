@@ -56,7 +56,6 @@ class Device(Document):
     model = StringField(required=True, unique=True)
     oem = StringField(required=True)
     name = StringField(required=True)
-    image = StringField(required=False)
     has_recovery = BooleanField(required=False, default=True)
     wiki = StringField(required=False)
     special_instructions_url = StringField(required=False)
