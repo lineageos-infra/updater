@@ -15,8 +15,6 @@ devices.json is an array of objects, each with several fields:
 * `name`: the user-friendly name of the device - e.g. `Galaxy S III (Intl)`. Long values will overflow and look bad,
 so limit this to around 25 characters.
 * `has_recovery`: (*optional*) whether or not the device has a separate recovery partition. Defaults to `true`.
-* `wiki`: (*optional*) the name of the wiki page, excluding "\_info". Defaults to the value of `model`.
-For example, `i9300` would be shown on the website as a link to http://wiki.lineageos.org/devices/i9300
 
 This file is no longer read from disk by the application and must be loaded into mongo. To do so, run: 
 
