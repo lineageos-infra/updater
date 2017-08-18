@@ -427,7 +427,9 @@
         "android_device_qcom_common",
         "android_external_sony_boringssl-compat",
         "android_hardware_sony_thermanager",
-        "android_kernel_htc_msm8974"
+        "android_kernel_htc_msm8974",
+        "android_packages_apps_FlipFlap",
+        "android_packages_resources_devicesettings"
     ],
     "eyeul": [
         "android_device_htc_eyeul",
@@ -435,7 +437,9 @@
         "android_device_qcom_common",
         "android_external_sony_boringssl-compat",
         "android_hardware_sony_thermanager",
-        "android_kernel_htc_msm8974"
+        "android_kernel_htc_msm8974",
+        "android_packages_apps_FlipFlap",
+        "android_packages_resources_devicesettings"
     ],
     "f1f": [
         "android_device_oppo_common",
@@ -729,6 +733,7 @@
         "android_packages_resources_devicesettings"
     ],
     "h830": [
+        "android_device_lge_common",
         "android_device_lge_g5-common",
         "android_device_lge_h830",
         "android_device_lge_msm8996-common",
@@ -739,6 +744,7 @@
         "android_vendor_nxp-nfc_opensource_libnfc-nci"
     ],
     "h850": [
+        "android_device_lge_common",
         "android_device_lge_g5-common",
         "android_device_lge_h850",
         "android_device_lge_msm8996-common",
@@ -749,6 +755,7 @@
         "android_vendor_nxp-nfc_opensource_libnfc-nci"
     ],
     "h870": [
+        "android_device_lge_common",
         "android_device_lge_g6-common",
         "android_device_lge_h870",
         "android_device_lge_msm8996-common",
@@ -759,6 +766,7 @@
         "android_vendor_nxp-nfc_opensource_libnfc-nci"
     ],
     "h872": [
+        "android_device_lge_common",
         "android_device_lge_g6-common",
         "android_device_lge_h872",
         "android_device_lge_msm8996-common",
@@ -776,6 +784,7 @@
         "android_kernel_lge_pplus"
     ],
     "h910": [
+        "android_device_lge_common",
         "android_device_lge_h910",
         "android_device_lge_msm8996-common",
         "android_device_lge_v20-common",
@@ -786,6 +795,7 @@
         "android_vendor_nxp-nfc_opensource_libnfc-nci"
     ],
     "h918": [
+        "android_device_lge_common",
         "android_device_lge_h918",
         "android_device_lge_msm8996-common",
         "android_device_lge_v20-common",
@@ -1497,6 +1507,7 @@
         "android_packages_resources_devicesettings"
     ],
     "ls997": [
+        "android_device_lge_common",
         "android_device_lge_ls997",
         "android_device_lge_msm8996-common",
         "android_device_lge_v20-common",
@@ -1562,7 +1573,9 @@
         "android_device_htc_msm8974-common",
         "android_device_qcom_common",
         "android_hardware_sony_thermanager",
-        "android_kernel_htc_msm8974"
+        "android_kernel_htc_msm8974",
+        "android_packages_apps_FlipFlap",
+        "android_packages_resources_devicesettings"
     ],
     "m8d": [
         "android_device_htc_m8-common",
@@ -1570,7 +1583,9 @@
         "android_device_htc_msm8974-common",
         "android_device_qcom_common",
         "android_hardware_sony_thermanager",
-        "android_kernel_htc_msm8974"
+        "android_kernel_htc_msm8974",
+        "android_packages_apps_FlipFlap",
+        "android_packages_resources_devicesettings"
     ],
     "maguro": [
         "android_device_samsung_maguro",
@@ -2010,6 +2025,17 @@
         "android_hardware_nvidia_power",
         "android_kernel_nvidia_roth"
     ],
+    "rs988": [
+        "android_device_lge_common",
+        "android_device_lge_g5-common",
+        "android_device_lge_msm8996-common",
+        "android_device_lge_rs988",
+        "android_device_qcom_common",
+        "android_kernel_lge_msm8996",
+        "android_vendor_nxp-nfc_opensource_Nfc",
+        "android_vendor_nxp-nfc_opensource_frameworks",
+        "android_vendor_nxp-nfc_opensource_libnfc-nci"
+    ],
     "s2": [
         "android_device_leeco_s2",
         "android_device_qcom_common",
@@ -2422,6 +2448,7 @@
         "android_packages_resources_devicesettings"
     ],
     "us996": [
+        "android_device_lge_common",
         "android_device_lge_msm8996-common",
         "android_device_lge_us996",
         "android_device_lge_v20-common",
@@ -2432,6 +2459,7 @@
         "android_vendor_nxp-nfc_opensource_libnfc-nci"
     ],
     "us997": [
+        "android_device_lge_common",
         "android_device_lge_g6-common",
         "android_device_lge_msm8996-common",
         "android_device_lge_us997",
@@ -2495,6 +2523,7 @@
         "android_kernel_lge_v500"
     ],
     "v521": [
+        "android_device_lge_common",
         "android_device_lge_v521",
         "android_kernel_lge_msm8952"
     ],
@@ -2535,6 +2564,7 @@
         "android_packages_resources_devicesettings"
     ],
     "vs995": [
+        "android_device_lge_common",
         "android_device_lge_msm8996-common",
         "android_device_lge_v20-common",
         "android_device_lge_vs995",
