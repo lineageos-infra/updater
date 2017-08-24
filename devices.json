@@ -190,6 +190,7 @@
   {  "model": "jfltexx", "oem": "Samsung", "name": "Galaxy S4 (Intl)", "image": "jflte"},
   {  "model": "jordan", "oem": "Motorola", "name": "Defy"},
   {  "model": "jordan_plus", "oem": "Motorola", "name": "Defy+", "image": "jordan"},
+  {  "model": "k3gxx", "oem": "Samsung", "name": "Galaxy S5 (International 3G)", "image": "klte"},
   {  "model": "kccat6", "oem": "Samsung", "name": "Galaxy S5 Plus", "image": "klte"},
   {  "model": "kenzo", "oem": "Xiaomi", "name": "Redmi Note 3"},
   {  "model": "kingdom", "oem": "Lenovo", "name": "Vibe Z2 Pro"},
