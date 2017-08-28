@@ -32,6 +32,7 @@
   {  "model": "chagallwifi", "oem": "Samsung", "name": "Galaxy Tab S 10.5 (Wi-Fi)"},
   {  "model": "che10", "oem": "Huawei", "name": "Honor 4x (China Telecom)", "image": "cherry"},
   {  "model": "cherry", "oem": "Huawei", "name": "Honor 4/4x"},
+  {  "model": "cheeseburger", "oem": "OnePlus", "name": "5"},
   {  "model": "clark", "oem": "Motorola", "name": "Moto X Pure (2015)"},
   {  "model": "click", "oem": "HTC", "name": "Tattoo"},
   {  "model": "coconut", "oem": "Sony Ericsson", "name": "Live with Walkman", "has_recovery": false},
