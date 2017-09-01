@@ -399,13 +399,13 @@
         "android_device_samsung_espresso3g",
         "android_device_samsung_espressowifi",
         "android_external_stlport",
-        "android_kernel_samsung_espresso10",
+        "android_kernel_ti_omap4",
         "android_packages_apps_SamsungServiceMode"
     ],
     "espressowifi": [
         "android_device_samsung_espressowifi",
         "android_external_stlport",
-        "android_kernel_samsung_espresso10"
+        "android_kernel_ti_omap4"
     ],
     "ether": [
         "android_device_nextbit_ether",
@@ -921,7 +921,7 @@
         "android_device_samsung_qcom-common",
         "android_external_stlport",
         "android_hardware_samsung",
-        "android_kernel_samsung_hlte",
+        "android_kernel_samsung_msm8974",
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
@@ -933,7 +933,7 @@
         "android_device_samsung_qcom-common",
         "android_external_stlport",
         "android_hardware_samsung",
-        "android_kernel_samsung_hlte",
+        "android_kernel_samsung_msm8974",
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
@@ -945,7 +945,7 @@
         "android_device_samsung_qcom-common",
         "android_external_stlport",
         "android_hardware_samsung",
-        "android_kernel_samsung_hlte",
+        "android_kernel_samsung_msm8974",
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
@@ -957,7 +957,7 @@
         "android_device_samsung_qcom-common",
         "android_external_stlport",
         "android_hardware_samsung",
-        "android_kernel_samsung_hlte",
+        "android_kernel_samsung_msm8974",
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
@@ -1229,7 +1229,7 @@
         "android_hardware_samsung_slsi-cm_exynos5422",
         "android_hardware_samsung_slsi-cm_openmax",
         "android_kernel_samsung_k3gxx",
-        "android_packages_apps_SamsungServiceMode"
+        "android_packages_resources_devicesettings"
     ],
     "karin": [
         "android_device_qcom_common",
@@ -1313,7 +1313,7 @@
         "android_device_samsung_qcom-common",
         "android_external_stlport",
         "android_hardware_samsung",
-        "android_kernel_samsung_klte",
+        "android_kernel_samsung_msm8974",
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
@@ -1325,7 +1325,7 @@
         "android_device_samsung_qcom-common",
         "android_external_stlport",
         "android_hardware_samsung",
-        "android_kernel_samsung_klte",
+        "android_kernel_samsung_msm8974",
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
@@ -1337,7 +1337,7 @@
         "android_device_samsung_qcom-common",
         "android_external_stlport",
         "android_hardware_samsung",
-        "android_kernel_samsung_klte",
+        "android_kernel_samsung_msm8974",
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
@@ -1349,7 +1349,7 @@
         "android_device_samsung_qcom-common",
         "android_external_stlport",
         "android_hardware_samsung",
-        "android_kernel_samsung_klte",
+        "android_kernel_samsung_msm8974",
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
@@ -1361,7 +1361,7 @@
         "android_device_samsung_qcom-common",
         "android_external_stlport",
         "android_hardware_samsung",
-        "android_kernel_samsung_klte",
+        "android_kernel_samsung_msm8974",
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
@@ -1373,7 +1373,7 @@
         "android_device_samsung_qcom-common",
         "android_external_stlport",
         "android_hardware_samsung",
-        "android_kernel_samsung_klte",
+        "android_kernel_samsung_msm8974",
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
@@ -1385,7 +1385,7 @@
         "android_device_samsung_qcom-common",
         "android_external_stlport",
         "android_hardware_samsung",
-        "android_kernel_samsung_klte",
+        "android_kernel_samsung_msm8974",
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
@@ -1397,7 +1397,7 @@
         "android_device_samsung_qcom-common",
         "android_external_stlport",
         "android_hardware_samsung",
-        "android_kernel_samsung_klte",
+        "android_kernel_samsung_msm8974",
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
@@ -1409,7 +1409,7 @@
         "android_device_samsung_qcom-common",
         "android_external_stlport",
         "android_hardware_samsung",
-        "android_kernel_samsung_klte",
+        "android_kernel_samsung_msm8974",
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
@@ -1421,7 +1421,7 @@
         "android_device_samsung_qcom-common",
         "android_external_stlport",
         "android_hardware_samsung",
-        "android_kernel_samsung_klte",
+        "android_kernel_samsung_msm8974",
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
@@ -2040,7 +2040,8 @@
         "android_device_leeco_s2",
         "android_device_qcom_common",
         "android_hardware_sony_thermanager",
-        "android_kernel_leeco_msm8976"
+        "android_kernel_leeco_msm8976",
+        "android_packages_resources_devicesettings"
     ],
     "s3ve3g": [
         "android_device_qcom_common",
