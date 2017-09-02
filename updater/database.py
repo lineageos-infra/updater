@@ -57,6 +57,7 @@ class Device(Document):
     oem = StringField(required=True)
     name = StringField(required=True)
     has_recovery = BooleanField(required=False, default=True)
+    meta = {'strict': False}
 
     @classmethod
     def get_devices(cls):
