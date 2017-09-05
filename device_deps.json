@@ -899,19 +899,22 @@
         "android_device_htc_hima-common",
         "android_device_htc_himaul",
         "android_device_qcom_common",
-        "android_kernel_htc_msm8994"
+        "android_kernel_htc_msm8994",
+        "android_packages_resources_devicesettings"
     ],
     "himawhl": [
         "android_device_htc_hima-common",
         "android_device_htc_himawhl",
         "android_device_qcom_common",
-        "android_kernel_htc_msm8994"
+        "android_kernel_htc_msm8994",
+        "android_packages_resources_devicesettings"
     ],
     "himawl": [
         "android_device_htc_hima-common",
         "android_device_htc_himawl",
         "android_device_qcom_common",
-        "android_kernel_htc_msm8994"
+        "android_kernel_htc_msm8994",
+        "android_packages_resources_devicesettings"
     ],
     "hlte": [
         "android_device_qcom_common",
@@ -1085,6 +1088,7 @@
         "android_external_stlport",
         "android_hardware_samsung",
         "android_kernel_samsung_msm8916",
+        "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
     "jag3gds": [
