@@ -176,6 +176,7 @@
   {  "model": "us996", "oem": "LG", "name": "V20 (GSM Unlocked)"},
   {  "model": "us997", "oem": "LG", "name": "G6 (US)"},
   {  "model": "v1awifi", "oem": "Samsung", "name": "Galaxy Note Pro 12.1 (Wi-Fi)"},
+  {  "model": "v400", "oem": "LG", "name": "G Pad 7"},
   {  "model": "v410", "oem": "LG", "name": "G Pad 7 LTE"},
   {  "model": "v480", "oem": "LG", "name": "G Pad 8"},
   {  "model": "v500", "oem": "LG", "name": "G Pad 8.3"},
