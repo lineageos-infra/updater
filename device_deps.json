@@ -145,6 +145,7 @@
         "android_device_xiaomi_capricorn",
         "android_device_xiaomi_msm8996-common",
         "android_kernel_xiaomi_msm8996",
+        "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings",
         "android_vendor_nxp-nfc_opensource_Nfc",
         "android_vendor_nxp-nfc_opensource_frameworks",
