@@ -45,6 +45,7 @@
   {  "model": "g2m", "oem": "LG", "name": "G2 Mini"},
   {  "model": "gemini", "oem": "Xiaomi", "name": "Mi 5"},
   {  "model": "ghost", "oem": "Motorola", "name": "Moto X 2013"},
+  {  "model": "gohan", "oem": "BQ", "name": "Aquaris X5 Plus"},
   {  "model": "gprimelte", "oem": "Samsung", "name": "Galaxy GRAND Prime (LTE)"},
   {  "model": "gprimeltespr", "oem": "Samsung", "name": "Galaxy GRAND Prime (LTE) (Sprint)"},
   {  "model": "gprimeltexx", "oem": "Samsung", "name": "Galaxy GRAND Prime (LTE)"},
