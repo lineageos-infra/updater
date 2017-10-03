@@ -146,10 +146,7 @@
         "android_device_xiaomi_msm8996-common",
         "android_kernel_xiaomi_msm8996",
         "android_packages_apps_FlipFlap",
-        "android_packages_resources_devicesettings",
-        "android_vendor_nxp-nfc_opensource_Nfc",
-        "android_vendor_nxp-nfc_opensource_frameworks",
-        "android_vendor_nxp-nfc_opensource_libnfc-nci"
+        "android_packages_resources_devicesettings"
     ],
     "castor": [
         "android_device_qcom_common",
@@ -564,10 +561,7 @@
         "android_device_xiaomi_gemini",
         "android_device_xiaomi_msm8996-common",
         "android_kernel_xiaomi_msm8996",
-        "android_packages_resources_devicesettings",
-        "android_vendor_nxp-nfc_opensource_Nfc",
-        "android_vendor_nxp-nfc_opensource_frameworks",
-        "android_vendor_nxp-nfc_opensource_libnfc-nci"
+        "android_packages_resources_devicesettings"
     ],
     "ghost": [
         "android_device_motorola_ghost",
@@ -1490,10 +1484,7 @@
         "android_device_xiaomi_lithium",
         "android_device_xiaomi_msm8996-common",
         "android_kernel_xiaomi_msm8996",
-        "android_packages_resources_devicesettings",
-        "android_vendor_nxp-nfc_opensource_Nfc",
-        "android_vendor_nxp-nfc_opensource_frameworks",
-        "android_vendor_nxp-nfc_opensource_libnfc-nci"
+        "android_packages_resources_devicesettings"
     ],
     "ls980": [
         "android_device_lge_g2-common",
@@ -1763,10 +1754,7 @@
         "android_device_xiaomi_msm8996-common",
         "android_device_xiaomi_natrium",
         "android_kernel_xiaomi_msm8996",
-        "android_packages_resources_devicesettings",
-        "android_vendor_nxp-nfc_opensource_Nfc",
-        "android_vendor_nxp-nfc_opensource_frameworks",
-        "android_vendor_nxp-nfc_opensource_libnfc-nci"
+        "android_packages_resources_devicesettings"
     ],
     "nicki": [
         "android_device_qcom_common",
@@ -2075,10 +2063,7 @@
         "android_device_xiaomi_msm8996-common",
         "android_device_xiaomi_scorpio",
         "android_kernel_xiaomi_msm8996",
-        "android_packages_resources_devicesettings",
-        "android_vendor_nxp-nfc_opensource_Nfc",
-        "android_vendor_nxp-nfc_opensource_frameworks",
-        "android_vendor_nxp-nfc_opensource_libnfc-nci"
+        "android_packages_resources_devicesettings"
     ],
     "scorpion": [
         "android_device_qcom_common",
