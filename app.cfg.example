@@ -7,5 +7,10 @@ MONGODB_PORT = 27017
 GERRIT_URL = 'https://review.lineageos.org'
 # Remove this line if you don't want a status URL
 STATUS_URL = 'https://status.lineageos.org'
+# Wiki URLs - set to None to hide the links. {device} will be replaced
+# with the device codename
+WIKI_INFO_URL = 'https://wiki.lineageos.org/devices/{device}'
+WIKI_INSTALL_URL = 'https://wiki.lineageos.org/devices/{device}/install'
+
 BUILD_SYNC_TIME = 3600
 CACHE_TYPE = "simple"
