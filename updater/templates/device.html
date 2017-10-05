@@ -6,7 +6,7 @@
         <div class="col s12 m12 l12">
             <div class="card-panel">
                 <h4>Builds for {{active_device.model}}</h4>
-                <a href="/{{active_device.model}}/changes/">Show all merged changes for {{active_device.model}}</a>
+                <a href="/{{active_device.model}}/changes/">Recent changes</a>
                 {% if wiki_info %}
                 &bull;
                 <a href="{{wiki_info.format(device=active_device.model)}}">Device info</a>
