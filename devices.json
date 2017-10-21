@@ -104,7 +104,6 @@
   {  "model": "kltedv", "oem": "Samsung", "name": "Galaxy S5 (Vodafone)"},
   {  "model": "kltekdi", "oem": "Samsung", "name": "Galaxy S5 (AU)"},
   {  "model": "kltekor", "oem": "Samsung", "name": "Galaxy S5 (Korea)"},
-  {  "model": "kltespr", "oem": "Samsung", "name": "Galaxy S5 (Sprint)"},
   {  "model": "ks01lte", "oem": "Samsung", "name": "Galaxy S4 LTE-A"},
   {  "model": "lentislte", "oem": "Samsung", "name": "Galaxy S5 LTE-A"},
   {  "model": "lettuce", "oem": "YU", "name": "Yuphoria"},
