@@ -1542,6 +1542,15 @@
         "android_kernel_motorola_msm8916",
         "android_packages_resources_devicesettings"
     ],
+    "m216": [
+        "android_device_lge_m216",
+        "android_device_lge_msm8916-common",
+        "android_device_qcom_common",
+        "android_external_stlport",
+        "android_kernel_lge_msm8916",
+        "android_packages_apps_FlipFlap",
+        "android_packages_resources_devicesettings"
+    ],
     "m7": [
         "android_device_htc_m7",
         "android_device_htc_m7-common",
@@ -2214,6 +2223,15 @@
         "android_hardware_samsung",
         "android_kernel_samsung_smdk4412"
     ],
+    "t0ltejpn": [
+        "android_device_samsung_smdk4412-common",
+        "android_device_samsung_smdk4412-qcom-common",
+        "android_device_samsung_t0lte",
+        "android_device_samsung_t0ltejpn",
+        "android_external_stlport",
+        "android_hardware_samsung",
+        "android_kernel_samsung_smdk4412"
+    ],
     "t0ltekor": [
         "android_device_samsung_smdk4412-common",
         "android_device_samsung_smdk4412-qcom-common",
@@ -2261,6 +2279,10 @@
         "android_device_htc_t6vzw",
         "android_device_qcom_common",
         "android_kernel_htc_msm8960"
+    ],
+    "taido": [
+        "android_device_motorola_taido",
+        "android_kernel_motorola_mt6735"
     ],
     "taoshan": [
         "android_device_qcom_common",
