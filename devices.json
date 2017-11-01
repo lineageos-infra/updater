@@ -91,6 +91,8 @@
   {  "model": "jfltevzw", "oem": "Samsung", "name": "Galaxy S4 (VZW)"},
   {  "model": "jfltexx", "oem": "Samsung", "name": "Galaxy S4 (Intl)"},
   {  "model": "k3gxx", "oem": "Samsung", "name": "Galaxy S5 (International 3G)"},
+  {  "model": "karin", "oem": "Sony", "name": "Xperia Z4 Tablet LTE"},
+  {  "model": "karin_windy", "oem": "Sony", "name": "Xperia Z4 Tablet WiFi"},
   {  "model": "kccat6", "oem": "Samsung", "name": "Galaxy S5 Plus"},
   {  "model": "kenzo", "oem": "Xiaomi", "name": "Redmi Note 3"},
   {  "model": "kingdom", "oem": "Lenovo", "name": "Vibe Z2 Pro"},
