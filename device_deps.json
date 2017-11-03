@@ -2024,7 +2024,7 @@
     ],
     "roth": [
         "android_device_nvidia_roth",
-        "android_hardware_nvidia_power",
+        "android_hardware_nvidia_sensors",
         "android_kernel_nvidia_roth"
     ],
     "rs988": [
