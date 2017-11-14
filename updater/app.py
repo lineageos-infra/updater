@@ -64,7 +64,7 @@ def api_key(comment, remove, echo):
         for i in ApiKey.objects():
             print(i.apikey, i.comment)
     elif remove:
-        for i in ApiKey.objects(apikey=apikey):
+        for i in ApiKey.objects(apikey=remove):
             i.delete()
     elif comment:
         key = uuid4().hex
