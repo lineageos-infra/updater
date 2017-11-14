@@ -91,16 +91,7 @@ Adding a build (requires an API key, see above) <br>
 ```
 
 To remove a build (requires an API key, see above) <br>
-`POST /api/v1/del_build`
-```
-{
-  "id": "str"
-}
-
-```
-
-where "id" is a value returned by `/api/v1/<device>/<romtype>/<incremental>`.
-
+`DELETE /api/v1/<string:filename>`
 
 TODO
 ====
