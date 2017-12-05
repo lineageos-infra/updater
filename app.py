@@ -1,8 +1,8 @@
 from __future__ import absolute_import
 
-from updater.changelog.gerrit import GerritServer, GerritJSONEncoder
-from updater.changelog import get_changes, get_timestamp
-from updater.database import Rom, ApiKey, Device
+from changelog.gerrit import GerritServer, GerritJSONEncoder
+from changelog import get_changes, get_timestamp
+from database import Rom, ApiKey, Device
 
 from flask import Flask, jsonify, request, abort, render_template
 from flask_mongoengine import MongoEngine

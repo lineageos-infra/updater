@@ -14,8 +14,8 @@
 # limitations under the License.
 #
 from __future__ import absolute_import
-from updater.database import Rom
-from updater.changelog.gerrit import GerritServer, datetime_to_gerrit
+from database import Rom
+from changelog.gerrit import GerritServer, datetime_to_gerrit
 from requests.exceptions import ConnectionError
 
 from datetime import datetime, timedelta
