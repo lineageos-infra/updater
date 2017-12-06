@@ -144,7 +144,7 @@ def api_v1_devices():
 @cache.cached(timeout=3600)
 def web_device(device):
     oem_to_devices, device_to_oem = get_oem_device_mapping()
-    roms = get_device(device)
+    roms = reversed(get_device(device))
 
     return render_template("device.html", device=device, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem, roms=roms,
             wiki_info=app.config['WIKI_INFO_URL'], wiki_install=app.config['WIKI_INSTALL_URL'])
