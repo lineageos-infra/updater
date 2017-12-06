@@ -109,7 +109,7 @@ loading = false;
 $(document).ready(function() {
     loading = true;
 
-    $.getJSON('/api/v1/' + device + '/nightly/abc', null, function(data, textStatus, xhr) {
+    $.getJSON('/api/v1/' + device + '/nightly/changelog', null, function(data, textStatus, xhr) {
         builds = data.response;
         currentBuildIndex = builds.length - 1;
         while (currentBuildIndex >= 0 && currentBuildIndex < builds.length && Date.now() < builds[currentBuildIndex].datetime) {

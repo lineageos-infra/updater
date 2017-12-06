@@ -14,3 +14,6 @@ WIKI_INSTALL_URL = 'https://wiki.lineageos.org/devices/{device}/install'
 
 BUILD_SYNC_TIME = 3600
 CACHE_TYPE = "simple"
+
+MIRRORBITS_API_BASE = ""
+DOWNLOAD_URL_BASE = ""

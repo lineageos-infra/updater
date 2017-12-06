@@ -5,15 +5,15 @@
     <div class="row">
         <div class="col s12 m12 l12">
             <div class="card-panel">
-                <h4>Builds for {{active_device.model}}</h4>
-                <a href="/{{active_device.model}}/changes/">Recent changes</a>
+                <h4>Builds for {{device}}</h4>
+                <a href="/{{device}}/changes/">Recent changes</a>
                 {% if wiki_info %}
                 &bull;
-                <a href="{{wiki_info.format(device=active_device.model)}}">Device info</a>
+                <a href="{{wiki_info.format(device=device)}}">Device info</a>
                 {% endif %}
                 {% if wiki_install %}
                 &bull;
-                <a href="{{wiki_install.format(device=active_device.model)}}">Installation instructions</a>
+                <a href="{{wiki_install.format(device=device)}}">Installation instructions</a>
                 {% endif %}
                 <div class="scrollable-table">
                     <table class="striped bordered">
@@ -28,12 +28,12 @@
                         <tbody>
                             {% for rom in roms %}
                             <tr>
-                                <td>{{rom.romtype}}</td>
+                                <td>{{rom.type}}</td>
                                 <td>{{rom.version}}</td>
                                 <td>
                                     <a href="{{rom.url}}">{{rom.filename}}</a> <br /><small><a href="{{rom.url}}?sha256">sha256</a> <a href="{{rom.url}}?sha1">sha1</a></small>
                                 </td>
-                                <td>{{rom.datetime.strftime("%Y-%m-%d %H:%M:%S %Z")}}</td>
+                                <td>{{rom.date}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>

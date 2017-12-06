@@ -16,55 +16,11 @@ devices.json is an array of objects, each with several fields:
 so limit this to around 25 characters.
 * `has_recovery`: (*optional*) whether or not the device has a separate recovery partition. Defaults to `true`.
 
-This file is no longer read from disk by the application and must be loaded into mongo. To do so, run: 
-
-`FLASK_APP=updater.app flask import_devices`
-
 Development set up:
 ---
 1. Install requirements with `pip install -r requirements.txt`
-2. Install editable `updater` module with `pip install -e .`
-3. Copy `app.cfg.example` to `app.cfg`
-4. Import the devices list with `FLASK_APP=updater.app flask import_devices`
-5. Run with `FLASK_APP=updater.app flask run`
-
-
-API Keys
----
-Any method with the `@api_key_required` decorate requires an API key. You can generate one by running: <br>
-`FLASK_APP=updater.app flask api_key [OPTIONS]"` <br>
-
-```
-Options:
-  --comment TEXT
-  --remove TEXT
-  --print
-  --help          Show this message and exit.
-```
-
-Adding and removing entries:
----
-To add use `FLASK_APP=updater.app flask addrom [OPTIONS]`
-
-```
-Options:
-  -f, --filename TEXT   [required] (Example: lineage-14.1-20170114-NIGHTLY-v500.zip)
-  -d, --device TEXT     [required] (Example: v500)
-  -v, --version TEXT    [required] (Example: 14.1)
-  -t, --datetime TEXT   [required] (Example: "2017-01-14 13:59:25")
-  -r, --romtype TEXT    [required] (Example: nightly)
-  -m, --md5sum TEXT     [required] (Example: 0f80ec88915e8d02f13cfe83d05f4a05)
-  -u, --url TEXT        [required] (Example: https://mirrobits.lineageos.org/full/lineage-14.1-20170114-NIGHTLY-v500.zip)
-  --help                Show this message and exit.
-```
-
-To remove use `FLASK_APP=updater.app flask delrom [OPTIONS]`
-
-```
-Options:
-  -f, --filename TEXT  [required]
-  --help               Show this message and exit.
-```
+2. Copy `app.cfg.example` to `app.cfg`
+3. Run with `FLASK_APP=updater.app flask run`
 
 
 Example API Calls:
@@ -74,25 +30,8 @@ Obtaining rom list for a device:<br>
 `<device>` - Name of device. Example: `d2vzw`<br>
 `<romtype>` - Type of rom. Example: `nightly`<br>
 `<incremental>` - Caller device's incremental ID (ro.build.incr). Can be anything. <br>
-`<after>` - Timestamp for current build on device. (optional) <br> 
+`<after>` - Timestamp for current build on device. (optional) <br>
 `<romversion>` - Version of rom. Example: `14.1`(optional)<br>
 
-Adding a build (requires an API key, see above) <br>
-`POST /api/v1/add_build` <br>
-```
-{
-  "device": "str",
-  "filename": "str",
-  "md5sum": "str",
-  "romtype": "str",
-  "url": "str",
-  "version": "str"
-}
-```
 
-To remove a build (requires an API key, see above) <br>
-`DELETE /api/v1/<string:filename>`
-
-TODO
-====
-- Lots I'm sure
+This project depends on a mirrorbits server (https://github.com/etix/mirrorbits) running our mirrorbits API (https://github.com/lineageos-infra/mirrorbits-api). Please see the README in that project for more information.

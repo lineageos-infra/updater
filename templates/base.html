@@ -27,28 +27,22 @@
                             <a href="#!name"><span class="white-text name">Devices</span></a>
                         </div>
                     </li>
-                    {% for oem in oems %}
+                    {% for oem in oem_to_devices.keys() | sort %}
                     <li class="no-padding">
                         <ul class="collapsible collapsible-accordian">
                             <li class="bold">
-                                {% if oem == active_oem %}
+                                {% if oem == device_to_oem[device] %}
                                 <a class="collapsible-header waves-effect waves-teal bold active">{{oem}}</a>
                                 {% else %}
                                 <a class="collapsible-header waves-effect waves-teal bold">{{oem}}</a>
                                 {% endif %}
                                 <div class="collapsible-body">
                                     <ul>
-                                        {% for device in devices %}
-                                        {% if device.oem == oem %}
-                                        {% if active_device %}
-                                        {% if device.model == active_device.model %}
-                                        <li class="active grey darken-2"><a href="/{{device.model}}">{{device.name}} ({{device.model}})</a></li>
+                                        {% for d in oem_to_devices[oem] | sort(attribute='model')%}
+                                        {% if d.model == device %}
+                                        <li class="active grey darken-2"><a href="/{{d.model}}">{{d.name}} ({{d.model}})</a></li>
                                         {% else %}
-                                        <li ><a href="/{{device.model}}">{{device.name}} ({{device.model}})</a></li>
-                                        {% endif %}
-                                        {% else %}
-                                        <li ><a href="/{{device.model}}">{{device.name}} ({{device.model}})</a></li>
-                                        {% endif %}
+                                        <li ><a href="/{{d.model}}">{{d.name}} ({{d.model}})</a></li>
                                         {% endif %}
                                         {% endfor %}
                                     </ul>
@@ -56,6 +50,7 @@
                             </li>
                         </ul>
                     </li>
+
                     {% endfor %}
                     <li class="no-padding">
                         <ul class="collapsible collapsible-accordian">
