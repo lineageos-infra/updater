@@ -11,12 +11,11 @@ from functools import wraps
 from pydoc import locate
 from uuid import uuid4
 
-import datetime
+import arrow
 import json
 import os
 import requests
 import sys
-import time
 
 os.environ['TZ'] = 'UTC'
 
@@ -85,8 +84,9 @@ def get_build_types(device, romtype, after, version):
     roms = get_device(device)
     roms = [x for x in roms if x['type'] == romtype]
     for rom in roms:
-        rom['date'] = datetime.datetime.strptime(rom['date'], '%Y-%m-%d')
+        rom['date'] = arrow.get(rom['date']).datetime
     if after:
+        after = arrow.get(after).datetime
         roms = [x for x in roms if x['date'] > after]
     if version:
         roms = [x for x in roms if x['version'] == version]
@@ -98,7 +98,7 @@ def get_build_types(device, romtype, after, version):
             "id": rom['sha256'],
             "url": 'https://mirrorbits.lineageos.org{}'.format(rom['filepath']),
             "romtype": rom['type'],
-            "datetime": int(time.mktime(rom['date'].timetuple())),
+            "datetime": arrow.get(rom['date']).timestamp,
             "version": rom['version'],
             "filename": rom['filename']
         })
