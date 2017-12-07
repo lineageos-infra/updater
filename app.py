@@ -49,7 +49,7 @@ def handle_upstream_exception(error):
 @cache.memoize(timeout=3600)
 def get_builds():
     try:
-        req = requests.get('https://mirrorbits.lineageos.org/api/v1/builds')
+        req = requests.get(app.config['UPSTREAM_URL'])
         if req.status_code != 200:
             raise UpstreamApiException('Unable to contact upstream API')
         return json.loads(req.text)
@@ -169,7 +169,7 @@ def web_device(device):
     roms = reversed(get_device(device))
 
     return render_template("device.html", device=device, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem, roms=roms,
-            wiki_info=app.config['WIKI_INFO_URL'], wiki_install=app.config['WIKI_INSTALL_URL'])
+            wiki_info=app.config['WIKI_INFO_URL'], wiki_install=app.config['WIKI_INSTALL_URL'], download_base_url=app.config['DOWNLOAD_BASE_URL'])
 
 @app.route('/favicon.ico')
 def favicon():
