@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 from changelog.gerrit import GerritServer, GerritJSONEncoder
 from changelog import get_changes, get_timestamp
+from exceptions import DeviceNotFoundException
 
 from flask import Flask, jsonify, request, abort, render_template
 from flask_mongoengine import MongoEngine
@@ -27,6 +28,19 @@ db = MongoEngine(app)
 cache = Cache(app)
 gerrit = GerritServer(app.config['GERRIT_URL'])
 
+##########################
+# Exception Handling
+##########################
+
+@app.errorhandler(DeviceNotFoundException)
+def handle_unknown_device(error):
+    oem_to_devices, device_to_oem = get_oem_device_mapping()
+    return render_template("404.html", message=error.message, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem), error.status_code
+
+##########################
+# Mirrorbits Interface
+##########################
+
 @cache.memoize(timeout=3600)
 def get_device_list():
     req = requests.get('https://mirrorbits.lineageos.org/api/v1/builds')
@@ -51,6 +65,8 @@ def get_device(device):
     if req.status_code != 200:
         raise Exception('Unable to contact mirrorbits')
     data = json.loads(req.text)
+    if device not in data:
+        raise DeviceNotFoundException("This device has no available builds. Please select another device.")
     return data[device]
 
 @cache.memoize(timeout=3600)
@@ -96,6 +112,10 @@ def get_device_version(device):
         return None
     return get_device(device)[0]['version']
 
+##########################
+# API
+##########################
+
 @app.route('/api/v1/<string:device>/<string:romtype>/<string:incrementalversion>')
 #cached via memoize on get_build_types
 def index(device, romtype, incrementalversion):
@@ -139,6 +159,10 @@ def api_v1_devices():
     for version in versions.keys():
         versions[version] = list(versions[version])
     return jsonify(versions)
+
+##########################
+# Web Views
+##########################
 
 @app.route("/<string:device>")
 @cache.cached(timeout=3600)
