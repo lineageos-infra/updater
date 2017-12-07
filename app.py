@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 from changelog.gerrit import GerritServer, GerritJSONEncoder
 from changelog import get_changes, get_timestamp
-from exceptions import DeviceNotFoundException
+from exceptions import DeviceNotFoundException, UpstreamApiException
 
 from flask import Flask, jsonify, request, abort, render_template
 from flask_mongoengine import MongoEngine
@@ -35,39 +35,37 @@ gerrit = GerritServer(app.config['GERRIT_URL'])
 @app.errorhandler(DeviceNotFoundException)
 def handle_unknown_device(error):
     oem_to_devices, device_to_oem = get_oem_device_mapping()
-    return render_template("404.html", message=error.message, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem), error.status_code
+    return render_template("error.html", header='Whoops - this page doesn\'t exist', message=error.message, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem), error.status_code
+
+@app.errorhandler(UpstreamApiException)
+def handle_upstream_exception(error):
+    oem_to_devices, device_to_oem = get_oem_device_mapping()
+    return render_template("error.html", header='Something went wrong', message=error.message, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem), error.status_code
+
 
 ##########################
 # Mirrorbits Interface
 ##########################
 
 @cache.memoize(timeout=3600)
+def get_builds():
+    try:
+        req = requests.get('https://mirrorbits.lineageos.org/api/v1/builds')
+        if req.status_code != 200:
+            raise UpstreamApiException('Unable to contact upstream API')
+        return json.loads(req.text)
+    except Exception as e:
+        print(e)
+        raise UpstreamApiException('Unable to contact upstream API')
+
 def get_device_list():
-    req = requests.get('https://mirrorbits.lineageos.org/api/v1/builds')
-    if req.status_code != 200:
-        raise Exception('Unable to contact mirrorbits')
-    data = json.loads(req.text)
-    return list(data.keys())
+    return get_builds().keys()
 
-@cache.memoize(timeout=3600)
-def get_all():
-    req = requests.get('https://mirrorbits.lineageos.org/api/v1/builds')
-    if req.status_code != 200:
-        raise Exception('Unable to contact mirrorbits')
-    data = json.loads(req.text)
-    return data
-
-@cache.memoize(timeout=3600)
 def get_device(device):
-    if device == 'all':
-        return []
-    req = requests.get('https://mirrorbits.lineageos.org/api/v1/builds/{}'.format(device))
-    if req.status_code != 200:
-        raise Exception('Unable to contact mirrorbits')
-    data = json.loads(req.text)
-    if device not in data:
+    builds = get_builds()
+    if device not in builds:
         raise DeviceNotFoundException("This device has no available builds. Please select another device.")
-    return data[device]
+    return builds[device]
 
 @cache.memoize(timeout=3600)
 def get_oem_device_mapping():
