@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 from changelog.gerrit import GerritServer, GerritJSONEncoder
 from changelog import get_changes, get_timestamp
-from exceptions import DeviceNotFoundException, UpstreamApiException
+from custom_exceptions import DeviceNotFoundException, UpstreamApiException
 
 from flask import Flask, jsonify, request, abort, render_template
 from flask_mongoengine import MongoEngine
