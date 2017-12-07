@@ -129,3 +129,8 @@ def web_extras():
 
     return render_template('extras.html', oems=oems, active_device_data=None, extras=True,
                            data=extras_data)
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return ''
