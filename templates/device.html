@@ -22,6 +22,7 @@
                                 <th>Type</th>
                                 <th>Version</th>
                                 <th>File</th>
+                                <th>Size</th>
                                 <th>Date</th>
                             </tr>
                         </thead>
@@ -33,6 +34,7 @@
                                 <td>
                                     <a href="{{download_base_url}}/{{rom.filepath}}">{{rom.filename}}</a> <br /><small><a href="https://mirrorbits.lineageos.org{{rom.filepath}}?sha256">sha256</a> <a href="https://mirror.lineageos.org{{rom.filepath}}?sha1">sha1</a></small>
                                 </td>
+                                <td>{{(rom.size / 1024 / 1024) | round(2)}} MB</td>
                                 <td>{{rom.date}}</td>
                             </tr>
                             {% endfor %}
