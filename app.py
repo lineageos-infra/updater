@@ -37,8 +37,8 @@ def start_timer():
 @app.after_request
 def stop_timer(response):
     delta = time() - request.stats_start
-    REQUEST_LATENCY.labels(request.method, request.path).observe(delta) #pylint: disable=no-member
-    REQUEST_COUNT.labels(request.method, request.path, response.status_code).inc() #pylint: disable=no-member
+    REQUEST_LATENCY.labels(request.method, request.endpoint).observe(delta) #pylint: disable=no-member
+    REQUEST_COUNT.labels(request.method, request.endpoint, response.status_code).inc() #pylint: disable=no-member
     return response
 
 @app.route('/metrics')
