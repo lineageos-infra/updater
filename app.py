@@ -4,19 +4,18 @@ from __future__ import absolute_import
 
 import json
 import os
+from time import time
+
 import arrow
 import requests
-
 from changelog.gerrit import GerritServer, GerritJSONEncoder
 from changelog import get_changes
 from custom_exceptions import DeviceNotFoundException, UpstreamApiException
-
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, Response
 from flask_caching import Cache
+from prometheus_client import multiprocess, generate_latest, CollectorRegistry, CONTENT_TYPE_LATEST, Counter, Histogram
 
 
-
-os.environ['TZ'] = 'UTC'
 
 app = Flask(__name__)
 app.config.from_pyfile("{}/app.cfg".format(os.getcwd()))
@@ -24,6 +23,29 @@ app.json_encoder = GerritJSONEncoder
 
 cache = Cache(app)
 gerrit = GerritServer(app.config['GERRIT_URL'])
+
+##########################
+# Metrics!
+##########################
+REQUEST_LATENCY = Histogram("flask_request_latency_seconds", "Request Latency", ['method', 'endpoint'])
+REQUEST_COUNT = Counter("flask_request_count", "Request Count", ["method", "endpoint", "status"])
+
+@app.before_request
+def start_timer():
+    request.stats_start = time()
+
+@app.after_request
+def stop_timer(response):
+    delta = time() - request.stats_start
+    REQUEST_LATENCY.labels(request.method, request.path).observe(delta) #pylint: disable=no-member
+    REQUEST_COUNT.labels(request.method, request.path, response.status_code).inc() #pylint: disable=no-member
+    return response
+
+@app.route('/metrics')
+def metrics():
+    registry = CollectorRegistry()
+    multiprocess.MultiProcessCollector(registry)
+    return Response(generate_latest(registry), mimetype=CONTENT_TYPE_LATEST)
 
 ##########################
 # Exception Handling
