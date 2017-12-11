@@ -1,21 +1,20 @@
+#!/usr/bin/env python3
+#pylint: disable=line-too-long,missing-docstring,invalid-name
 from __future__ import absolute_import
 
-from changelog.gerrit import GerritServer, GerritJSONEncoder
-from changelog import get_changes, get_timestamp
-from custom_exceptions import DeviceNotFoundException, UpstreamApiException
-
-from flask import Flask, jsonify, request, abort, render_template
-from flask_mongoengine import MongoEngine
-from flask_caching import Cache
-from functools import wraps
-from pydoc import locate
-from uuid import uuid4
-
-import arrow
 import json
 import os
+import arrow
 import requests
-import sys
+
+from changelog.gerrit import GerritServer, GerritJSONEncoder
+from changelog import get_changes
+from custom_exceptions import DeviceNotFoundException, UpstreamApiException
+
+from flask import Flask, jsonify, request, render_template
+from flask_caching import Cache
+
+
 
 os.environ['TZ'] = 'UTC'
 
@@ -23,7 +22,6 @@ app = Flask(__name__)
 app.config.from_pyfile("{}/app.cfg".format(os.getcwd()))
 app.json_encoder = GerritJSONEncoder
 
-db = MongoEngine(app)
 cache = Cache(app)
 gerrit = GerritServer(app.config['GERRIT_URL'])
 
@@ -117,6 +115,7 @@ def get_device_version(device):
 @app.route('/api/v1/<string:device>/<string:romtype>/<string:incrementalversion>')
 #cached via memoize on get_build_types
 def index(device, romtype, incrementalversion):
+    #pylint: disable=unused-argument
     after = request.args.get("after")
     version = request.args.get("version")
 
@@ -125,7 +124,7 @@ def index(device, romtype, incrementalversion):
 @app.route('/api/v1/types/<string:device>/')
 @cache.cached(timeout=3600)
 def get_types(device):
-    data = get_all_devices()
+    data = get_device(device)
     types = set(['nightly'])
     for build in data:
         types.add(build['type'])
@@ -149,11 +148,12 @@ def show_changelog(device='all', before=-1):
 @app.route('/api/v1/devices')
 @cache.cached(timeout=3600)
 def api_v1_devices():
-    data = get_all_devices()
+    data = get_builds()
     versions = {}
     for device in data.keys():
         for build in data[device]:
             versions.setdefault(build['version'], set()).add(device)
+    #pylint: disable=consider-iterating-dictionary
     for version in versions.keys():
         versions[version] = list(versions[version])
     return jsonify(versions)
@@ -169,7 +169,7 @@ def web_device(device):
     roms = reversed(get_device(device))
 
     return render_template("device.html", device=device, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem, roms=roms,
-            wiki_info=app.config['WIKI_INFO_URL'], wiki_install=app.config['WIKI_INSTALL_URL'], download_base_url=app.config['DOWNLOAD_BASE_URL'])
+                           wiki_info=app.config['WIKI_INFO_URL'], wiki_install=app.config['WIKI_INSTALL_URL'], download_base_url=app.config['DOWNLOAD_BASE_URL'])
 
 @app.route('/favicon.ico')
 def favicon():
