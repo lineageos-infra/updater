@@ -291,7 +291,9 @@
         "android_device_qcom_common",
         "android_external_sony_boringssl-compat",
         "android_external_stlport",
-        "android_kernel_lge_msm8974"
+        "android_kernel_lge_msm8974",
+        "android_packages_apps_FlipFlap",
+        "android_packages_resources_devicesettings"
     ],
     "d801": [
         "android_device_lge_d801",
@@ -299,7 +301,9 @@
         "android_device_qcom_common",
         "android_external_sony_boringssl-compat",
         "android_external_stlport",
-        "android_kernel_lge_msm8974"
+        "android_kernel_lge_msm8974",
+        "android_packages_apps_FlipFlap",
+        "android_packages_resources_devicesettings"
     ],
     "d802": [
         "android_device_lge_d802",
@@ -307,7 +311,9 @@
         "android_device_qcom_common",
         "android_external_sony_boringssl-compat",
         "android_external_stlport",
-        "android_kernel_lge_msm8974"
+        "android_kernel_lge_msm8974",
+        "android_packages_apps_FlipFlap",
+        "android_packages_resources_devicesettings"
     ],
     "d803": [
         "android_device_lge_d803",
@@ -315,7 +321,9 @@
         "android_device_qcom_common",
         "android_external_sony_boringssl-compat",
         "android_external_stlport",
-        "android_kernel_lge_msm8974"
+        "android_kernel_lge_msm8974",
+        "android_packages_apps_FlipFlap",
+        "android_packages_resources_devicesettings"
     ],
     "d850": [
         "android_device_lge_d850",
@@ -397,8 +405,7 @@
         "android_device_samsung_espresso3g",
         "android_device_samsung_espressowifi",
         "android_external_stlport",
-        "android_kernel_ti_omap4",
-        "android_packages_apps_SamsungServiceMode"
+        "android_kernel_ti_omap4"
     ],
     "espressowifi": [
         "android_device_samsung_espressowifi",
@@ -1400,6 +1407,18 @@
         "android_packages_apps_FlipFlap",
         "android_packages_resources_devicesettings"
     ],
+    "kltesprsports": [
+        "android_device_qcom_common",
+        "android_device_samsung_klte-common",
+        "android_device_samsung_kltesprsports",
+        "android_device_samsung_msm8974-common",
+        "android_device_samsung_qcom-common",
+        "android_external_stlport",
+        "android_hardware_samsung",
+        "android_kernel_samsung_msm8974",
+        "android_packages_apps_FlipFlap",
+        "android_packages_resources_devicesettings"
+    ],
     "klteusc": [
         "android_device_qcom_common",
         "android_device_samsung_klte-common",
@@ -1445,7 +1464,9 @@
         "android_device_qcom_common",
         "android_external_sony_boringssl-compat",
         "android_external_stlport",
-        "android_kernel_lge_msm8974"
+        "android_kernel_lge_msm8974",
+        "android_packages_apps_FlipFlap",
+        "android_packages_resources_devicesettings"
     ],
     "l900": [
         "android_device_samsung_l900",
@@ -1492,7 +1513,9 @@
         "android_device_qcom_common",
         "android_external_sony_boringssl-compat",
         "android_external_stlport",
-        "android_kernel_lge_msm8974"
+        "android_kernel_lge_msm8974",
+        "android_packages_apps_FlipFlap",
+        "android_packages_resources_devicesettings"
     ],
     "ls990": [
         "android_device_lge_g3-common",
@@ -1616,6 +1639,7 @@
     "maserati": [
         "android_device_motorola_maserati",
         "android_device_motorola_omap4-common",
+        "android_external_jhead",
         "android_kernel_motorola_omap4-common",
         "android_packages_resources_devicesettings"
     ],
@@ -1970,6 +1994,9 @@
         "android_device_wileyfox_porridgek3",
         "android_kernel_cyanogen_mt6735"
     ],
+    "potter": [
+        "android_device_motorola_potter"
+    ],
     "quark": [
         "android_device_motorola_quark",
         "android_device_qcom_common",
@@ -2186,6 +2213,7 @@
     "spyder": [
         "android_device_motorola_omap4-common",
         "android_device_motorola_spyder",
+        "android_external_jhead",
         "android_kernel_motorola_omap4-common",
         "android_packages_resources_devicesettings"
     ],
@@ -2294,6 +2322,7 @@
     "targa": [
         "android_device_motorola_omap4-common",
         "android_device_motorola_targa",
+        "android_external_jhead",
         "android_kernel_motorola_omap4-common",
         "android_packages_resources_devicesettings"
     ],
@@ -2375,13 +2404,11 @@
     ],
     "toro": [
         "android_device_samsung_toro",
-        "android_device_samsung_tuna",
-        "android_kernel_samsung_tuna"
+        "android_device_samsung_tuna"
     ],
     "toroplus": [
         "android_device_samsung_toroplus",
-        "android_device_samsung_tuna",
-        "android_kernel_samsung_tuna"
+        "android_device_samsung_tuna"
     ],
     "treltexx": [
         "android_device_samsung_trelte-common",
@@ -2457,6 +2484,7 @@
     "umts_spyder": [
         "android_device_motorola_omap4-common",
         "android_device_motorola_umts_spyder",
+        "android_external_jhead",
         "android_kernel_motorola_omap4-common",
         "android_packages_resources_devicesettings"
     ],
@@ -2566,7 +2594,9 @@
         "android_device_qcom_common",
         "android_external_sony_boringssl-compat",
         "android_external_stlport",
-        "android_kernel_lge_msm8974"
+        "android_kernel_lge_msm8974",
+        "android_packages_apps_FlipFlap",
+        "android_packages_resources_devicesettings"
     ],
     "vs985": [
         "android_device_lge_g3-common",
