@@ -35,3 +35,11 @@ Obtaining rom list for a device:<br>
 
 
 This project depends on a mirrorbits server (https://github.com/etix/mirrorbits) running our mirrorbits API (https://github.com/lineageos-infra/mirrorbits-api). Please see the README in that project for more information.
+
+Don't want to run mirrorbits/mirrorbits-api?
+---
+Assumptions: your builds live at https://example.com/builds/. On disk, this is /data/builds/.
+1. You must run this on a server with valid files. They don't need to be android builds, just make sure they have differing sha256s. and match the filename format foobar-VERSION-BUILDDATE-BUILDTYPE-DEVICE-foobar.zip.
+2. Run `python gen_mirror_json.py /data/builds/ > /var/www/example.com/builds.json`.
+3. Configure `UPSTREAM_URL` as `https://example.com/builds.json`.
+4. Configure `DOWNLOAD_BASE_URL` as `https://example.com/builds`.
