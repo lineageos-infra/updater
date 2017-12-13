@@ -93,6 +93,9 @@ def get_oem_device_mapping():
     devices = get_device_list()
     with open('devices.json') as f:
         data = json.loads(f.read())
+    if os.path.isfile('devices_local.json'):
+        with open('devices_local.json') as f:
+            data += json.loads(f.read())
     for device in data:
         if device['model'] in devices:
             oem_to_device.setdefault(device['oem'], []).append(device)
