@@ -29,7 +29,7 @@ for f in [os.path.join(dp, f) for dp, dn, fn in os.walk(FILE_BASE) for f in fn]:
         'filename': filename,
         'filepath': f.replace(FILE_BASE, ''),
         'version': version,
-        'type': buildtype
+        'type': buildtype.lower()
     })
 for device in builds.keys():
     builds[device] = sorted(builds[device], key=lambda x: x['date'])
