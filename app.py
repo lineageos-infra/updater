@@ -119,7 +119,7 @@ def get_build_types(device, romtype, after, version):
     for rom in roms:
         data.append({
             "id": rom['sha256'],
-            "url": 'https://mirrorbits.lineageos.org{}'.format(rom['filepath']),
+            "url": '{}/{}'.format(app.config['DOWNLOAD_BASE_URL'], filepath),
             "romtype": rom['type'],
             "datetime": arrow.get(rom['date']).timestamp,
             "version": rom['version'],
