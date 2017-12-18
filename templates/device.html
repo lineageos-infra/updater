@@ -9,11 +9,11 @@
                 <a href="/{{device}}/changes/">Recent changes</a>
                 {% if wiki_info %}
                 &bull;
-                <a href="{{wiki_info.format(device=device)}}">Device info</a>
+                <a href="{{wiki_info.format(device=device)}}" target="_blank">Device info</a>
                 {% endif %}
                 {% if wiki_install %}
                 &bull;
-                <a href="{{wiki_install.format(device=device)}}">Installation instructions</a>
+                <a href="{{wiki_install.format(device=device)}}" target="_blank">Installation instructions</a>
                 {% endif %}
                 <div class="scrollable-table">
                     <table class="striped bordered">
