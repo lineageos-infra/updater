@@ -451,8 +451,6 @@
         "android_device_oppo_f1f",
         "android_device_oppo_msm8939-common",
         "android_device_qcom_common",
-        "android_external_sony_boringssl-compat",
-        "android_external_stlport",
         "android_kernel_oppo_msm8939",
         "android_packages_resources_devicesettings"
     ],
@@ -2018,8 +2016,6 @@
         "android_device_oppo_msm8939-common",
         "android_device_oppo_r7",
         "android_device_qcom_common",
-        "android_external_sony_boringssl-compat",
-        "android_external_stlport",
         "android_kernel_oppo_msm8939",
         "android_packages_resources_devicesettings"
     ],
@@ -2028,8 +2024,6 @@
         "android_device_oppo_msm8939-common",
         "android_device_oppo_r7plus",
         "android_device_qcom_common",
-        "android_external_sony_boringssl-compat",
-        "android_external_stlport",
         "android_kernel_oppo_msm8939",
         "android_packages_resources_devicesettings"
     ],
@@ -2038,8 +2032,6 @@
         "android_device_oppo_msm8939-common",
         "android_device_oppo_r7sf",
         "android_device_qcom_common",
-        "android_external_sony_boringssl-compat",
-        "android_external_stlport",
         "android_kernel_oppo_msm8939",
         "android_packages_resources_devicesettings"
     ],
@@ -2082,6 +2074,15 @@
         "android_hardware_samsung",
         "android_kernel_samsung_s3ve3g",
         "android_packages_resources_devicesettings"
+    ],
+    "sagit": [
+        "android_device_qcom_common",
+        "android_device_xiaomi_sagit",
+        "android_kernel_xiaomi_msm8998",
+        "android_packages_resources_devicesettings",
+        "android_vendor_nxp-nfc_opensource_Nfc",
+        "android_vendor_nxp-nfc_opensource_frameworks",
+        "android_vendor_nxp-nfc_opensource_libnfc-nci"
     ],
     "sailfish": [
         "android_device_google_marlin",
