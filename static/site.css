@@ -105,3 +105,14 @@ header, main, footer {
 img.voter {
     margin: 2px;
 }
+
+.device-link {
+    display: flex;
+    flex-direction: row;
+}
+
+.device-model {
+    text-align: right;
+    float: right;
+    flex-grow: 2;
+}
