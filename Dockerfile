@@ -7,8 +7,8 @@ ENV GERRIT_URL "https://review.lineageos.org"
 ENV CACHE_TYPE "simple"
 ENV CACHE_REDIS_HOST "redis"
 ENV CACHE_REDIS_DB 4
-ENV WIKI_INSTALL_URL "https://wiki.lineageos.org/devices/{device}"
-ENV WIKI_INFO_URL "https://wiki.lineageos.org/devices/{device}/install"
+ENV WIKI_INSTALL_URL "https://wiki.lineageos.org/devices/{device}/install"
+ENV WIKI_INFO_URL "https://wiki.lineageos.org/devices/{device}"
 ENV UPSTREAM_URL ""
 ENV DOWNLOAD_BASE_URL "https://mirrorbits.lineageos.org"
 
