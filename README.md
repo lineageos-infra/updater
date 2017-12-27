@@ -19,8 +19,8 @@ so limit this to around 25 characters.
 Development set up:
 ---
 1. Install requirements with `pip install -r requirements.txt`
-2. Copy `app.cfg.example` to `app.cfg`
-3. Run with `FLASK_APP=updater.app flask run`
+2. Configure your environment appropriately - see `config.py` for possible variables.
+3. Run with `FLASK_APP=app.py flask run`
 
 
 Example API Calls:
