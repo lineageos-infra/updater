@@ -40,9 +40,19 @@
                                     <ul>
                                         {% for d in oem_to_devices[oem] | sort(attribute='model')%}
                                         {% if d.model == device %}
-                                        <li class="active grey darken-2"><a href="/{{d.model}}">{{d.name}} ({{d.model}})</a></li>
+                                        <li class="active teal">
+                                            <a class="device-link" href="/{{d.model}}">
+                                                <div>{{d.name}}</div>
+                                                <div class="device-model grey-text text-lighten-1">{{d.model}}</div>
+                                            </a>
+                                        </li>
                                         {% else %}
-                                        <li ><a href="/{{d.model}}">{{d.name}} ({{d.model}})</a></li>
+                                        <li>
+                                            <a class="device-link" href="/{{d.model}}">
+                                                <div>{{d.name}}</div>
+                                                <div class="device-model grey-text">{{d.model}}</div>
+                                            </a>
+                                        </li>
                                         {% endif %}
                                         {% endfor %}
                                     </ul>
