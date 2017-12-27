@@ -10,6 +10,7 @@ import arrow
 import requests
 from changelog.gerrit import GerritServer, GerritJSONEncoder
 from changelog import get_changes
+from config import Config
 from custom_exceptions import DeviceNotFoundException, UpstreamApiException
 from flask import Flask, jsonify, request, render_template, Response
 from flask_caching import Cache
@@ -18,7 +19,7 @@ from prometheus_client import multiprocess, generate_latest, CollectorRegistry, 
 
 
 app = Flask(__name__)
-app.config.from_pyfile("{}/app.cfg".format(os.getcwd()))
+app.config.from_object("config.Config")
 app.json_encoder = GerritJSONEncoder
 
 cache = Cache(app)
