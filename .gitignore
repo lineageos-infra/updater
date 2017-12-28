@@ -1,8 +1,12 @@
+#pycache
 *.pyc
 __pycache__
+.cache/*
 
-app.cfg
+#json blobs
 devices_local.json
+deivces.json
+device_deps.json
 
 #virtualenv
 bin
@@ -12,8 +16,11 @@ share
 local
 pip-selfcheck.json
 
+#bdist
 build/
 dist/
 *.egg-info
 venv/
+
+#metric data
 metrics/*.db
