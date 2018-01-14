@@ -123,6 +123,12 @@ $(document).ready(function() {
 
         loadMore();
     });
+
+    /* all is not actually a device, so the builds endpoint will 404 */
+    if (device == 'all') {
+        loadMore();
+    }
+
 });
 
 function onScroll() {
