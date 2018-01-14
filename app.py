@@ -4,7 +4,7 @@ from __future__ import absolute_import
 
 import json
 import os
-from time import time
+from time import time, strftime
 
 import arrow
 import requests
@@ -187,6 +187,10 @@ def api_v1_devices():
 ##########################
 # Web Views
 ##########################
+
+@app.context_processor
+def inject_year():
+    return dict(year=strftime("%Y"))
 
 @app.route("/<string:device>")
 @cache.cached(timeout=3600)
