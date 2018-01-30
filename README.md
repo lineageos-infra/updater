@@ -39,8 +39,15 @@ This project depends on a mirrorbits server (https://github.com/etix/mirrorbits)
 
 Don't want to run mirrorbits/mirrorbits-api?
 ---
-Assumptions: your builds live at https://example.com/builds/. On disk, this is /data/builds/.
-1. You must run this on a server with valid files. They don't need to be android builds, just make sure they have differing sha256s. and match the filename format foobar-VERSION-BUILDDATE-BUILDTYPE-DEVICE-foobar.zip.
-2. Run `python gen_mirror_json.py /data/builds/ > /var/www/example.com/builds.json`.
-3. Configure `UPSTREAM_URL` as `https://example.com/builds.json`.
-4. Configure `DOWNLOAD_BASE_URL` as `https://example.com/builds`.
+To run the server stand-alone you can use the included `docker-compose` script to bring up a simple nginx server to host your builds for you.  
+
+### Setup
+1. Place your builds in `./nginx/builds/`. These will be exposed on http://example.com/builds when you start the server. They don't need to be android builds, just make sure they have differing sha256s and match the filename format foobar-VERSION-BUILDDATE-BUILDTYPE-DEVICE-foobar.zip.
+2. Run `python gen_mirror_json.py ./nginx/builds > ./nginx/builds.json`
+3. Make sure you have device_deps.json, devices.json, and optional devices_local.json in the root directory of this repo.
+4. Install `docker-compose` on your system.
+
+### Building and Running
+1. To build, use `docker-compose build` in the root of the repo.
+2. To start the server, run `docker-compose up` in the root of the repo (include a `-d` flag to run in detached mode)
+3. To stop the server, run `docker-compose down` in the root of the repo.
