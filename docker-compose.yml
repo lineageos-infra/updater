@@ -1,0 +1,16 @@
+version: "2"
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - "./nginx/builds:/builds"
+      - "./nginx/builds.json:/builds.json"
+  updater:
+    build: .
+    ports: 
+      - "8080:8080"
+    environment: 
+      - UPSTREAM_URL=http://nginx/builds.json
+      - DOWNLOAD_BASE_URL=https://nginx/builds
