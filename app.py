@@ -132,7 +132,7 @@ def get_build_types(device, romtype, after, version):
 def get_device_version(device):
     if device == 'all':
         return None
-    return get_device(device)[0]['version']
+    return get_device(device)[-1]['version']
 
 ##########################
 # API
