@@ -124,7 +124,8 @@ def get_build_types(device, romtype, after, version):
             "romtype": rom['type'],
             "datetime": arrow.get(rom['date']).timestamp,
             "version": rom['version'],
-            "filename": rom['filename']
+            "filename": rom['filename'],
+            "size": rom['size'],
         })
     return jsonify({'response': data})
 
