@@ -122,7 +122,7 @@ def get_build_types(device, romtype, after, version):
             "id": rom['sha256'],
             "url": '{}{}'.format(app.config['DOWNLOAD_BASE_URL'], rom['filepath']),
             "romtype": rom['type'],
-            "datetime": arrow.get(rom['date']).timestamp,
+            "datetime": rom['datetime'],
             "version": rom['version'],
             "filename": rom['filename'],
             "size": rom['size'],
