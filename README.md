@@ -46,6 +46,7 @@ To run the server stand-alone you can use the included `docker-compose` script t
 2. Run `python gen_mirror_json.py ./nginx/builds > ./nginx/builds.json`
 3. Make sure you have device_deps.json, devices.json, and optional devices_local.json in the root directory of this repo.
 4. Install `docker-compose` on your system.
+5. Make sure that `docker-compose.yml` and `./nginx/default.conf` use suitable hostnames for your setup (rather than "updater" and "nginx", you should use the address of the computer running docker).
 
 ### Building and Running
 1. To build, use `docker-compose build` in the root of the repo.
