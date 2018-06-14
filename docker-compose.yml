@@ -11,6 +11,10 @@ services:
     build: .
     ports: 
       - "8080:8080"
+    volumes:
+      - "./device_deps.json:/app/device_deps.json"
+      - "./devices.json:/app/devices.json"
+      - "./devices_local.json:/app/devices_local.json"
     environment: 
       - UPSTREAM_URL=http://nginx/builds.json
       - DOWNLOAD_BASE_URL=https://nginx/builds
