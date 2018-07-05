@@ -22,7 +22,6 @@
                             <tr>
                                 <td>{{ thing.name }}</td>
                                 <td>{{ version.version }}</td>
-                                <td>{{ thing.date}}</td>
                                 {% set name = thing.url.split("/")[-1] %}
                                 <td><a href="{{thing.url}}">{{name}}</a><br>
                                     <small><a href="{{thing.url}}?sha256">sha256</a></small>
