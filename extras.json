@@ -4,12 +4,12 @@
     "extras": [
       {
         "name": "su (arm)",
-        "date": "2018-05-06",
+        "date": "2018-06-23",
         "url": "https://mirrorbits.lineageos.org/su/addonsu-15.1-arm-signed.zip"
       },
       {
         "name": "su (arm64)",
-        "date": "2018-05-06",
+        "date": "2018-06-23",
         "version": "15.1",
         "url": "https://mirrorbits.lineageos.org/su/addonsu-15.1-arm64-signed.zip"
       },
@@ -21,12 +21,12 @@
 
       {
         "name": "su removal (arm)",
-        "date": "2018-05-06",
+        "date": "2018-06-23",
         "url": "https://mirrorbits.lineageos.org/su/addonsu-remove-15.1-arm-signed.zip"
       },
       {
         "name": "su removal (arm64)",
-        "date": "2018-05-06",
+        "date": "2018-06-23",
         "url": "https://mirrorbits.lineageos.org/su/addonsu-remove-15.1-arm64-signed.zip"
       },
       {
