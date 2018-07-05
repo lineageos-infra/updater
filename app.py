@@ -25,7 +25,7 @@ app.json_encoder = GerritJSONEncoder
 cache = Cache(app)
 gerrit = GerritServer(app.config['GERRIT_URL'])
 
-extras_data = json.loads(open("/app/extras.json", "r").read())
+extras_data = json.loads(open(app.config['EXTRAS_BLOB'], "r").read())
 
 ##########################
 # Metrics!
