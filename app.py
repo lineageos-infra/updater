@@ -25,6 +25,8 @@ app.json_encoder = GerritJSONEncoder
 cache = Cache(app)
 gerrit = GerritServer(app.config['GERRIT_URL'])
 
+extras_data = json.loads(open("/app/extras.json", "r").read())
+
 ##########################
 # Metrics!
 ##########################
@@ -211,4 +213,4 @@ def favicon():
 def web_extras():
     oem_to_devices, device_to_oem = get_oem_device_mapping()
 
-    return render_template("extras.html", oem_to_devices=oem_to_devices, device_to_oem=device_to_oem, extras=True)
+    return render_template("extras.html", oem_to_devices=oem_to_devices, device_to_oem=device_to_oem, extras=True, data=extras_data)
