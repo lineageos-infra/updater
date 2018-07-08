@@ -81,7 +81,10 @@ def get_builds():
         raise UpstreamApiException('Unable to contact upstream API')
 
 def get_device_list():
-    return get_builds().keys()
+    try:
+        return get_builds().keys()
+    except AttributeError:
+        return {}
 
 def get_device(device):
     builds = get_builds()
