@@ -56,11 +56,17 @@ def metrics():
 
 @app.errorhandler(DeviceNotFoundException)
 def handle_unknown_device(error):
+    if request.path.startswith('/api/'):
+        return jsonify({'response': []})
     oem_to_devices, device_to_oem = get_oem_device_mapping()
     return render_template("error.html", header='Whoops - this page doesn\'t exist', message=error.message, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem), error.status_code
 
 @app.errorhandler(UpstreamApiException)
 def handle_upstream_exception(error):
+    if request.path.startswith('/api/'):
+        response = jsonify(error.to_dict())
+        response.status_code = error.status_code
+        return response
     oem_to_devices, device_to_oem = get_oem_device_mapping()
     return render_template("error.html", header='Something went wrong', message=error.message, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem), error.status_code
 
