@@ -26,7 +26,7 @@ cache = Cache(app)
 gerrit = GerritServer(app.config['GERRIT_URL'])
 
 extras_data = json.loads(open(app.config['EXTRAS_BLOB'], "r").read())
-
+blacklist = json.loads(open(app.config['BLACKLIST'], 'r').read())
 ##########################
 # Metrics!
 ##########################
@@ -151,6 +151,8 @@ def get_device_version(device):
 #cached via memoize on get_build_types
 def index(device, romtype, incrementalversion):
     #pylint: disable=unused-argument
+    if incrementalversion in blacklist:
+        return jsonify({'response': []})
     after = request.args.get("after")
     version = request.args.get("version")
 
