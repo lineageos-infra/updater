@@ -8,6 +8,7 @@ test:
   image: python:3.6
   script:
     - pip install -r requirements.txt
+    - pip install pytest
     - pytest test.py
     - ls *.json | xargs -n1 python -mjson.tool
 
