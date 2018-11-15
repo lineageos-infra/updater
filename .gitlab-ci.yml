@@ -26,6 +26,9 @@ build:
     - docker push $CI_REGISTRY_IMAGE:$CI_PIPELINE_IID
     - docker tag $CI_REGISTRY_IMAGE:$CI_PIPELINE_IID $CI_REGISTRY_IMAGE:latest
     - docker push $CI_REGISTRY_IMAGE:latest
+  only:
+    refs:
+      - master@LineageOS/infra/updater
 
 deploy:
   stage: deploy
@@ -38,10 +41,11 @@ deploy:
     - echo $KUBE_CONFIG | base64 -d > $KUBECONFIG
     - kubectl config view
     - kubectl config set-credentials gitlab --token=$KUBE_TOKEN
-    - cat k8s.yml | sed "s/VERSION/${CI_PIPELINE_IID}/" | kubectl apply -n wiki -f -
+    - kubectl -n updater set image deployment/updater updater=$CI_REGISTRY_IMAGE:$CI_PIPELINE_IID
+    - kubectl -n updater rollout status --timeout 60s deployment/updater || (kubectl -n updater rollout undo deployment/updater && false)
   only:
     refs:
-      - master
+      - master@LineageOS/infra/updater
 
 # EVERYTHING BELOW HERE CAN BE IGNORED
 # DO NOT TOUCH ANYTHING BELOW THIS LINE

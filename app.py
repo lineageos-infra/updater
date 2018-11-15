@@ -109,8 +109,11 @@ def get_oem_device_mapping():
     oem_to_device = {}
     device_to_oem = {}
     devices = get_device_list()
-    with open('devices.json') as f:
-        data = json.loads(f.read())
+    if os.path.isfile("devices.json"):
+        with open('devices.json') as f:
+            data = json.loads(f.read())
+    else:
+        data = requests.get('https://raw.githubusercontent.com/LineageOS/hudson/master/updater/devices.json').json()
     if os.path.isfile('devices_local.json'):
         with open('devices_local.json') as f:
             data += json.loads(f.read())
