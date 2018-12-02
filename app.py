@@ -28,6 +28,15 @@ gerrit = GerritServer(app.config['GERRIT_URL'])
 extras_data = json.loads(open(app.config['EXTRAS_BLOB'], "r").read())
 
 ##########################
+# jinja2 globals
+##########################
+
+def version():
+    return os.environ.get("VERSION", "dev")[:6]
+
+app.jinja_env.globals.update(version=version)
+
+##########################
 # Metrics!
 ##########################
 REQUEST_LATENCY = Histogram("flask_request_latency_seconds", "Request Latency", ['method', 'endpoint'])

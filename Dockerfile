@@ -1,5 +1,8 @@
 FROM python:3-alpine
 
+ARG VERSION=dev
+ENV VERSION=$VERSION
+
 COPY . /app
 WORKDIR /app
 
