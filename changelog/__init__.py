@@ -20,10 +20,16 @@ from requests.exceptions import ConnectionError
 from datetime import datetime, timedelta
 
 import json
+import os
+import requests
 
 # device_deps.json is generated using https://github.com/LineageOS/scripts/tree/master/device-deps-regenerator
-with open('device_deps.json') as f:
-    dependencies = json.load(f)
+if os.path.isfile('device_deps.json'):
+    with open('device_deps.json') as f:
+        dependencies = json.load(f)
+else:
+    dependencies = requests.get("https://raw.githubusercontent.com/LineageOS/hudson/master/updater/device_deps.json").json()
+
 is_qcom = {}
 
 def is_related_change(gerrit, device, curbranch, project, branch):
