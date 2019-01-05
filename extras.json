@@ -69,11 +69,6 @@
         "url": "https://mirrorbits.lineageos.org/su/addonsu-remove-14.1-x86-signed.zip"
       },
       {
-        "name": "YahooWeatherProvider",
-        "date": "2017-11-30",
-        "url": "https://mirrorbits.lineageos.org/WeatherProviders/YahooWeatherProvider.apk"
-      },
-      {
         "name": "OpenWeatherMapWeatherProvider",
         "date": "2017-11-30",
         "url": "https://mirrorbits.lineageos.org/WeatherProviders/OpenWeatherMapWeatherProvider.apk"
