@@ -96,11 +96,6 @@
         "name": "OpenWeatherMapWeatherProvider",
         "date": "2017-11-30",
         "url": "https://mirrorbits.lineageos.org/WeatherProviders/OpenWeatherMapWeatherProvider.apk"
-      },
-      {
-        "name": "WundergroundWeatherProvider",
-        "date": "2017-11-30",
-        "url": "https://mirrorbits.lineageos.org/WeatherProviders/WundergroundWeatherProvider.apk"
       }
     ]
   }
