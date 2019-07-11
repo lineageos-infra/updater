@@ -4,23 +4,23 @@
     "extras": [
       {
         "name": "su (arm)",
-        "date": "2019-03-04",
-        "url": "https://mirrorbits.lineageos.org/su/20190304/addonsu-16.0-arm-signed.zip"
+        "date": "2019-07-09",
+        "url": "https://mirrorbits.lineageos.org/su/20190709/addonsu-16.0-arm-signed.zip"
       },
       {
         "name": "su (arm64)",
-        "date": "2019-03-04",
-        "url": "https://mirrorbits.lineageos.org/su/20190304/addonsu-16.0-arm64-signed.zip"
+        "date": "2019-07-09",
+        "url": "https://mirrorbits.lineageos.org/su/20190709/addonsu-16.0-arm64-signed.zip"
       },
       {
         "name": "su removal (arm)",
-        "date": "2019-03-04",
-        "url": "https://mirrorbits.lineageos.org/su/20190304/addonsu-remove-16.0-arm-signed.zip"
+        "date": "2019-07-09",
+        "url": "https://mirrorbits.lineageos.org/su/20190709/addonsu-remove-16.0-arm-signed.zip"
       },
       {
         "name": "su removal (arm64)",
-        "date": "2019-03-04",
-        "url": "https://mirrorbits.lineageos.org/su/20190304/addonsu-remove-16.0-arm64-signed.zip"
+        "date": "2019-07-09",
+        "url": "https://mirrorbits.lineageos.org/su/20190709/addonsu-remove-16.0-arm64-signed.zip"
       }
     ]
   },
@@ -29,13 +29,13 @@
     "extras": [
       {
         "name": "su (arm)",
-        "date": "2019-03-04",
-        "url": "https://mirrorbits.lineageos.org/su/20190304/addonsu-15.1-arm-signed.zip"
+        "date": "2019-07-09",
+        "url": "https://mirrorbits.lineageos.org/su/20190709/addonsu-15.1-arm-signed.zip"
       },
       {
         "name": "su (arm64)",
-        "date": "2019-03-04",
-        "url": "https://mirrorbits.lineageos.org/su/20190304/addonsu-15.1-arm64-signed.zip"
+        "date": "2019-07-09",
+        "url": "https://mirrorbits.lineageos.org/su/20190709/addonsu-15.1-arm64-signed.zip"
       },
       {
         "name": "su (x86)",
@@ -44,13 +44,13 @@
       },
       {
         "name": "su removal (arm)",
-        "date": "2019-03-04",
-        "url": "https://mirrorbits.lineageos.org/su/20190304/addonsu-remove-15.1-arm-signed.zip"
+        "date": "2019-07-09",
+        "url": "https://mirrorbits.lineageos.org/su/20190709/addonsu-remove-15.1-arm-signed.zip"
       },
       {
         "name": "su removal (arm64)",
-        "date": "2019-03-04",
-        "url": "https://mirrorbits.lineageos.org/su/20190304/addonsu-remove-15.1-arm64-signed.zip"
+        "date": "2019-07-09",
+        "url": "https://mirrorbits.lineageos.org/su/20190709/addonsu-remove-15.1-arm64-signed.zip"
       },
       {
         "name": "su removal (x86)",
