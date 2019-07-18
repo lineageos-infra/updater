@@ -21,6 +21,11 @@
         "name": "su removal (arm64)",
         "date": "2019-07-09",
         "url": "https://mirrorbits.lineageos.org/su/20190709/addonsu-remove-16.0-arm64-signed.zip"
+      },
+      {
+        "name": "OpenWeatherProvider",
+        "date": "2019-07-18",
+        "url": "https://mirrorbits.lineageos.org/WeatherProviders/20190718/OpenWeatherProvider-16.0-signed.apk"
       }
     ]
   },
