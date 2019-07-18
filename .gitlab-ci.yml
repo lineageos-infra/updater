@@ -1,7 +1,6 @@
 stages:
   - test
   - build
-  - deploy
 
 test:
   stage: test
@@ -26,23 +25,6 @@ build:
     - docker push $CI_REGISTRY_IMAGE:$CI_PIPELINE_IID
     - docker tag $CI_REGISTRY_IMAGE:$CI_PIPELINE_IID $CI_REGISTRY_IMAGE:latest
     - docker push $CI_REGISTRY_IMAGE:latest
-  only:
-    refs:
-      - master@LineageOS/infra/updater
-
-deploy:
-  stage: deploy
-  variables:
-    KUBECONFIG: /kubeconfig.yml
-  script:
-    - curl -sLo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.12.2/bin/linux/amd64/kubectl
-    - chmod +x /usr/local/bin/kubectl
-    - mkdir ~/.kube/
-    - echo $KUBE_CONFIG | base64 -d > $KUBECONFIG
-    - kubectl config view
-    - kubectl config set-credentials gitlab --token=$KUBE_TOKEN
-    - kubectl -n updater set image deployment/updater updater=$CI_REGISTRY_IMAGE:$CI_PIPELINE_IID
-    - kubectl -n updater rollout status --timeout 60s deployment/updater || (kubectl -n updater rollout undo deployment/updater && false)
   only:
     refs:
       - master@LineageOS/infra/updater
