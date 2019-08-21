@@ -67,7 +67,7 @@ def metrics():
 def handle_unknown_device(error):
     if request.path.startswith('/api/'):
         return jsonify({'response': []})
-    oem_to_devices, device_to_oem = get_oem_device_mapping()
+    oem_to_devices, device_to_oem, _ = get_oem_device_mapping()
     return render_template("error.html", header='Whoops - this page doesn\'t exist', message=error.message, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem), error.status_code
 
 @app.errorhandler(UpstreamApiException)
@@ -76,7 +76,7 @@ def handle_upstream_exception(error):
         response = jsonify(error.to_dict())
         response.status_code = error.status_code
         return response
-    oem_to_devices, device_to_oem = get_oem_device_mapping()
+    oem_to_devices, device_to_oem, _ = get_oem_device_mapping()
     return render_template("error.html", header='Something went wrong', message=error.message, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem), error.status_code
 
 
@@ -108,6 +108,7 @@ def get_device(device):
 def get_oem_device_mapping():
     oem_to_device = {}
     device_to_oem = {}
+    offer_recovery = {}
     devices = get_device_list()
     if os.path.isfile("devices.json"):
         with open('devices.json') as f:
@@ -121,7 +122,8 @@ def get_oem_device_mapping():
         if device['model'] in devices:
             oem_to_device.setdefault(device['oem'], []).append(device)
             device_to_oem[device['model']] = device['oem']
-    return oem_to_device, device_to_oem
+            offer_recovery[device['model']] = device.get('lineage_recovery', False)
+    return oem_to_device, device_to_oem, offer_recovery
 
 @cache.memoize()
 def get_build_types(device, romtype, after, version):
@@ -189,7 +191,7 @@ def changes(device='all', before=-1):
 @app.route('/')
 @cache.cached()
 def show_changelog(device='all', before=-1):
-    oem_to_devices, device_to_oem = get_oem_device_mapping()
+    oem_to_devices, device_to_oem, _ = get_oem_device_mapping()
     return render_template('changes.html', oem_to_devices=oem_to_devices, device_to_oem=device_to_oem, device=device, before=before, changelog=True)
 
 @app.route('/api/v1/devices')
@@ -216,10 +218,11 @@ def inject_year():
 @app.route("/<string:device>")
 @cache.cached()
 def web_device(device):
-    oem_to_devices, device_to_oem = get_oem_device_mapping()
-    roms = reversed(get_device(device))
+    oem_to_devices, device_to_oem, offer_recovery = get_oem_device_mapping()
+    roms = get_device(device)[::-1]
+    has_recovery = any([True for rom in roms if 'recovery' in rom ]) and offer_recovery[device]
 
-    return render_template("device.html", device=device, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem, roms=roms,
+    return render_template("device.html", device=device, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem, roms=roms, has_recovery=has_recovery,
                            wiki_info=app.config['WIKI_INFO_URL'], wiki_install=app.config['WIKI_INSTALL_URL'], download_base_url=app.config['DOWNLOAD_BASE_URL'])
 
 @app.route('/favicon.ico')
@@ -229,6 +232,6 @@ def favicon():
 @app.route("/extras")
 @cache.cached()
 def web_extras():
-    oem_to_devices, device_to_oem = get_oem_device_mapping()
+    oem_to_devices, device_to_oem, _ = get_oem_device_mapping()
 
     return render_template("extras.html", oem_to_devices=oem_to_devices, device_to_oem=device_to_oem, extras=True, data=extras_data)
