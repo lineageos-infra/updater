@@ -110,8 +110,8 @@ def get_oem_device_mapping():
     device_to_oem = {}
     offer_recovery = {}
     devices = get_device_list()
-    if os.path.isfile("devices.json"):
-        with open('devices.json') as f:
+    if os.path.isfile(Config.DEVICES_JSON_PATH):
+        with open(Config.DEVICES_JSON_PATH) as f:
             data = json.loads(f.read())
     else:
         data = requests.get('https://raw.githubusercontent.com/LineageOS/hudson/master/updater/devices.json').json()

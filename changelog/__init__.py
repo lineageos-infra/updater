@@ -15,6 +15,7 @@
 #
 from __future__ import absolute_import
 from changelog.gerrit import GerritServer, datetime_to_gerrit
+from config import Config
 from requests.exceptions import ConnectionError
 
 from datetime import datetime, timedelta
@@ -24,8 +25,8 @@ import os
 import requests
 
 # device_deps.json is generated using https://github.com/LineageOS/scripts/tree/master/device-deps-regenerator
-if os.path.isfile('device_deps.json'):
-    with open('device_deps.json') as f:
+if os.path.isfile(Config.DEVICE_DEPS_PATH):
+    with open(Config.DEVICE_DEPS_PATH) as f:
         dependencies = json.load(f)
 else:
     dependencies = requests.get("https://raw.githubusercontent.com/LineageOS/hudson/master/updater/device_deps.json").json()
