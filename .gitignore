@@ -11,10 +11,12 @@ device_deps.json
 #virtualenv
 bin
 lib
+lib64
 include
 share
 local
 pip-selfcheck.json
+pyvenv.cfg
 
 #bdist
 build/
