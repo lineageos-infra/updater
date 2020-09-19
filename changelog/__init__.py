@@ -16,7 +16,6 @@
 from __future__ import absolute_import
 from changelog.gerrit import GerritServer, datetime_to_gerrit
 from config import Config
-from requests.exceptions import ConnectionError
 
 from datetime import datetime
 
@@ -45,6 +44,10 @@ def is_versions_branch(branch, versions=None):
     return False
 
 
+def get_project_repo(project):
+    return project.split('/', 1)[1]
+
+
 def is_related_change(device, project):
     if not ('/android_' in project or '-kernel-' in project):
         return False
@@ -53,7 +56,7 @@ def is_related_change(device, project):
         return True
 
     deps = dependencies[device]
-    if project.split('/', 1)[1] in deps:
+    if get_project_repo(project) in deps:
         # device explicitly depends on it
         return True
 
@@ -110,33 +113,15 @@ def get_changes(gerrit, device=None, before=-1, versions=None):
 
     related_changes = []
     last = 0
-    try:
-        for c in changes:
-            last = get_timestamp(c.updated)
-            if not is_versions_branch(c.branch, versions):
-                continue
 
-            if not is_related_change(device, c.project):
-                continue
+    for change in changes:
+        last = get_timestamp(change.updated)
+        if not is_versions_branch(change.branch, versions):
+            continue
 
-            related_changes.append({
-                'project': c.project,
-                'subject': c.subject,
-                'submitted': get_timestamp(c.submitted),
-                'updated': get_timestamp(c.updated),
-                'url': c.url,
-                'owner': c.owner,
-                'labels': c.labels
-            })
-    except ConnectionError as e:
-        related_changes.append({
-            'project': None,
-            'subject': None,
-            'submitted': 0,
-            'updated': 0,
-            'url': Config.STATUS_URL,
-            'owner': None,
-            'labels': None
-        })
+        if not is_related_change(device, change.project):
+            continue
+
+        related_changes.append(change)
 
     return related_changes, last

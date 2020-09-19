@@ -1,12 +1,11 @@
 from flask import Blueprint, jsonify, request
 
 from api_common import get_oems, get_device_builds, get_device_data, get_device_versions
-from changelog import GerritServer, get_changes
-from changelog.gerrit import GerritJSONEncoder
+from changelog import GerritServer, get_changes, get_project_repo
 from config import Config
+from custom_exceptions import InvalidValueException, UpstreamApiException
 
 api = Blueprint('api_v2', __name__)
-api.json_encoder = GerritJSONEncoder
 
 gerrit = GerritServer(Config.GERRIT_URL)
 
@@ -63,7 +62,7 @@ def api_v2_changes():
     device = args.get('device')
     device = 'all' if device is None else device[0]
     if type(device) != str:
-        raise ValueError('Device is not a string')
+        raise InvalidValueException('Device is not a string')
 
     before = args.get('before')
     before = -1 if before is None else before[0]
@@ -72,7 +71,7 @@ def api_v2_changes():
     except ValueError:
         pass
     if type(before) != int:
-        raise ValueError('Before is not an integer')
+        raise InvalidValueException('Before is not an integer')
 
     versions = request.args.get('version')
     if not versions:
@@ -83,10 +82,35 @@ def api_v2_changes():
 
     for version in versions:
         if type(version) != str:
-            raise ValueError('Version is not a string')
+            raise InvalidValueException('Version is not a string')
 
     changes, until = get_changes(gerrit, device, before, versions)
+    response_changes = []
+
+    for change in changes:
+        response_changes.append({
+            'url': change.url,
+            'project': get_project_repo(change.project),
+            'subject': change.subject,
+        })
+
     return jsonify({
-        'items': changes,
+        'items': response_changes,
         'until': until,
+    })
+
+
+@api.errorhandler(InvalidValueException)
+@api.errorhandler(UpstreamApiException)
+@api.errorhandler(UpstreamApiException)
+def api_v2_handle_exception(e):
+    return jsonify({
+        'error': e.message
+    })
+
+
+@api.errorhandler(ConnectionError)
+def api_v2_handle_exception():
+    return jsonify({
+        'error': 'Connection failed'
     })

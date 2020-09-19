@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, request
 from api_common import get_builds, get_device_version, get_build_types, get_device_builds
 from caching import cache
 from changelog.gerrit import GerritServer, GerritJSONEncoder
-from changelog import get_changes
+from changelog import get_changes, get_timestamp
 from config import Config
 
 api = Blueprint('api_v1', __name__)
@@ -41,11 +41,34 @@ def api_v1_changes(device='all', before=-1):
     else:
         versions = []
 
-    changes, last = get_changes(gerrit, device, before, versions)
+    response_changes = []
+    try:
+        changes, last = get_changes(gerrit, device, before, versions)
+        for change in changes:
+            response_changes.append({
+                'project': change.project,
+                'subject': change.subject,
+                'submitted': get_timestamp(change.submitted),
+                'updated': get_timestamp(change.updated),
+                'url': change.url,
+                'owner': change.owner,
+                'labels': change.labels
+            })
+    except ConnectionError:
+        last = 0
+        response_changes.append({
+            'project': None,
+            'subject': None,
+            'submitted': 0,
+            'updated': 0,
+            'url': Config.STATUS_URL,
+            'owner': None,
+            'labels': None
+        })
 
     return jsonify({
         'last': last,
-        'res': changes,
+        'res': response_changes,
     })
 
 
