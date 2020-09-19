@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-from api_common import get_builds, get_device_version, get_device, get_build_types
+from api_common import get_builds, get_device_version, get_build_types, get_device_builds
 from caching import cache
 from changelog.gerrit import GerritServer, GerritJSONEncoder
 from changelog import get_changes
@@ -23,7 +23,7 @@ def index(device, romtype, incrementalversion):
 @api.route('/types/<string:device>/')
 @cache.cached()
 def get_types(device):
-    data = get_device(device)
+    data = get_device_builds(device)
     types = {'nightly'}
     for build in data:
         types.add(build['type'])

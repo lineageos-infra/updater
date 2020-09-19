@@ -8,7 +8,7 @@ from time import time, strftime
 from flask import Flask, jsonify, request, render_template, Response
 from prometheus_client import multiprocess, generate_latest, CollectorRegistry, CONTENT_TYPE_LATEST, Counter, Histogram
 
-from api_common import get_oem_device_mapping, get_device
+from api_common import get_device_builds, get_oems, get_device_data
 from caching import cache
 from custom_exceptions import DeviceNotFoundException, UpstreamApiException
 from config import Config
@@ -69,9 +69,9 @@ def metrics():
 def handle_unknown_device(error):
     if request.path.startswith('/api/'):
         return jsonify({'response': []})
-    oem_to_devices, device_to_oem, _ = get_oem_device_mapping()
+    oems = get_oems()
     return render_template('error.html', header='Whoops - this page doesn\'t exist', message=error.message,
-                           oem_to_devices=oem_to_devices, device_to_oem=device_to_oem), error.status_code
+                           oems=oems), error.status_code
 
 
 @app.errorhandler(UpstreamApiException)
@@ -80,9 +80,9 @@ def handle_upstream_exception(error):
         response = jsonify(error.to_dict())
         response.status_code = error.status_code
         return response
-    oem_to_devices, device_to_oem, _ = get_oem_device_mapping()
+    oems = get_oems()
     return render_template('error.html', header='Something went wrong', message=error.message,
-                           oem_to_devices=oem_to_devices, device_to_oem=device_to_oem), error.status_code
+                           oems=oems), error.status_code
 
 
 ##########################
@@ -94,9 +94,11 @@ def handle_upstream_exception(error):
 @app.route('/')
 @cache.cached()
 def show_changelog(device='all', before=-1):
-    oem_to_devices, device_to_oem, _ = get_oem_device_mapping()
-    return render_template('changes.html', oem_to_devices=oem_to_devices, device_to_oem=device_to_oem,
-                           device=device, before=before, changelog=True)
+    oems = get_oems()
+    device_data = get_device_data(device)
+
+    return render_template('changes.html', oems=oems, active_device_data=device_data,
+                           before=before, changelog=True)
 
 
 @app.context_processor
@@ -107,11 +109,12 @@ def inject_year():
 @app.route('/<string:device>')
 @cache.cached()
 def web_device(device):
-    oem_to_devices, device_to_oem, offer_recovery = get_oem_device_mapping()
-    roms = get_device(device)[::-1]
-    has_recovery = any([True for rom in roms if 'recovery' in rom]) and offer_recovery[device]
+    oems = get_oems()
+    device_data = get_device_data(device)
+    roms = get_device_builds(device)[::-1]
+    has_recovery = any([True for rom in roms if 'recovery' in rom]) and device_data.get('lineage_recovery', False)
 
-    return render_template('device.html', device=device, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem,
+    return render_template('device.html', oems=oems, active_device_data=device_data,
                            roms=roms, has_recovery=has_recovery,
                            wiki_info=Config.WIKI_INFO_URL, wiki_install=Config.WIKI_INSTALL_URL,
                            download_base_url=Config.DOWNLOAD_BASE_URL)
@@ -120,7 +123,7 @@ def web_device(device):
 @app.route('/extras')
 @cache.cached()
 def web_extras():
-    oem_to_devices, device_to_oem, _ = get_oem_device_mapping()
+    oems = get_oems()
 
-    return render_template('extras.html', oem_to_devices=oem_to_devices, device_to_oem=device_to_oem, extras=True,
+    return render_template('extras.html', oems=oems, active_device_data=None, extras=True,
                            data=extras_data)

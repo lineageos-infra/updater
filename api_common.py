@@ -26,7 +26,7 @@ def get_devices_with_builds():
     return get_builds().keys()
 
 
-def get_device(device):
+def get_device_builds(device):
     builds = get_builds()
     if device not in builds:
         raise DeviceNotFoundException('This device has no available builds. Please select another device.')
@@ -60,23 +60,30 @@ def get_devices_data(with_builds=False):
 
 
 @cache.memoize()
-def get_oem_device_mapping():
-    oem_to_device = {}
-    device_to_oem = {}
-    offer_recovery = {}
-    data = get_devices_data(True)
+def get_device_data(device):
+    devices_data = get_devices_data(True)
 
-    for device in data:
-        oem_to_device.setdefault(device['oem'], []).append(device)
-        device_to_oem[device['model']] = device['oem']
-        offer_recovery[device['model']] = device.get('lineage_recovery', False)
+    for device_data in devices_data:
+        if device_data['model'] == device:
+            return device_data
 
-    return oem_to_device, device_to_oem, offer_recovery
+    return None
+
+
+@cache.memoize()
+def get_oems():
+    devices_data = get_devices_data(True)
+    oems = {}
+
+    for device_data in devices_data:
+        oems.setdefault(device_data['oem'], []).append(device_data)
+
+    return oems
 
 
 @cache.memoize()
 def get_build_types(device, romtype, after, version):
-    roms = get_device(device)
+    roms = get_device_builds(device)
     roms = [x for x in roms if x['type'] == romtype]
     for rom in roms:
         rom['date'] = arrow.get(rom['date']).datetime
@@ -105,4 +112,4 @@ def get_build_types(device, romtype, after, version):
 def get_device_version(device):
     if device == 'all':
         return None
-    return get_device(device)[-1]['version']
+    return get_device_builds(device)[-1]['version']
