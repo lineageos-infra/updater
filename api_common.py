@@ -110,3 +110,14 @@ def get_device_version(device):
     if device == 'all':
         return None
     return get_device_builds(device)[-1]['version']
+
+
+@cache.memoize()
+def get_device_versions(device):
+    roms = get_device_builds(device)
+
+    versions = set()
+    for rom in roms:
+        set.add(rom.version)
+
+    return list(versions)

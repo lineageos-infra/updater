@@ -35,7 +35,12 @@ def get_types(device):
 @api.route('/changes/<device>/-1/')
 @cache.cached()
 def changes(device='all', before=-1):
-    return jsonify(get_changes(gerrit, device, before, get_device_version(device), Config.STATUS_URL))
+    version = get_device_version(device)
+    if version:
+        versions = [version]
+    else:
+        versions = []
+    return jsonify(get_changes(gerrit, device, before, versions, Config.STATUS_URL))
 
 
 @api.route('/devices')
