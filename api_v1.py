@@ -13,7 +13,7 @@ gerrit = GerritServer(Config.GERRIT_URL)
 
 
 @api.route('/<string:device>/<string:romtype>/<string:incrementalversion>')
-def index(device, romtype, incrementalversion):
+def api_v1_index(device, romtype, incrementalversion):
     after = request.args.get('after')
     version = request.args.get('version')
 
@@ -22,7 +22,7 @@ def index(device, romtype, incrementalversion):
 
 @api.route('/types/<string:device>/')
 @cache.cached()
-def get_types(device):
+def api_v1_get_types(device):
     data = get_device_builds(device)
     types = {'nightly'}
     for build in data:
@@ -34,7 +34,7 @@ def get_types(device):
 @api.route('/changes/<device>/<int:before>/')
 @api.route('/changes/<device>/-1/')
 @cache.cached()
-def changes(device='all', before=-1):
+def api_v1_changes(device='all', before=-1):
     version = get_device_version(device)
     if version:
         versions = [version]
