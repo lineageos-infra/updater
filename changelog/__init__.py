@@ -29,8 +29,7 @@ if os.path.isfile(Config.DEVICE_DEPS_PATH):
     with open(Config.DEVICE_DEPS_PATH) as f:
         dependencies = json.load(f)
 else:
-    dependencies = requests.get(
-        'https://raw.githubusercontent.com/LineageOS/hudson/master/updater/device_deps.json').json()
+    dependencies = requests.get(Config.OFFICIAL_DEVICE_DEPS_JSON_URL).json()
 
 is_qcom = {}
 
