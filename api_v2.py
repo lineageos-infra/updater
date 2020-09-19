@@ -67,6 +67,10 @@ def api_v2_changes():
 
     before = args.get('before')
     before = -1 if before is None else before[0]
+    try:
+        before = int(before)
+    except ValueError:
+        pass
     if type(before) != int:
         raise ValueError('Before is not an integer')
 
