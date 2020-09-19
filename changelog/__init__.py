@@ -97,7 +97,7 @@ def get_timestamp(ts):
     return int((ts - datetime(1970, 1, 1)).total_seconds())
 
 
-def get_changes(gerrit, device=None, before=-1, versions=None, status_url='#'):
+def get_changes(gerrit, device=None, before=-1, versions=None):
     last_release = -1
 
     query = 'status:merged'
@@ -134,7 +134,7 @@ def get_changes(gerrit, device=None, before=-1, versions=None, status_url='#'):
             'subject': None,
             'submitted': 0,
             'updated': 0,
-            'url': status_url,
+            'url': Config.STATUS_URL,
             'owner': None,
             'labels': None
         })
