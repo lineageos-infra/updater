@@ -64,7 +64,7 @@ def get_device_data(device):
         if device_data['model'] == device:
             return device_data
 
-    return None
+    raise DeviceNotFoundException('This device does not exist')
 
 
 @cache.memoize()
