@@ -118,6 +118,6 @@ def get_device_versions(device):
 
     versions = set()
     for rom in roms:
-        set.add(rom.version)
+        versions.add(rom.version)
 
     return list(versions)
