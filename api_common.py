@@ -34,7 +34,7 @@ def get_device_builds(device):
 
 
 @cache.memoize()
-def get_devices_data(with_builds=False):
+def get_devices_data():
     devices_data = []
 
     if os.path.isfile(Config.DEVICES_JSON_PATH):
@@ -47,9 +47,6 @@ def get_devices_data(with_builds=False):
         with open(Config.DEVICES_LOCAL_JSON_PATH) as f:
             devices_data += json.loads(f.read())
 
-    if not with_builds:
-        return devices_data
-
     devices_data_with_builds = []
     devices_with_builds = get_devices_with_builds()
     for device_data in devices_data:
@@ -61,7 +58,7 @@ def get_devices_data(with_builds=False):
 
 @cache.memoize()
 def get_device_data(device):
-    devices_data = get_devices_data(True)
+    devices_data = get_devices_data()
 
     for device_data in devices_data:
         if device_data['model'] == device:
@@ -72,7 +69,7 @@ def get_device_data(device):
 
 @cache.memoize()
 def get_oems():
-    devices_data = get_devices_data(True)
+    devices_data = get_devices_data()
     oems = {}
 
     for device_data in devices_data:
