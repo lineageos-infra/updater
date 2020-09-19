@@ -10,18 +10,20 @@ api = Blueprint('api_v2', __name__)
 @cache.cached()
 def api_v2_oems():
     oems = get_oems()
-    response = {}
+    response = []
 
     for oem, devices_data in oems.items():
-        print(oem, devices_data)
-        response_devices_data = []
+        response_oem = {
+            'name': oem,
+            'devices': []
+        }
 
         for device_data in devices_data:
-            response_devices_data.append({
+            response_oem['devices'].append({
                 'model': device_data['model'],
                 'name': device_data['name'],
             })
 
-        response[oem] = response_devices_data
+        response.append(response_oem)
 
     return jsonify(response)
