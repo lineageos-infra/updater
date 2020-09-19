@@ -113,7 +113,7 @@ def get_changes(gerrit, device=None, before=-1, versions=None, status_url='#'):
     try:
         for c in changes:
             last = get_timestamp(c.updated)
-            if is_versions_branch(c.branch, versions):
+            if not is_versions_branch(c.branch, versions):
                 continue
 
             if not is_related_change(device, c.project):
