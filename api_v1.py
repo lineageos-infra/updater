@@ -6,7 +6,7 @@ from changelog.gerrit import GerritServer, GerritJSONEncoder
 from changelog import get_changes
 from config import Config
 
-api = Blueprint("api_v1", __name__)
+api = Blueprint('api_v1', __name__)
 api.json_encoder = GerritJSONEncoder
 
 gerrit = GerritServer(Config.GERRIT_URL)
