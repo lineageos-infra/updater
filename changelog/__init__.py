@@ -101,15 +101,11 @@ def get_timestamp(ts):
 
 
 def get_changes(gerrit, device=None, before=-1, versions=None):
-    last_release = -1
-
-    query = 'status:merged'
-    if last_release != -1:
-        query += ' after:' + datetime_to_gerrit(last_release)
+    query = ['status:merged']
     if before != -1:
-        query += ' before:' + datetime_to_gerrit(datetime.fromtimestamp(before))
+        query.append('before:%s' % datetime_to_gerrit(datetime.fromtimestamp(before)))
 
-    changes = gerrit.changes(query=query, n=100, limit=100)
+    changes = gerrit.changes(query=' '.join(query), n=100, limit=100)
 
     related_changes = []
     last = 0
