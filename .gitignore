@@ -26,3 +26,6 @@ venv/
 
 #metric data
 metrics/*.db
+
+# PyCharm data
+.idea/
