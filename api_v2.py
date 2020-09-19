@@ -1,9 +1,13 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 
-from api_common import get_oems, get_device_builds, get_device_data
+from api_common import get_oems, get_device_builds, get_device_data, get_device_versions
 from caching import cache
+from changelog import GerritServer, get_changes
+from config import Config
 
 api = Blueprint('api_v2', __name__)
+
+gerrit = GerritServer(Config.GERRIT_URL)
 
 
 @api.route('/oems')
@@ -40,3 +44,22 @@ def api_v2_device_builds(device):
         'oem': device_data['oem'],
         'builds': builds,
     })
+
+
+@api.route('/changes')
+@cache.cached()
+def api_v2_changes():
+    args = request.args.to_dict(False)
+    device = args.get('device', None, str)
+    before = args.get('before', -1, int)
+
+    versions = request.args.get('version')
+    if not versions:
+        versions = get_device_versions(device)
+    elif type(versions) != list:
+        if type(versions) != str:
+            raise ValueError('Version is not a string')
+
+        versions = [versions]
+
+    return jsonify(get_changes(gerrit, device, before, versions, Config.STATUS_URL))
