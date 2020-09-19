@@ -8,7 +8,7 @@ api = Blueprint('api_v2', __name__)
 
 @api.route('/oems')
 @cache.cached()
-def api_v1_devices():
+def api_v2_oems():
     oems = get_oems()
     response = {}
 
