@@ -139,4 +139,4 @@ def get_changes(gerrit, device=None, before=-1, versions=None, status_url='#'):
             'labels': None
         })
 
-    return {'last': last, 'res': related_changes}
+    return related_changes, last

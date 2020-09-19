@@ -40,7 +40,13 @@ def api_v1_changes(device='all', before=-1):
         versions = [version]
     else:
         versions = []
-    return jsonify(get_changes(gerrit, device, before, versions, Config.STATUS_URL))
+
+    changes, last = get_changes(gerrit, device, before, versions)
+
+    return jsonify({
+        'last': last,
+        'res': changes,
+    })
 
 
 @api.route('/devices')
