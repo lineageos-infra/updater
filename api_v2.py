@@ -63,12 +63,21 @@ def api_v2_device_builds(device):
 @cache.cached()
 def api_v2_changes():
     args = request.args.to_dict(False)
-    device = args.get('device', None, str)
-    before = args.get('before', -1, int)
+
+    device = args.get('device', 'all')
+    if device and type(device) != str:
+        raise ValueError('Device is not a string')
+
+    before = args.get('before', -1)
+    if type(before) != int:
+        raise ValueError('Before is not an integer')
 
     versions = request.args.get('version')
     if not versions:
-        versions = get_device_versions(device)
+        if device == 'all':
+            versions = []
+        else:
+            versions = get_device_versions(device)
     elif type(versions) != list:
         if type(versions) != str:
             raise ValueError('Version is not a string')
