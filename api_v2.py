@@ -62,13 +62,15 @@ def api_v2_device_builds(device):
 @api.route('/changes')
 @cache.cached()
 def api_v2_changes():
-    args = request.args.to_dict(False)
+    args = request.args.to_dict(flat=False)
 
-    device = args.get('device', 'all')
-    if device and type(device) != str:
+    device = args.get('device')
+    device = 'all' if device is None else device[0]
+    if type(device) != str:
         raise ValueError('Device is not a string')
 
-    before = args.get('before', -1)
+    before = args.get('before')
+    before = -1 if before is None else before[0]
     if type(before) != int:
         raise ValueError('Before is not an integer')
 
@@ -78,10 +80,9 @@ def api_v2_changes():
             versions = []
         else:
             versions = get_device_versions(device)
-    elif type(versions) != list:
-        if type(versions) != str:
-            raise ValueError('Version is not a string')
 
-        versions = [versions]
+    for version in versions:
+        if type(version) != str:
+            raise ValueError('Version is not a string')
 
     return jsonify(get_changes(gerrit, device, before, versions, Config.STATUS_URL))
