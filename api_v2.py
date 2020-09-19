@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 
-from api_common import get_oems
+from api_common import get_oems, get_device_builds, get_device_data
 from caching import cache
 
 api = Blueprint('api_v2', __name__)
@@ -27,3 +27,16 @@ def api_v2_oems():
         response.append(response_oem)
 
     return jsonify(response)
+
+
+@api.route('/devices/<string:device>')
+def api_v2_device_builds(device):
+    device_data = get_device_data(device)
+    builds = get_device_builds(device)
+
+    return jsonify({
+        'name': device_data['name'],
+        'model': device_data['model'],
+        'oem': device_data['oem'],
+        'builds': builds,
+    })
