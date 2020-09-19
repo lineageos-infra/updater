@@ -13,10 +13,12 @@ from caching import cache
 from custom_exceptions import DeviceNotFoundException, UpstreamApiException
 from config import Config
 from api_v1 import api as api_v1
+from api_v2 import api as api_v2
 
 app = Flask(__name__)
 app.config.from_object('config.FlaskConfig')
 app.register_blueprint(api_v1, url_prefix='/api/v1')
+app.register_blueprint(api_v2, url_prefix='/api/v2')
 
 cache.init_app(app)
 
