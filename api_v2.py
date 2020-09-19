@@ -85,4 +85,8 @@ def api_v2_changes():
         if type(version) != str:
             raise ValueError('Version is not a string')
 
-    return jsonify(get_changes(gerrit, device, before, versions, Config.STATUS_URL))
+    changes, until = get_changes(gerrit, device, before, versions)
+    return jsonify({
+        'items': changes,
+        'until': until,
+    })
