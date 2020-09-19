@@ -1,5 +1,6 @@
 import os
 
+
 class Config(object):
     GERRIT_URL = os.environ.get('GERRIT_URL', 'https://review.lineageos.org')
     CACHE_DEFAULT_TIMEOUT = int(os.environ.get('CACHE_DEFAULT_TIMEOUT', '3600'))

@@ -18,7 +18,7 @@ from changelog.gerrit import GerritServer, datetime_to_gerrit
 from config import Config
 from requests.exceptions import ConnectionError
 
-from datetime import datetime, timedelta
+from datetime import datetime
 
 import json
 import os
@@ -29,16 +29,18 @@ if os.path.isfile(Config.DEVICE_DEPS_PATH):
     with open(Config.DEVICE_DEPS_PATH) as f:
         dependencies = json.load(f)
 else:
-    dependencies = requests.get("https://raw.githubusercontent.com/LineageOS/hudson/master/updater/device_deps.json").json()
+    dependencies = requests.get(
+        'https://raw.githubusercontent.com/LineageOS/hudson/master/updater/device_deps.json').json()
 
 is_qcom = {}
 
-def is_related_change(gerrit, device, curbranch, project, branch):
+
+def is_related_change(device, curbranch, project, branch):
     if not ('/android_' in project or '-kernel-' in project):
         return False
 
-    # branch = "cm-14.1-caf-msm8996" or "cm-14.1" or "stable/cm-13.0-ZNH5Y"
-    if curbranch and (curbranch not in branch or "/" in branch):
+    # branch = 'cm-14.1-caf-msm8996' or 'cm-14.1' or 'stable/cm-13.0-ZNH5Y'
+    if curbranch and (curbranch not in branch or '/' in branch):
         return False
 
     if device not in dependencies:
@@ -82,10 +84,12 @@ def is_related_change(gerrit, device, curbranch, project, branch):
 
     return qcom
 
+
 def get_timestamp(ts):
     if not ts:
         return None
     return int((ts - datetime(1970, 1, 1)).total_seconds())
+
 
 def get_changes(gerrit, device=None, before=-1, version='14.1', status_url='#'):
     last_release = -1
@@ -103,7 +107,7 @@ def get_changes(gerrit, device=None, before=-1, version='14.1', status_url='#'):
     try:
         for c in changes:
             last = get_timestamp(c.updated)
-            if is_related_change(gerrit, device, version, c.project, c.branch):
+            if is_related_change(device, version, c.project, c.branch):
                 nightly_changes.append({
                     'project': c.project,
                     'subject': c.subject,
@@ -122,5 +126,5 @@ def get_changes(gerrit, device=None, before=-1, version='14.1', status_url='#'):
             'url': status_url,
             'owner': None,
             'labels': None
-            })
-    return {'last': last, 'res': nightly_changes }
+        })
+    return {'last': last, 'res': nightly_changes}
