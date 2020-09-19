@@ -39,6 +39,14 @@ def api_v2_device_builds(device):
     device_data = get_device_data(device)
     builds = get_device_builds(device)
 
+    def get_download_url(build):
+        return Config.DOWNLOAD_BASE_URL + build['filepath']
+
+    for build in builds:
+        build['url'] = get_download_url(build)
+        if 'recovery' in build:
+            build['recovery']['url'] = get_download_url(build['recovery'])
+
     return jsonify({
         'name': device_data['name'],
         'model': device_data['model'],
