@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
 
 from api_common import get_oems, get_device_builds, get_device_data, get_device_versions
-from caching import cache
 from changelog import GerritServer, get_changes
 from changelog.gerrit import GerritJSONEncoder
 from config import Config
@@ -13,7 +12,6 @@ gerrit = GerritServer(Config.GERRIT_URL)
 
 
 @api.route('/oems')
-@cache.cached()
 def api_v2_oems():
     oems = get_oems()
     response = []
@@ -36,7 +34,6 @@ def api_v2_oems():
 
 
 @api.route('/devices/<string:device>')
-@cache.cached()
 def api_v2_device_builds(device):
     device_data = get_device_data(device)
     builds = get_device_builds(device)
@@ -60,7 +57,6 @@ def api_v2_device_builds(device):
 
 
 @api.route('/changes')
-@cache.cached()
 def api_v2_changes():
     args = request.args.to_dict(flat=False)
 
