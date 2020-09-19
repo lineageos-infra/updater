@@ -22,7 +22,7 @@ def get_builds():
         raise UpstreamApiException('Unable to contact upstream API')
 
 
-def get_device_list():
+def get_devices_with_builds():
     return get_builds().keys()
 
 
@@ -34,24 +34,43 @@ def get_device(device):
 
 
 @cache.memoize()
+def get_devices_data(with_builds=False):
+    devices_data = []
+
+    if os.path.isfile(Config.DEVICES_JSON_PATH):
+        with open(Config.DEVICES_JSON_PATH) as f:
+            devices_data += json.loads(f.read())
+    else:
+        devices_data += requests.get(Config.OFFICIAL_DEVICES_JSON_URL).json()
+
+    if os.path.isfile(Config.DEVICES_LOCAL_JSON_PATH):
+        with open(Config.DEVICES_LOCAL_JSON_PATH) as f:
+            devices_data += json.loads(f.read())
+
+    if not with_builds:
+        return devices_data
+
+    devices_data_with_builds = []
+    devices_with_builds = get_devices_with_builds()
+    for device_data in devices_data:
+        if device_data['model'] in devices_with_builds:
+            devices_data_with_builds.append(device_data)
+
+    return devices_data_with_builds
+
+
+@cache.memoize()
 def get_oem_device_mapping():
     oem_to_device = {}
     device_to_oem = {}
     offer_recovery = {}
-    devices = get_device_list()
-    if os.path.isfile(Config.DEVICES_JSON_PATH):
-        with open(Config.DEVICES_JSON_PATH) as f:
-            data = json.loads(f.read())
-    else:
-        data = requests.get('https://raw.githubusercontent.com/LineageOS/hudson/master/updater/devices.json').json()
-    if os.path.isfile('devices_local.json'):
-        with open('devices_local.json') as f:
-            data += json.loads(f.read())
+    data = get_devices_data(True)
+
     for device in data:
-        if device['model'] in devices:
-            oem_to_device.setdefault(device['oem'], []).append(device)
-            device_to_oem[device['model']] = device['oem']
-            offer_recovery[device['model']] = device.get('lineage_recovery', False)
+        oem_to_device.setdefault(device['oem'], []).append(device)
+        device_to_oem[device['model']] = device['oem']
+        offer_recovery[device['model']] = device.get('lineage_recovery', False)
+
     return oem_to_device, device_to_oem, offer_recovery
 
 
