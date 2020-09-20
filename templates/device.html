@@ -6,7 +6,7 @@
         <div class="col s12 m12 l12">
             <div class="card-panel">
                 <h4>Builds for {{active_device_data.model}}</h4>
-                <a href="/{{active_device_data.model}}/changes/">Recent changes</a>
+                <a href="/{{active_device_data.model}}/changes">Recent changes</a>
                 {% if wiki_info %}
                 &bull;
                 <a href="{{wiki_info.format(device=active_device_data.model)}}" target="_blank">Device info</a>
