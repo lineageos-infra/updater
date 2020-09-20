@@ -6,3 +6,4 @@ Jinja2==2.11.2
 prometheus-client==0.8.0
 redis==3.5.3
 requests==2.24.0
+flask-cors==3.0.9

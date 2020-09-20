@@ -6,6 +6,7 @@ import os
 from time import time, strftime
 
 from flask import Flask, jsonify, request, render_template, Response
+from flask_cors import CORS
 from prometheus_client import multiprocess, generate_latest, CollectorRegistry, CONTENT_TYPE_LATEST, Counter, Histogram
 
 from api_common import get_device_builds, get_oems, get_device_data
@@ -19,6 +20,7 @@ app = Flask(__name__)
 app.config.from_object('config.FlaskConfig')
 app.register_blueprint(api_v1, url_prefix='/api/v1')
 app.register_blueprint(api_v2, url_prefix='/api/v2')
+CORS(app)
 
 cache.init_app(app)
 
