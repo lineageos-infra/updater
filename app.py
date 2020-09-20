@@ -91,16 +91,23 @@ def handle_upstream_exception(error):
 # Web Views
 ##########################
 
-@app.route('/<device>/changes/<int:before>/')
-@app.route('/<device>/changes/')
-@app.route('/')
+@app.route('/<string:device>/changes')
 @cache.cached()
-def show_changelog(device='all', before=-1):
+def show_changelog(device):
     oems = get_oems()
     device_data = get_device_data(device)
 
     return render_template('changes.html', oems=oems, active_device_data=device_data,
-                           before=before, changelog=True)
+                           before=0, changelog=True)
+
+
+@app.route('/')
+@cache.cached()
+def show_index():
+    oems = get_oems()
+
+    return render_template('changes.html', oems=oems,
+                           before=0, changelog=True)
 
 
 @app.context_processor
