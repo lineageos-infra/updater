@@ -91,14 +91,9 @@ def handle_upstream_exception(error):
 # Web Views
 ##########################
 
-@app.route('/<string:device>/changes')
-@cache.cached()
-def show_changelog(device):
-    oems = get_oems()
-    device_data = get_device_data(device)
-
-    return render_template('changes.html', oems=oems, active_device_data=device_data,
-                           before=0, changelog=True)
+@app.context_processor
+def inject_year():
+    return dict(year=strftime('%Y'))
 
 
 @app.route('/')
@@ -108,11 +103,6 @@ def show_index():
 
     return render_template('changes.html', oems=oems,
                            before=0, changelog=True)
-
-
-@app.context_processor
-def inject_year():
-    return dict(year=strftime('%Y'))
 
 
 @app.route('/<string:device>')
@@ -127,6 +117,16 @@ def web_device(device):
                            roms=roms, has_recovery=has_recovery,
                            wiki_info=Config.WIKI_INFO_URL, wiki_install=Config.WIKI_INSTALL_URL,
                            download_base_url=Config.DOWNLOAD_BASE_URL)
+
+
+@app.route('/<string:device>/changes')
+@cache.cached()
+def show_changelog(device):
+    oems = get_oems()
+    device_data = get_device_data(device)
+
+    return render_template('changes.html', oems=oems, active_device_data=device_data,
+                           before=0, changelog=True)
 
 
 @app.route('/extras')
