@@ -51,6 +51,9 @@ def is_device_specific_repo(project):
 
 
 def is_related_change(device, project):
+    if device == 'all':
+        return True
+
     if 'android_' not in project:
         return False
 
