@@ -30,8 +30,6 @@ if os.path.isfile(Config.DEVICE_DEPS_PATH):
 else:
     dependencies = requests.get(Config.OFFICIAL_DEVICE_DEPS_JSON_URL).json()
 
-is_qcom = {}
-
 
 def is_versions_branch(branch, versions=None):
     if not versions:
@@ -48,50 +46,24 @@ def get_project_repo(project):
     return project.split('/', 1)[1]
 
 
+def is_device_specific_repo(project):
+    return '_kernel_' in project or '_device_' in project
+
+
 def is_related_change(device, project):
-    if not ('/android_' in project or '-kernel-' in project):
+    if 'android_' not in project:
         return False
 
-    if device not in dependencies:
-        return True
+    if is_device_specific_repo(project):
+        if device not in dependencies:
+            return False
 
-    deps = dependencies[device]
-    if get_project_repo(project) in deps:
-        # device explicitly depends on it
-        return True
+        if get_project_repo(project) in dependencies[device]:
+            return True
 
-    if '_kernel_' in project or '_device_' in project or 'samsung' in project or 'nvidia' in project \
-            or '_omap' in project or 'FlipFlap' in project or 'lge-kernel-mako' in project:
         return False
 
-    if not ('hardware_qcom_' in project or project.endswith('-caf')):
-        # not a qcom-specific HAL
-        return True
-
-    # probably a qcom-only HAL
-    qcom = True
-    if device in is_qcom:
-        qcom = is_qcom[device]
-    else:
-        for dep in deps:
-            # Exynos devices either depend on hardware/samsung_slsi* or kernel/samsung/smdk4412
-            if 'samsung_slsi' in dep or 'smdk4412' in dep:
-                qcom = False
-                break
-            # Tegras use hardware/nvidia/power
-            elif '_nvidia_' in dep:
-                qcom = False
-                break
-            # Omaps use hardware/ti/omap*
-            elif '_omap' in dep:
-                qcom = False
-            # Mediateks use device/cyanogen/mt6xxx-common or kernel/mediatek/*
-            elif '_mt6' in dep or '_mediatek_' in dep:
-                qcom = False
-
-        is_qcom[device] = qcom
-
-    return qcom
+    return True
 
 
 def get_timestamp(ts):
