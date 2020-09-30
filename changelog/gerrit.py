@@ -116,13 +116,13 @@ class GerritChange(GerritThing):
 class GerritListing(GerritThing):
     """Represents a listing page on Gerrit (e.g. /changes/ or /projects/)"""
 
-    def __init__(self, url, path, params, clazz, limit=-1):
+    def __init__(self, url, path, params, clazz, start=0, limit=-1):
         super(GerritListing, self).__init__(url)
         self.params = params
         self.path = path
         self._item_cache = []
         self._item_index = 0
-        self._start = 0
+        self._start = start
         self._clazz = clazz
         self._limit = limit
 
@@ -164,7 +164,7 @@ class GerritServer(GerritThing):
     def __init__(self, url):
         super(GerritServer, self).__init__(url)
 
-    def changes(self, query='status:merged', n=50, limit=-1):
+    def changes(self, query='status:merged', n=50, page=0, limit=-1):
         # O is a bitmask in hex - see https://github.com/gerrit-review/gerrit/blob/master/gerrit-extension-api/src/main/java/com/google/gerrit/extensions/client/ListChangesOption.java
         params = {'q': query, 'n': n, 'O': '81'}
-        return GerritListing(self._url, '/changes/', params, GerritChange, limit)
+        return GerritListing(self._url, '/changes/', params, GerritChange, page * n, limit)
