@@ -69,10 +69,11 @@ def is_related_change(device, project):
     return True
 
 
-def get_timestamp(ts):
-    if not ts:
+def get_timestamp(date):
+    if not date:
         return None
-    return int((ts - datetime(1970, 1, 1)).total_seconds())
+
+    return int(date.timestamp())
 
 
 def get_changes(gerrit, device=None, before=-1, versions=None):
