@@ -52,6 +52,7 @@ def api_v2_device(device):
         'info_url': Config.WIKI_INFO_URL.format(device=device),
         'install_url': Config.WIKI_INSTALL_URL.format(device=device),
         'builds': builds,
+        'versions': get_device_versions(device),
     })
 
 
