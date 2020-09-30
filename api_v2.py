@@ -33,7 +33,7 @@ def api_v2_oems():
 
 
 @api.route('/devices/<string:device>')
-def api_v2_device_builds(device):
+def api_v2_device(device):
     device_data = get_device_data(device)
     builds = get_device_builds(device)
 
