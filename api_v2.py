@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 
 from api_common import get_oems, get_device_builds, get_device_data, get_device_versions
-from changelog import GerritServer, get_changes, get_project_repo
+from changelog import GerritServer, get_project_repo, get_paginated_changes
 from config import Config
 from custom_exceptions import InvalidValueException, UpstreamApiException
 
@@ -64,14 +64,14 @@ def api_v2_changes():
     if type(device) != str:
         raise InvalidValueException('Device is not a string')
 
-    before = args.get('before')
-    before = -1 if before is None else before[0]
+    page = args.get('page')
+    page = 0 if page is None else page[0]
     try:
-        before = int(before)
+        page = int(page)
     except ValueError:
         pass
-    if type(before) != int:
-        raise InvalidValueException('Before is not an integer')
+    if type(page) != int:
+        raise InvalidValueException('Page is not an integer')
 
     versions = request.args.get('version')
     if not versions:
@@ -84,20 +84,17 @@ def api_v2_changes():
         if type(version) != str:
             raise InvalidValueException('Version is not a string')
 
-    changes, until = get_changes(gerrit, device, before, versions)
-    response_changes = []
+    changes, until = get_paginated_changes(gerrit, device, versions, page)
+    response = []
 
     for change in changes:
-        response_changes.append({
+        response.append({
             'url': change.url,
             'repository': get_project_repo(change.project),
             'subject': change.subject,
         })
 
-    return jsonify({
-        'items': response_changes,
-        'until': until,
-    })
+    return jsonify(response)
 
 
 @api.errorhandler(InvalidValueException)
