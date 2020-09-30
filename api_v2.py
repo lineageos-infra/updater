@@ -29,6 +29,8 @@ def api_v2_oems():
 
         response.append(response_oem)
 
+    response = sorted(response, key=lambda oem: oem['name'])
+
     return jsonify(response)
 
 
