@@ -37,6 +37,19 @@ def api_v2_oems():
 @api.route('/devices/<string:device>')
 def api_v2_device(device):
     device_data = get_device_data(device)
+
+    return jsonify({
+        'name': device_data['name'],
+        'model': device_data['model'],
+        'oem': device_data['oem'],
+        'info_url': Config.WIKI_INFO_URL.format(device=device),
+        'install_url': Config.WIKI_INSTALL_URL.format(device=device),
+        'versions': get_device_versions(device),
+    })
+
+
+@api.route('/devices/<string:device>/builds')
+def api_v2_device_builds(device):
     builds = get_device_builds(device)
 
     def get_download_url(build):
@@ -47,15 +60,7 @@ def api_v2_device(device):
         if 'recovery' in build:
             build['recovery']['url'] = get_download_url(build['recovery'])
 
-    return jsonify({
-        'name': device_data['name'],
-        'model': device_data['model'],
-        'oem': device_data['oem'],
-        'info_url': Config.WIKI_INFO_URL.format(device=device),
-        'install_url': Config.WIKI_INSTALL_URL.format(device=device),
-        'builds': builds,
-        'versions': get_device_versions(device),
-    })
+    return jsonify(builds)
 
 
 @api.route('/changes')
