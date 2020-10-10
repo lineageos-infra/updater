@@ -31,9 +31,6 @@ def get_device_builds(device):
     builds = get_builds()
     if device not in builds:
         raise DeviceNotFoundException('This device has no available builds. Please select another device.')
-
-    builds.sort(key=lambda b: b['datetime'], reverse=True)
-
     return builds[device]
 
 
