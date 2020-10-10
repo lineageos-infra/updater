@@ -31,7 +31,11 @@ def get_device_builds(device):
     builds = get_builds()
     if device not in builds:
         raise DeviceNotFoundException('This device has no available builds. Please select another device.')
-    return builds[device]
+
+    device_builds = builds[device]
+    device_builds.sort(key=lambda b: b['datetime'], reverse=True)
+
+    return device_builds
 
 
 @cache.memoize()
