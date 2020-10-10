@@ -92,7 +92,7 @@ def api_v2_changes():
         if type(version) != str:
             raise InvalidValueException('Version is not a string')
 
-    changes, until = get_paginated_changes(gerrit, device, versions, page)
+    changes = get_paginated_changes(gerrit, device, versions, page)
     response = []
 
     for change in changes:

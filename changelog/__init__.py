@@ -78,10 +78,8 @@ def get_timestamp(date):
 
 def filter_changes(changes, device, versions):
     related_changes = []
-    last = 0
 
     for change in changes:
-        last = get_timestamp(change.updated)
         if not is_versions_branch(change.branch, versions):
             continue
 
@@ -90,7 +88,7 @@ def filter_changes(changes, device, versions):
 
         related_changes.append(change)
 
-    return related_changes, last
+    return related_changes
 
 
 def get_changes(gerrit, device=None, before=-1, versions=None):
@@ -99,7 +97,12 @@ def get_changes(gerrit, device=None, before=-1, versions=None):
         query.append('before:%s' % datetime_to_gerrit(datetime.fromtimestamp(before)))
 
     changes = gerrit.changes(query=' '.join(query), n=100, limit=100)
-    return filter_changes(changes, device, versions)
+    last = 0
+
+    for change in changes:
+        last = get_timestamp(change.updated)
+
+    return filter_changes(changes, device, versions), last
 
 
 def get_paginated_changes(gerrit, device, versions, page):
