@@ -95,6 +95,8 @@ def api_v2_changes():
     changes = get_paginated_changes(gerrit, device, versions, page)
     response = []
 
+    changes.sort(key=lambda c: c.submitted)
+
     for change in changes:
         response.append({
             'url': change.url,
