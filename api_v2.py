@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-from api_common import get_oems, get_device_builds, get_device_data, get_device_versions
+from api_common import get_oems, get_device_builds, get_device_data, get_device_versions, group_changes_by_build
 from changelog import GerritServer, get_project_repo, get_paginated_changes
 from config import Config
 from custom_exceptions import InvalidValueException, UpstreamApiException
@@ -63,14 +63,9 @@ def api_v2_device_builds(device):
     return jsonify(builds)
 
 
-@api.route('/changes')
-def api_v2_changes():
+@api.route('/devices/<string:device>/changes')
+def api_v2_changes(device):
     args = request.args.to_dict(flat=False)
-
-    device = args.get('device')
-    device = 'all' if device is None else device[0]
-    if type(device) != str:
-        raise InvalidValueException('Device is not a string')
 
     page = args.get('page')
     page = 0 if page is None else page[0]
@@ -92,11 +87,43 @@ def api_v2_changes():
         if type(version) != str:
             raise InvalidValueException('Version is not a string')
 
+    builds = get_device_builds(device)
     changes = get_paginated_changes(gerrit, device, versions, page)
+    builds_changes = group_changes_by_build(changes, builds)
+
+    response = {}
+
+    for build, changes in builds_changes.items():
+        response_changes = []
+
+        for change in changes:
+            response_changes.append({
+                'url': change.url,
+                'repository': get_project_repo(change.project),
+                'subject': change.subject,
+            })
+
+        response[build] = response_changes
+
+    return jsonify(response)
+
+
+@api.route('/changes')
+def api_v2_changes():
+    args = request.args.to_dict(flat=False)
+
+    page = args.get('page')
+    page = 0 if page is None else page[0]
+    try:
+        page = int(page)
+    except ValueError:
+        pass
+    if type(page) != int:
+        raise InvalidValueException('Page is not an integer')
+
+    changes = get_paginated_changes(gerrit, page=page)
+
     response = []
-
-    changes.sort(key=lambda c: c.submitted)
-
     for change in changes:
         response.append({
             'url': change.url,

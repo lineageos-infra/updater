@@ -92,6 +92,9 @@ def filter_changes(changes, device, versions):
 
 
 def get_changes(gerrit, device=None, before=-1, versions=None):
+    if versions is None:
+        versions = []
+
     query = ['status:merged']
     if before != -1:
         query.append('before:%s' % datetime_to_gerrit(datetime.fromtimestamp(before)))
@@ -105,6 +108,9 @@ def get_changes(gerrit, device=None, before=-1, versions=None):
     return filter_changes(changes, device, versions), last
 
 
-def get_paginated_changes(gerrit, device, versions, page):
+def get_paginated_changes(gerrit, device=None, versions=None, page=0):
+    if versions is None:
+        versions = []
+
     changes = gerrit.changes(n=100, limit=100, page=page)
     return filter_changes(changes, device, versions)

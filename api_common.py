@@ -6,6 +6,7 @@ import requests
 
 from flask import jsonify
 from caching import cache
+from changelog import get_timestamp
 from config import Config
 from custom_exceptions import UpstreamApiException, DeviceNotFoundException
 
@@ -124,3 +125,25 @@ def get_device_versions(device):
         versions.add(rom['version'])
 
     return list(versions)
+
+
+def group_changes_by_build(changes, builds):
+    builds_changes = {}
+
+    builds.sort(key=lambda b: b['datetime'])
+    changes.sort(key=lambda c: c.submitted, reverse=True)
+
+    for build in builds:
+        build_changes = builds_changes.setdefault(build['filename'], [])
+
+        for change in changes:
+            submit_timestamp = get_timestamp(change.submitted)
+
+            if submit_timestamp <= build.datetime:
+                build_changes.append(change)
+
+        changes = [c for c in changes if c not in build_changes]
+
+    builds_changes['next'] = changes
+
+    return builds_changes
