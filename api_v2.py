@@ -66,7 +66,7 @@ def api_v2_device_builds(device):
 
 
 @api.route('/devices/<string:device>/changes')
-def api_v2_changes(device):
+def api_v2_device_changes(device):
     args = request.args.to_dict(flat=False)
 
     page = args.get('page')
