@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 
 from api_common import get_oems, get_device_builds, get_device_data, get_device_versions, group_changes_by_build
-from changelog import GerritServer, get_project_repo, get_paginated_changes
+from changelog import GerritServer, get_project_repo, get_paginated_changes, get_timestamp
 from config import Config
 from custom_exceptions import InvalidValueException, UpstreamApiException
 
@@ -91,19 +91,22 @@ def api_v2_device_changes(device):
     changes = get_paginated_changes(gerrit, device, versions, page)
     builds_changes = group_changes_by_build(changes, builds)
 
-    response = {}
+    response = []
 
-    for build, changes in builds_changes.items():
-        response_changes = []
-
+    for build, changes in builds_changes:
+        response_build_changes = {
+            'for': build['filename'],
+            'items': [],
+        }
         for change in changes:
-            response_changes.append({
+            response_build_changes['items'].append({
                 'url': change.url,
                 'repository': get_project_repo(change.project),
                 'subject': change.subject,
+                'submitted': get_timestamp(change.submitted),
             })
 
-        response[build] = response_changes
+        response.append(response_build_changes)
 
     return jsonify(response)
 

@@ -129,22 +129,24 @@ def get_device_versions(device):
 
 
 def group_changes_by_build(changes, builds):
-    builds_changes = {}
+    builds_changes = []
+    next_changes = []
 
-    builds.sort(key=lambda b: b['datetime'])
-    changes.sort(key=lambda c: c.submitted, reverse=True)
+    builds_changes.append(({
+        'filename': 'next',
+    }, next_changes))
 
     for build in builds:
-        build_changes = builds_changes.setdefault(build['filename'], [])
+        build_changes = []
 
         for change in changes:
             submit_timestamp = get_timestamp(change.submitted)
-
-            if submit_timestamp <= build.datetime:
+            if submit_timestamp <= build['datetime'] and build['version'] in change.branch:
                 build_changes.append(change)
 
+        builds_changes.append((build, build_changes))
         changes = [c for c in changes if c not in build_changes]
 
-    builds_changes['next'] = changes
+    next_changes.extend(changes)
 
     return builds_changes
