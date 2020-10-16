@@ -29,8 +29,6 @@ def api_v2_oems():
 
         response.append(response_oem)
 
-    response = sorted(response, key=lambda oem: oem['name'])
-
     return jsonify(response)
 
 
@@ -89,21 +87,23 @@ def api_v2_device_changes(device):
 
     builds = get_device_builds(device)
     changes = get_paginated_changes(gerrit, device, versions, page)
-    builds_changes = group_changes_by_build(changes, builds)
+    builds_changes = group_changes_by_build(changes, builds, versions)
 
     response = []
 
-    for build, changes in builds_changes:
+    for build_changes in builds_changes:
         response_build_changes = {
-            'for': build['filename'],
+            'build': build_changes['build'],
             'items': [],
         }
-        for change in changes:
+
+        for change in build_changes['items']:
             response_build_changes['items'].append({
                 'url': change.url,
                 'repository': get_project_repo(change.project),
                 'subject': change.subject,
                 'submitted': get_timestamp(change.submitted),
+                'updated': get_timestamp(change.updated),
             })
 
         response.append(response_build_changes)

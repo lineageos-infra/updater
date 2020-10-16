@@ -128,25 +128,39 @@ def get_device_versions(device):
     return list(versions)
 
 
-def group_changes_by_build(changes, builds):
+def group_changes_by_build(changes, builds, versions):
     builds_changes = []
-    next_changes = []
 
-    builds_changes.append(({
-        'filename': 'next',
-    }, next_changes))
+    builds.sort(key=lambda b: b['datetime'])
 
     for build in builds:
-        build_changes = []
+        build_changes = {
+            'build': build,
+            'items': []
+        }
 
         for change in changes:
             submit_timestamp = get_timestamp(change.submitted)
             if submit_timestamp <= build['datetime'] and build['version'] in change.branch:
-                build_changes.append(change)
+                build_changes['items'].append(change)
 
-        builds_changes.append((build, build_changes))
-        changes = [c for c in changes if c not in build_changes]
+        builds_changes.insert(0, build_changes)
 
-    next_changes.extend(changes)
+        changes = [c for c in changes if c not in build_changes['items']]
+
+    for version in versions:
+        build_changes = {
+            'build': {
+                'filename': 'next',
+                'version': version,
+            },
+            'items': []
+        }
+
+        for change in changes:
+            if version in change.branch:
+                build_changes['items'].append(change)
+
+        builds_changes.insert(0, build_changes)
 
     return builds_changes
