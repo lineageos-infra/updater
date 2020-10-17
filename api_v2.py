@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, request
 from api_common import get_oems, get_device_builds, get_device_data, get_device_versions, group_changes_by_build
 from changelog import GerritServer, get_project_repo, get_paginated_changes, get_timestamp, get_device_dependencies
 from config import Config
-from custom_exceptions import InvalidValueException, UpstreamApiException
+from custom_exceptions import InvalidValueException, UpstreamApiException, DeviceNotFoundException
 
 api = Blueprint('api_v2', __name__)
 
@@ -90,17 +90,18 @@ def api_v2_changes():
     return jsonify(response)
 
 
+@api.errorhandler(DeviceNotFoundException)
 @api.errorhandler(InvalidValueException)
 @api.errorhandler(UpstreamApiException)
 @api.errorhandler(UpstreamApiException)
 def api_v2_handle_exception(e):
     return jsonify({
         'error': e.message
-    })
+    }), 400
 
 
 @api.errorhandler(ConnectionError)
 def api_v2_handle_exception():
     return jsonify({
         'error': 'Connection failed'
-    })
+    }), 400
