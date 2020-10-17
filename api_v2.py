@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 
 from api_common import get_oems, get_device_builds, get_device_data, get_device_versions, group_changes_by_build
-from changelog import GerritServer, get_project_repo, get_paginated_changes, get_timestamp
+from changelog import GerritServer, get_project_repo, get_paginated_changes, get_timestamp, get_device_dependencies
 from config import Config
 from custom_exceptions import InvalidValueException, UpstreamApiException
 
@@ -43,6 +43,7 @@ def api_v2_device(device):
         'info_url': Config.WIKI_INFO_URL.format(device=device),
         'install_url': Config.WIKI_INSTALL_URL.format(device=device),
         'versions': get_device_versions(device),
+        'dependencies': get_device_dependencies(device),
     })
 
 

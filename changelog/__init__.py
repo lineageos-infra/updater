@@ -46,6 +46,13 @@ def get_project_repo(project):
     return project.split('/', 1)[1]
 
 
+def get_device_dependencies(device):
+    if device not in dependencies:
+        return []
+
+    return dependencies[device]
+
+
 def is_device_specific_repo(project):
     return '_kernel_' in project or '_device_' in project
 
@@ -58,10 +65,7 @@ def is_related_change(device, project):
         return False
 
     if is_device_specific_repo(project):
-        if device not in dependencies:
-            return False
-
-        if get_project_repo(project) in dependencies[device]:
+        if get_project_repo(project) in get_device_dependencies(device):
             return True
 
         return False
