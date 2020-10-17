@@ -108,9 +108,5 @@ def get_changes(gerrit, device=None, before=-1, versions=None):
     return filter_changes(changes, device, versions), last
 
 
-def get_paginated_changes(gerrit, device=None, versions=None, page=0):
-    if versions is None:
-        versions = []
-
-    changes = gerrit.changes(n=100, limit=100, page=page)
-    return filter_changes(changes, device, versions)
+def get_paginated_changes(gerrit, page=0):
+    return gerrit.changes(n=100, limit=100, page=page)

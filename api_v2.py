@@ -61,62 +61,12 @@ def api_v2_device_builds(device):
     return jsonify(builds)
 
 
-@api.route('/devices/<string:device>/changes')
-def api_v2_device_changes(device):
-    args = request.args.to_dict(flat=False)
-
-    page = args.get('page')
-    page = 0 if page is None else page[0]
-    try:
-        page = int(page)
-    except ValueError:
-        pass
-    if type(page) != int:
-        raise InvalidValueException('Page is not an integer')
-
-    versions = request.args.get('version')
-    if not versions:
-        if device == 'all':
-            versions = []
-        else:
-            versions = get_device_versions(device)
-
-    for version in versions:
-        if type(version) != str:
-            raise InvalidValueException('Version is not a string')
-
-    builds = get_device_builds(device)
-    changes = get_paginated_changes(gerrit, device, versions, page)
-    builds_changes = group_changes_by_build(changes, builds, versions)
-
-    response = []
-
-    for build_changes in builds_changes:
-        response_build_changes = {
-            'build': build_changes['build'],
-            'items': [],
-        }
-
-        for change in build_changes['items']:
-            response_build_changes['items'].append({
-                'url': change.url,
-                'repository': get_project_repo(change.project),
-                'subject': change.subject,
-                'submitted': get_timestamp(change.submitted),
-                'updated': get_timestamp(change.updated),
-            })
-
-        response.append(response_build_changes)
-
-    return jsonify(response)
-
-
 @api.route('/changes')
 def api_v2_changes():
-    args = request.args.to_dict(flat=False)
+    args = request.args.to_dict()
 
     page = args.get('page')
-    page = 0 if page is None else page[0]
+    page = 0 if page is None else page
     try:
         page = int(page)
     except ValueError:
@@ -125,13 +75,15 @@ def api_v2_changes():
         raise InvalidValueException('Page is not an integer')
 
     changes = get_paginated_changes(gerrit, page=page)
-
     response = []
+
     for change in changes:
         response.append({
             'url': change.url,
             'repository': get_project_repo(change.project),
             'subject': change.subject,
+            'submitted': get_timestamp(change.submitted),
+            'updated': get_timestamp(change.updated),
         })
 
     return jsonify(response)
