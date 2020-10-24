@@ -1,3 +1,5 @@
+import json
+
 from flask import Blueprint, jsonify, request
 
 from api_common import get_oems, get_device_builds, get_device_data, get_device_versions, group_changes_by_build
@@ -6,7 +8,7 @@ from config import Config
 from custom_exceptions import InvalidValueException, UpstreamApiException, DeviceNotFoundException
 
 api = Blueprint('api_v2', __name__)
-
+extras_data = json.loads(open(Config.EXTRAS_BLOB, 'r').read())
 gerrit = GerritServer(Config.GERRIT_URL)
 
 
@@ -89,6 +91,11 @@ def api_v2_changes():
         })
 
     return jsonify(response)
+
+
+@api.route('/extras')
+def api_v2_extras():
+    return jsonify(extras_data)
 
 
 @api.errorhandler(DeviceNotFoundException)
