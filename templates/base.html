@@ -27,30 +27,30 @@
                             <a href="#!name"><span class="white-text name">Devices</span></a>
                         </div>
                     </li>
-                    {% for oem in oem_to_devices.keys() | sort %}
+                    {% for oem in oems.keys() | sort %}
                     <li class="no-padding">
                         <ul class="collapsible collapsible-accordian">
                             <li class="bold">
-                                {% if oem == device_to_oem[device] %}
+                                {% if active_device_data and oem == active_device_data.oem %}
                                 <a class="collapsible-header waves-effect waves-teal bold active">{{oem}}</a>
                                 {% else %}
                                 <a class="collapsible-header waves-effect waves-teal bold">{{oem}}</a>
                                 {% endif %}
                                 <div class="collapsible-body">
                                     <ul>
-                                        {% for d in oem_to_devices[oem] | sort(attribute='model')%}
-                                        {% if d.model == device %}
+                                        {% for device_data in oems[oem] | sort(attribute='model')%}
+                                        {% if active_device_data and device_data.model == active_device_data.model %}
                                         <li class="active teal">
-                                            <a class="device-link" href="/{{d.model}}">
-                                                <div>{{d.name}}</div>
-                                                <div class="device-model grey-text text-lighten-1">{{d.model}}</div>
+                                            <a class="device-link" href="/{{device_data.model}}">
+                                                <div>{{device_data.name}}</div>
+                                                <div class="device-model grey-text text-lighten-1">{{device_data.model}}</div>
                                             </a>
                                         </li>
                                         {% else %}
                                         <li>
-                                            <a class="device-link" href="/{{d.model}}">
-                                                <div>{{d.name}}</div>
-                                                <div class="device-model grey-text">{{d.model}}</div>
+                                            <a class="device-link" href="/{{device_data.model}}">
+                                                <div>{{device_data.name}}</div>
+                                                <div class="device-model grey-text">{{device_data.model}}</div>
                                             </a>
                                         </li>
                                         {% endif %}

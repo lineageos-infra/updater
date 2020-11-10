@@ -7,7 +7,7 @@ import sys
 import zipfile
 
 from datetime import datetime
-from time import mktime, time
+from time import mktime
 
 if len(sys.argv) < 2:
     print("usage python {} /path/to/mirror/base/url".format(sys.argv[0]))
