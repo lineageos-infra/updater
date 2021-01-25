@@ -24,6 +24,8 @@ import json
 import os
 import requests
 
+included_hardware = ['lineage', 'qcom', 'libhwardware', 'ril', 'interfaces', 'invensense']
+
 # device_deps.json is generated using https://github.com/LineageOS/scripts/tree/master/device-deps-regenerator
 if os.path.isfile(Config.DEVICE_DEPS_PATH):
     with open(Config.DEVICE_DEPS_PATH) as f:
@@ -37,6 +39,10 @@ def is_related_change(gerrit, device, curbranch, project, branch):
     if not ('/android_' in project or '-kernel-' in project):
         return False
 
+    # This is on branch 'master', so the branch filtering would exclude it
+    if 'webview' in project:
+        return True
+
     # branch = "cm-14.1-caf-msm8996" or "cm-14.1" or "stable/cm-13.0-ZNH5Y"
     if curbranch and (curbranch not in branch or "/" in branch):
         return False
@@ -49,9 +55,17 @@ def is_related_change(gerrit, device, curbranch, project, branch):
         # device explicitly depends on it
         return True
 
-    if '_kernel_' in project or '_device_' in project or 'samsung' in project or 'nvidia' in project \
-            or '_omap' in project or 'FlipFlap' in project or 'lge-kernel-mako' in project:
+    if '_kernel_' in project or '_device_' in project or 'FlipFlap' in project or 'lge-kernel-mako' in project:
         return False
+
+    # we either need it displayed or handle that project later in code (qcom)
+    if 'hardware' in project:
+        include = False
+        for included in included_hardware:
+            if included in project:
+                include = True
+        if not include:
+            return False
 
     if not ('hardware_qcom_' in project or project.endswith('-caf')):
         # not a qcom-specific HAL
