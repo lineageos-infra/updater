@@ -140,7 +140,7 @@ class GerritListing(GerritThing):
         return self
 
     def __next__(self):
-        if self._limit != -1 and self._item_index > self._limit:
+        if self._limit != -1 and self._item_index >= self._limit:
             raise StopIteration
         if self._item_index + 1 > len(self._item_cache):
             added = self._load_page()
