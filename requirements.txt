@@ -19,7 +19,7 @@ more-itertools==4.3.0
 packaging==21.3
 pluggy==0.8.0
 prometheus-client==0.0.21
-py==1.7.0
+py==1.10.0
 pyparsing==3.0.6
 pytest==4.0.0
 python-dateutil==2.8.2
