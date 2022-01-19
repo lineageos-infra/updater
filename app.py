@@ -67,14 +67,14 @@ def metrics():
 
 @app.errorhandler(DeviceNotFoundException)
 def handle_unknown_device(error):
-    if request.path.startswith('/beta/sana/public/api/'):
+    if request.path.startswith('/os/name/public/api/'):
         return jsonify({'response': []})
     oem_to_devices, device_to_oem, _ = get_oem_device_mapping()
     return render_template("error.html", header='Whoops - this page doesn\'t exist', message=error.message, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem), error.status_code
 
 @app.errorhandler(UpstreamApiException)
 def handle_upstream_exception(error):
-    if request.path.startswith('/beta/sana/public/api/'):
+    if request.path.startswith('/os/name/public/api/'):
         response = jsonify(error.to_dict())
         response.status_code = error.status_code
         return response
@@ -86,12 +86,11 @@ def handle_upstream_exception(error):
 # Mirrorbits Interface
 ##########################
 
-# @cache.memoize()
+ @cache.memoize()
 def get_builds():
     try:
         req = requests.get(app.config['UPSTREAM_URL'])
         print(req.status_code)
-        # req = requests.get('http://192.168.1.177/beta/builds.json')
         if req.status_code != 200:
             raise UpstreamApiException('Unable to contact upstream API')
         return json.loads(req.text)
@@ -108,7 +107,7 @@ def get_device(device):
         raise DeviceNotFoundException("This device has no available builds. Please select another device.")
     return builds[device]
 
-# @cache.memoize()
+ @cache.memoize()
 def get_oem_device_mapping():
     oem_to_device = {}
     device_to_oem = {}
@@ -129,7 +128,7 @@ def get_oem_device_mapping():
             offer_recovery[device['model']] = device.get('lineage_recovery', False)
     return oem_to_device, device_to_oem, offer_recovery
 
-# @cache.memoize()
+ @cache.memoize()
 def get_build_types(device, romtype, after, version):
     roms = get_device(device)
 
@@ -199,7 +198,7 @@ def get_build_types(device, romtype, after, version):
 
     return jsonify({'response' : data})
 
-# @cache.memoize()
+ @cache.memoize()
 def get_device_version(device):
     if device == 'all':
         return None
@@ -209,7 +208,7 @@ def get_device_version(device):
 # API
 ##########################
 
-@app.route('/beta/sana/public/api/v1/<string:device>/<string:romtype>/<string:incrementalversion>')
+@app.route('/os/name/public/api/v1/<string:device>/<string:romtype>/<string:incrementalversion>')
 #cached via memoize on get_build_types
 def index(device, romtype, incrementalversion):
     #pylint: disable=unused-argument
