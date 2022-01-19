@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 #pylint: disable=line-too-long,missing-docstring,invalid-name
 from __future__ import absolute_import
+from datetime import datetime
 
 import json
 import os
+import re
 from time import time, strftime
 
 import arrow
@@ -13,7 +15,7 @@ from changelog import get_changes
 from config import Config
 from custom_exceptions import DeviceNotFoundException, UpstreamApiException
 from flask import Flask, jsonify, request, render_template, Response
-from flask_caching import Cache
+# from flask_caching import Cache
 from prometheus_client import multiprocess, generate_latest, CollectorRegistry, CONTENT_TYPE_LATEST, Counter, Histogram
 
 
@@ -22,7 +24,7 @@ app = Flask(__name__)
 app.config.from_object("config.Config")
 app.json_encoder = GerritJSONEncoder
 
-cache = Cache(app)
+# cache = Cache(app)
 gerrit = GerritServer(app.config['GERRIT_URL'])
 
 extras_data = json.loads(open(app.config['EXTRAS_BLOB'], "r").read())
@@ -65,14 +67,14 @@ def metrics():
 
 @app.errorhandler(DeviceNotFoundException)
 def handle_unknown_device(error):
-    if request.path.startswith('/api/'):
+    if request.path.startswith('/beta/sana/public/api/'):
         return jsonify({'response': []})
     oem_to_devices, device_to_oem, _ = get_oem_device_mapping()
     return render_template("error.html", header='Whoops - this page doesn\'t exist', message=error.message, oem_to_devices=oem_to_devices, device_to_oem=device_to_oem), error.status_code
 
 @app.errorhandler(UpstreamApiException)
 def handle_upstream_exception(error):
-    if request.path.startswith('/api/'):
+    if request.path.startswith('/beta/sana/public/api/'):
         response = jsonify(error.to_dict())
         response.status_code = error.status_code
         return response
@@ -84,10 +86,12 @@ def handle_upstream_exception(error):
 # Mirrorbits Interface
 ##########################
 
-@cache.memoize()
+# @cache.memoize()
 def get_builds():
     try:
         req = requests.get(app.config['UPSTREAM_URL'])
+        print(req.status_code)
+        # req = requests.get('http://192.168.1.177/beta/builds.json')
         if req.status_code != 200:
             raise UpstreamApiException('Unable to contact upstream API')
         return json.loads(req.text)
@@ -104,7 +108,7 @@ def get_device(device):
         raise DeviceNotFoundException("This device has no available builds. Please select another device.")
     return builds[device]
 
-@cache.memoize()
+# @cache.memoize()
 def get_oem_device_mapping():
     oem_to_device = {}
     device_to_oem = {}
@@ -125,33 +129,77 @@ def get_oem_device_mapping():
             offer_recovery[device['model']] = device.get('lineage_recovery', False)
     return oem_to_device, device_to_oem, offer_recovery
 
-@cache.memoize()
+# @cache.memoize()
 def get_build_types(device, romtype, after, version):
     roms = get_device(device)
+
+    
+
     roms = [x for x in roms if x['type'] == romtype]
     for rom in roms:
         rom['date'] = arrow.get(rom['date']).datetime
     if after:
-        after = arrow.get(after).datetime
-        roms = [x for x in roms if x['date'] > after]
+        # after = arrow.get(after).datetime
+        roms = [x for x in roms if x['datetime'] > int(after)]
     if version:
-        roms = [x for x in roms if x['version'] == version]
+        roms = [x for x in roms if x['version'] >= version]
+    
+    incrementalCandidates=[]
+    fullCandidates = []
+
+
+    for candidateRom in roms:
+        if candidateRom['prev']:
+                # print('incrementall added')
+                incrementalCandidates.append(candidateRom)
+        else:
+            # print('full added')
+            fullCandidates.append(candidateRom)
+
+
+    fullCandidates.sort(key=lambda x: x['datetime'],reverse=False )
+    incrementalCandidates.sort(key=lambda x: x['datetime'], reverse=False )
+
+
+# server_list.sort(key=lambda x: x[0]['name'], reverse=False)
+    
+    # fullCandidates.sort()
+    #fullCandidates.sort()
+    #incrementalCandidates.sort()
+
 
     data = []
-
-    for rom in roms:
+    
+      #for rom in roms:
+    if len(fullCandidates) > 0 :
         data.append({
-            "id": rom['sha256'],
-            "url": '{}{}'.format(app.config['DOWNLOAD_BASE_URL'], rom['filepath']),
-            "romtype": rom['type'],
-            "datetime": rom['datetime'],
-            "version": rom['version'],
-            "filename": rom['filename'],
-            "size": rom['size'],
+            "id": fullCandidates[-1]['filehash'],
+            "url": '{}{}'.format(app.config['DOWNLOAD_BASE_URL'], fullCandidates[-1]['filepath']),
+            "romtype": fullCandidates[-1]['type'],
+            "datetime": fullCandidates[-1]['datetime'],
+            "version": fullCandidates[-1]['version'],
+            "filename": fullCandidates[-1]['filename'],
+            "size": fullCandidates[-1]['size'],
+	        "filehash": fullCandidates[-1]['filehash'],
+            "prev": ""
         })
-    return jsonify({'response': data})
+    if len(incrementalCandidates) > 0 :
+        data.append({
+            "id": incrementalCandidates[-1]['filehash'],
+            "url": '{}{}'.format(app.config['DOWNLOAD_BASE_URL'], incrementalCandidates[-1]['filepath']),
+            "romtype": incrementalCandidates[-1]['type'],
+            "datetime": incrementalCandidates[-1]['datetime'],
+            "version": incrementalCandidates[-1]['version'],
+            "filename": incrementalCandidates[-1]['filename'],
+            "size": incrementalCandidates[-1]['size'],
+	        "filehash": incrementalCandidates[-1]['filehash'],
+            "prev": incrementalCandidates[-1]['prev']
+        })
 
-@cache.memoize()
+
+    return jsonify({'response' : data})
+
+# @cache.memoize()
 def get_device_version(device):
     if device == 'all':
         return None
@@ -161,7 +209,7 @@ def get_device_version(device):
 # API
 ##########################
 
-@app.route('/api/v1/<string:device>/<string:romtype>/<string:incrementalversion>')
+@app.route('/beta/sana/public/api/v1/<string:device>/<string:romtype>/<string:incrementalversion>')
 #cached via memoize on get_build_types
 def index(device, romtype, incrementalversion):
     #pylint: disable=unused-argument
@@ -169,7 +217,7 @@ def index(device, romtype, incrementalversion):
     version = request.args.get("version")
 
     return get_build_types(device, romtype, after, version)
-
+'''
 @app.route('/api/v1/types/<string:device>/')
 @cache.cached()
 def get_types(device):
@@ -196,6 +244,7 @@ def show_changelog(device='all', before=-1):
 
 @app.route('/api/v1/devices')
 @cache.cached()
+
 def api_v1_devices():
     data = get_builds()
     versions = {}
@@ -206,7 +255,8 @@ def api_v1_devices():
     for version in versions.keys():
         versions[version] = list(versions[version])
     return jsonify(versions)
-
+'''
+#
 ##########################
 # Web Views
 ##########################
@@ -214,7 +264,7 @@ def api_v1_devices():
 @app.context_processor
 def inject_year():
     return dict(year=strftime("%Y"))
-
+'''
 @app.route("/<string:device>")
 @cache.cached()
 def web_device(device):
@@ -235,3 +285,4 @@ def web_extras():
     oem_to_devices, device_to_oem, _ = get_oem_device_mapping()
 
     return render_template("extras.html", oem_to_devices=oem_to_devices, device_to_oem=device_to_oem, extras=True, data=extras_data)
+'''
