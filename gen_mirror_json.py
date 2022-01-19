@@ -25,11 +25,16 @@ for f in [os.path.join(dp, f) for dp, dn, fn in os.walk(FILE_BASE) for f in fn]:
     sha256 = hashlib.sha256()
     for buf in iter(lambda : data.read(128 * 1024), b''):
         sha256.update(buf)
+
+        BASE_PATH = "home/user/updater/builds/" #this path is based on your system and you should modify this
+        filepath = filename
+
         try:
             with zipfile.ZipFile('{}{}'.format(BASE_PATH, filepath), 'r') as update_zip:
-                build_prop = update_zip.read('system/build.prop').decode('utf-8')
-                timestamp = int(re.findall('ro.build.date.utc=([0-9]+)', build_prop)[0])
-        except:
+                build_prop = update_zip.read('META-INF/com/android/metadata').decode('utf-8')
+                timestamp = (re.findall('post-timestamp=([0-9]+)', build_prop)[0])
+        except Exception as e:
+            print(e)
             timestamp = int(mktime(datetime.strptime(builddate, '%Y%m%d').timetuple()))
 
     builds.setdefault(device, []).append({
