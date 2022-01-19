@@ -26,7 +26,7 @@ for f in [os.path.join(dp, f) for dp, dn, fn in os.walk(FILE_BASE) for f in fn]:
     for buf in iter(lambda : data.read(128 * 1024), b''):
         sha256.update(buf)
 
-        BASE_PATH = "home/user/updater/builds/" #this path is based on your system and you should modify this
+        BASE_PATH = "home/user/updater/builds/" 
         filepath = filename
 
         try:
