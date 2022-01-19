@@ -39,8 +39,8 @@ for f in [os.path.join(dp, f) for dp, dn, fn in os.walk(FILE_BASE) for f in fn]:
 
 
         # print('trying2',file=sys.stderr)
-        BASE_PATH = "/home/batna/otaBeta"
-        filepath = "/builds/batna-6.1-20211219-BATNA_Public-miatoll.zip"
+        BASE_PATH = "/hometest/ota"
+        filepath = "/builds/sep-6.1-2021121923-SEP_Public-miatoll.zip"
         # print('tester',file=sys.stderr)
         # with zipfile.ZipFile('{}{}'.format(BASE_PATH, filepath), 'r') as update_zip:
         #     print("inside with :",file=sys.stderr)
