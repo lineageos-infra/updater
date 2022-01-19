@@ -5,6 +5,7 @@ import json
 import os
 import sys
 import zipfile
+import re
 
 from datetime import datetime
 from time import mktime, time
