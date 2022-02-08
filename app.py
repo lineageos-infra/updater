@@ -122,7 +122,7 @@ def get_oem_device_mapping():
         if device['model'] in devices:
             oem_to_device.setdefault(device['oem'], []).append(device)
             device_to_oem[device['model']] = device['oem']
-            offer_recovery[device['model']] = device.get('lineage_recovery', False)
+            offer_recovery[device['model']] = device.get('lineage_recovery', True)
     return oem_to_device, device_to_oem, offer_recovery
 
 @cache.memoize()

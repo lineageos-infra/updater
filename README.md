@@ -15,7 +15,7 @@ devices.json is an array of objects, each with several fields:
 * `name`: the user-friendly name of the device - e.g. `Galaxy S III (Intl)`. Long values will overflow and look bad,
 so limit this to around 25 characters.
 * `has_recovery`: (*optional*) whether or not the device has a separate recovery partition. Defaults to `true`.
-* `lineage_recovery`: (*optional*) whether or not to offer Lineage recovery downloads for this device. Defaults to `false`.
+* `lineage_recovery`: (*optional*) whether or not to offer Lineage recovery downloads for this device. Defaults to `true`.
 
 Development set up:
 ---
