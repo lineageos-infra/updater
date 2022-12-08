@@ -1,7 +1,7 @@
 arrow==1.2.1
 atomicwrites==1.2.1
 attrs==18.2.0
-certifi==2021.10.8
+certifi==2022.12.7
 chardet==3.0.4
 charset-normalizer==2.0.9
 click==8.0.3
