@@ -92,7 +92,7 @@ class GerritChange(GerritThing):
         for lbl in obj['labels']:
             self.labels[lbl] = {}
             for k, v in obj['labels'][lbl].items():
-                if k in ('blocking', 'value', 'default_value'):
+                if k in ('blocking', 'value', 'default_value', 'description', 'values', 'all'):
                     self.labels[lbl][k] = v
                 elif k in ('approved', 'rejected', 'recommended', 'disliked'):
                     self.labels[lbl][k] = GerritUser(url, v)
