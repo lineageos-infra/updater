@@ -37,9 +37,17 @@ def is_related_change(gerrit, device, curbranch, project, branch):
     if not ('/android_' in project or '-kernel-' in project):
         return False
 
-    # branch = "cm-14.1-caf-msm8996" or "cm-14.1" or "stable/cm-13.0-ZNH5Y"
-    if curbranch and (curbranch not in branch or "/" in branch):
-        return False
+    if curbranch:
+        major = curbranch.split('.')[0]
+
+        if int(major) >= 20:
+            # branch = "lineage-20" or "lineage-20.0" or "lineage-20.0-.*"
+            if not any(branch == x or branch.startswith(f'{x}-') for x in [f'lineage-{major}', f'lineage-{curbranch}']):
+                return False
+        else:
+            # branch = "cm-14.1-caf-msm8996" or "cm-14.1" or "stable/cm-13.0-ZNH5Y"
+            if curbranch not in branch or "/" in branch:
+                return False
 
     if device not in dependencies:
         return True
