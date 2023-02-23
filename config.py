@@ -23,3 +23,4 @@ class FlaskConfig(object):
     CACHE_TYPE = os.environ.get('CACHE_TYPE', 'simple')
     CACHE_REDIS_HOST = os.environ.get('CACHE_REDIS_HOST', 'redis')
     CACHE_REDIS_DB = os.environ.get('CACHE_REDIS_DB', 4)
+    CACHE_REDIS_PASSWORD = os.environ.get("CACHE_REDIS_PASSWORD", None)
