@@ -1,4 +1,4 @@
-app = "lineageos-updater"
+app = "lineageos-updater-backend"
 
 kill_signal = "SIGINT"
 kill_timeout = 5
