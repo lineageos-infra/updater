@@ -29,3 +29,5 @@ metrics/*.db
 
 # PyCharm data
 .idea/
+.vscode
+.python-version

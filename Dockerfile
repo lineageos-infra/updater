@@ -24,4 +24,4 @@ EXPOSE 8080
 
 ENV prometheus_multiproc_dir=/app/metrics/
 
-CMD gunicorn -b 0.0.0.0:8080 -b [::/0]:8080 -w 8 app:app
+CMD gunicorn -b [::]:8080 -w 8 app:app
