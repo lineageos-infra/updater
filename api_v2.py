@@ -7,12 +7,15 @@ from changelog import GerritServer, get_project_repo, get_paginated_changes, get
 from config import Config
 from custom_exceptions import InvalidValueException, UpstreamApiException, DeviceNotFoundException
 
+import extensions
+
 api = Blueprint('api_v2', __name__)
 extras_data = json.loads(open(Config.EXTRAS_BLOB, 'r').read())
 gerrit = GerritServer(Config.GERRIT_URL)
 
 
 @api.route('/oems')
+@extensions.cache.cached()
 def api_v2_oems():
     oems = get_oems()
     response = []
@@ -35,6 +38,7 @@ def api_v2_oems():
 
 
 @api.route('/devices/<string:device>')
+@extensions.cache.cached()
 def api_v2_device(device):
     device_data = get_device_data(device)
 
@@ -50,6 +54,7 @@ def api_v2_device(device):
 
 
 @api.route('/devices/<string:device>/builds')
+@extensions.cache.cached()
 def api_v2_device_builds(device):
     builds = get_device_builds(device)
 
@@ -65,6 +70,7 @@ def api_v2_device_builds(device):
 
 
 @api.route('/changes')
+@extensions.cache.cached()
 def api_v2_changes():
     args = request.args.to_dict()
 
@@ -94,6 +100,7 @@ def api_v2_changes():
 
 
 @api.route('/extras')
+@extensions.cache.cached()
 def api_v2_extras():
     return jsonify(extras_data)
 
@@ -109,7 +116,7 @@ def api_v2_handle_exception(e):
 
 
 @api.errorhandler(ConnectionError)
-def api_v2_handle_exception():
+def api_v2_handle_connection_failed_exception(e):
     return jsonify({
         'error': 'Connection failed'
     }), 400

@@ -6,23 +6,21 @@ import os
 from time import time, strftime
 
 from flask import Flask, jsonify, request, render_template, Response
-from flask_cors import CORS
 from prometheus_client import multiprocess, generate_latest, CollectorRegistry, CONTENT_TYPE_LATEST, Counter, Histogram
 
 from api_common import get_device_builds, get_oems, get_device_data
-from caching import cache
 from custom_exceptions import DeviceNotFoundException, UpstreamApiException
 from config import Config
 from api_v1 import api as api_v1
 from api_v2 import api as api_v2
 
+import extensions
+
 app = Flask(__name__)
 app.config.from_object('config.FlaskConfig')
 app.register_blueprint(api_v1, url_prefix='/api/v1')
 app.register_blueprint(api_v2, url_prefix='/api/v2')
-CORS(app)
-
-cache.init_app(app)
+extensions.setup(app)
 
 extras_data = json.loads(open(Config.EXTRAS_BLOB, 'r').read())
 
@@ -99,7 +97,7 @@ def inject_year():
 
 
 @app.route('/')
-@cache.cached()
+@extensions.cache.cached()
 def show_index():
     oems = get_oems()
 
@@ -108,7 +106,7 @@ def show_index():
 
 
 @app.route('/<string:device>')
-@cache.cached()
+@extensions.cache.cached()
 def web_device(device):
     oems = get_oems()
     device_data = get_device_data(device)
@@ -122,7 +120,7 @@ def web_device(device):
 
 
 @app.route('/<string:device>/changes')
-@cache.cached()
+@extensions.cache.cached()
 def show_changelog(device):
     oems = get_oems()
     device_data = get_device_data(device)
@@ -132,7 +130,7 @@ def show_changelog(device):
 
 
 @app.route('/extras')
-@cache.cached()
+@extensions.cache.cached()
 def web_extras():
     oems = get_oems()
 

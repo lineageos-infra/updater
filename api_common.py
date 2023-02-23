@@ -5,13 +5,13 @@ import arrow
 import requests
 
 from flask import jsonify
-from caching import cache
 from changelog import get_timestamp
 from config import Config
 from custom_exceptions import UpstreamApiException, DeviceNotFoundException
 
+import extensions
 
-@cache.memoize()
+@extensions.cache.memoize()
 def get_builds():
     try:
         req = requests.get(Config.UPSTREAM_URL)
@@ -26,7 +26,7 @@ def get_builds():
 def get_devices_with_builds():
     return get_builds().keys()
 
-
+@extensions.cache.memoize()
 def get_device_builds(device):
     builds = get_builds()
     if device not in builds:
@@ -38,7 +38,7 @@ def get_device_builds(device):
     return device_builds
 
 
-@cache.memoize()
+@extensions.cache.memoize()
 def get_devices_data():
     devices_data = []
 
@@ -61,7 +61,7 @@ def get_devices_data():
     return devices_data_with_builds
 
 
-@cache.memoize()
+@extensions.cache.memoize()
 def get_device_data(device):
     devices_data = get_devices_data()
 
@@ -72,7 +72,7 @@ def get_device_data(device):
     raise DeviceNotFoundException('This device does not exist')
 
 
-@cache.memoize()
+@extensions.cache.memoize()
 def get_oems():
     devices_data = get_devices_data()
     oems = {}
@@ -83,7 +83,7 @@ def get_oems():
     return oems
 
 
-@cache.memoize()
+@extensions.cache.memoize()
 def get_build_types(device, romtype, after, version):
     roms = get_device_builds(device)
     roms = [x for x in roms if x['type'] == romtype]
@@ -110,14 +110,14 @@ def get_build_types(device, romtype, after, version):
     return jsonify({'response': data})
 
 
-@cache.memoize()
+@extensions.cache.memoize()
 def get_device_version(device):
     if device == 'all':
         return None
     return get_device_builds(device)[-1]['version']
 
 
-@cache.memoize()
+@extensions.cache.memoize()
 def get_device_versions(device):
     roms = get_device_builds(device)
 
@@ -127,7 +127,7 @@ def get_device_versions(device):
 
     return list(versions)
 
-
+@extensions.cache.memoize()
 def group_changes_by_build(changes, builds, versions):
     builds_changes = []
 

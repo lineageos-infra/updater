@@ -1,10 +1,11 @@
 from flask import Blueprint, jsonify, request
 
 from api_common import get_builds, get_device_version, get_build_types, get_device_builds
-from caching import cache
 from changelog.gerrit import GerritServer, GerritJSONEncoder
 from changelog import get_changes, get_timestamp
 from config import Config
+
+import extensions
 
 api = Blueprint('api_v1', __name__)
 api.json_encoder = GerritJSONEncoder
@@ -21,7 +22,7 @@ def api_v1_index(device, romtype, incrementalversion):
 
 
 @api.route('/types/<string:device>/')
-@cache.cached()
+@extensions.cache.cached()
 def api_v1_get_types(device):
     data = get_device_builds(device)
     types = {'nightly'}
@@ -33,7 +34,7 @@ def api_v1_get_types(device):
 @api.route('/changes/<device>/')
 @api.route('/changes/<device>/<int:before>/')
 @api.route('/changes/<device>/-1/')
-@cache.cached()
+@extensions.cache.cached()
 def api_v1_changes(device='all', before=-1):
     version = get_device_version(device)
     if version:
@@ -73,7 +74,7 @@ def api_v1_changes(device='all', before=-1):
 
 
 @api.route('/devices')
-@cache.cached()
+@extensions.cache.cached()
 def api_v1_devices():
     data = get_builds()
     versions = {}
