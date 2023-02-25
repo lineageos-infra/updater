@@ -22,8 +22,6 @@ app.register_blueprint(api_v1, url_prefix='/api/v1')
 app.register_blueprint(api_v2, url_prefix='/api/v2')
 extensions.setup(app)
 
-extras_data = json.loads(open(Config.EXTRAS_BLOB, 'r').read())
-
 
 ##########################
 # Jinja2 globals
@@ -128,14 +126,6 @@ def show_changelog(device):
     return render_template('changes.html', oems=oems, active_device_data=device_data,
                            before=0, changelog=True)
 
-
-@app.route('/extras')
-@extensions.cache.cached()
-def web_extras():
-    oems = get_oems()
-
-    return render_template('extras.html', oems=oems, active_device_data=None, extras=True,
-                           data=extras_data)
 
 
 @app.route('/favicon.ico')

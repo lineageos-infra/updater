@@ -15,7 +15,6 @@ ENV WIKI_INSTALL_URL "https://wiki.lineageos.org/devices/{device}/install"
 ENV WIKI_INFO_URL "https://wiki.lineageos.org/devices/{device}"
 ENV UPSTREAM_URL ""
 ENV DOWNLOAD_BASE_URL "https://mirrorbits.lineageos.org"
-ENV EXTRAS_BLOB "/app/extras.json"
 ENV FLASK_APP "app.py"
 
 RUN pip install -r requirements.txt

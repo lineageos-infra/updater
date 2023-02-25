@@ -10,7 +10,6 @@ from custom_exceptions import InvalidValueException, UpstreamApiException, Devic
 import extensions
 
 api = Blueprint('api_v2', __name__)
-extras_data = json.loads(open(Config.EXTRAS_BLOB, 'r').read())
 gerrit = GerritServer(Config.GERRIT_URL)
 
 
@@ -97,12 +96,6 @@ def api_v2_changes():
         })
 
     return jsonify(response)
-
-
-@api.route('/extras')
-@extensions.cache.cached()
-def api_v2_extras():
-    return jsonify(extras_data)
 
 
 @api.errorhandler(DeviceNotFoundException)
