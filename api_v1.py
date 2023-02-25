@@ -38,7 +38,10 @@ def api_v1_get_types(device):
 def api_v1_changes(device='all', before=-1):
     version = get_device_version(device)
     if version:
-        versions = [version]
+        if float(version) >= 20:
+            versions = [version, version.split('.')[0]]
+        else:
+            versions = [version]
     else:
         versions = []
 
