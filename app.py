@@ -20,6 +20,7 @@ app = Flask(__name__)
 app.config.from_object('config.FlaskConfig')
 app.register_blueprint(api_v1, url_prefix='/api/v1')
 app.register_blueprint(api_v2, url_prefix='/api/v2')
+app.url_map.strict_slashes = False
 extensions.setup(app)
 
 
