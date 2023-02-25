@@ -16,9 +16,8 @@
 from __future__ import absolute_import
 from changelog.gerrit import GerritServer, datetime_to_gerrit
 from config import Config
-from requests.exceptions import ConnectionError
 
-from datetime import datetime, timedelta
+from datetime import datetime
 
 import json
 import os
@@ -29,106 +28,89 @@ if os.path.isfile(Config.DEVICE_DEPS_PATH):
     with open(Config.DEVICE_DEPS_PATH) as f:
         dependencies = json.load(f)
 else:
-    dependencies = requests.get("https://raw.githubusercontent.com/LineageOS/hudson/master/updater/device_deps.json").json()
+    dependencies = requests.get(Config.OFFICIAL_DEVICE_DEPS_JSON_URL).json()
 
-is_qcom = {}
 
-def is_related_change(gerrit, device, curbranch, project, branch):
-    if not ('/android_' in project or '-kernel-' in project):
-        return False
+def is_versions_branch(branch, versions=None):
+    if not versions:
+        return True
 
-    if curbranch:
-        major = curbranch.split('.')[0]
+    for version in versions:
+        if version in branch and '/' not in branch:
+            return True
 
-        if int(major) >= 20:
-            # branch = "lineage-20" or "lineage-20.0" or "lineage-20.0-.*"
-            if not any(branch == x or branch.startswith(f'{x}-') for x in [f'lineage-{major}', f'lineage-{curbranch}']):
-                return False
-        else:
-            # branch = "cm-14.1-caf-msm8996" or "cm-14.1" or "stable/cm-13.0-ZNH5Y"
-            if curbranch not in branch or "/" in branch:
-                return False
+    return False
 
+
+def get_project_repo(project):
+    return project.split('/', 1)[1]
+
+
+def get_device_dependencies(device):
     if device not in dependencies:
+        return []
+
+    return dependencies[device]
+
+
+def is_device_specific_repo(project):
+    return '_kernel_' in project or '_device_' in project
+
+
+def is_related_change(device, project):
+    if device == 'all':
         return True
 
-    deps = dependencies[device]
-    if project.split('/', 1)[1] in deps:
-        # device explicitly depends on it
-        return True
-
-    if '_kernel_' in project or '_device_' in project or 'samsung' in project or 'nvidia' in project \
-            or '_omap' in project or 'FlipFlap' in project or 'lge-kernel-mako' in project:
+    if 'android_' not in project:
         return False
 
-    if not ('hardware_qcom_' in project or project.endswith('-caf')):
-        # not a qcom-specific HAL
-        return True
+    if is_device_specific_repo(project):
+        if get_project_repo(project) in get_device_dependencies(device):
+            return True
 
-    # probably a qcom-only HAL
-    qcom = True
-    if device in is_qcom:
-        qcom = is_qcom[device]
-    else:
-        for dep in deps:
-            # Exynos devices either depend on hardware/samsung_slsi* or kernel/samsung/smdk4412
-            if 'samsung_slsi' in dep or 'smdk4412' in dep:
-                qcom = False
-                break
-            # Tegras use hardware/nvidia/power
-            elif '_nvidia_' in dep:
-                qcom = False
-                break
-            # Omaps use hardware/ti/omap*
-            elif '_omap' in dep:
-                qcom = False
-            # Mediateks use device/cyanogen/mt6xxx-common or kernel/mediatek/*
-            elif '_mt6' in dep or '_mediatek_' in dep:
-                qcom = False
+        return False
 
-        is_qcom[device] = qcom
+    return True
 
-    return qcom
 
-def get_timestamp(ts):
-    if not ts:
+def get_timestamp(date):
+    if not date:
         return None
-    return int((ts - datetime(1970, 1, 1)).total_seconds())
 
-def get_changes(gerrit, device=None, before=-1, version='14.1', status_url='#'):
-    last_release = -1
+    return int(date.timestamp())
 
-    query = 'status:merged'
-    if last_release != -1:
-        query += ' after:' + datetime_to_gerrit(last_release)
+
+def filter_changes(changes, device, versions):
+    related_changes = []
+
+    for change in changes:
+        if not is_versions_branch(change.branch, versions):
+            continue
+
+        if not is_related_change(device, change.project):
+            continue
+
+        related_changes.append(change)
+
+    return related_changes
+
+
+def get_changes(gerrit, device=None, before=-1, versions=None):
+    if versions is None:
+        versions = []
+
+    query = ['status:merged']
     if before != -1:
-        query += ' before:' + datetime_to_gerrit(datetime.fromtimestamp(before))
+        query.append('before:%s' % datetime_to_gerrit(datetime.fromtimestamp(before)))
 
-    changes = gerrit.changes(query=query, n=100, limit=100)
-
-    nightly_changes = []
+    changes = [x for x in gerrit.changes(query=' '.join(query), n=100, limit=100)]
     last = 0
-    try:
-        for c in changes:
-            last = get_timestamp(c.updated)
-            if is_related_change(gerrit, device, version, c.project, c.branch):
-                nightly_changes.append({
-                    'project': c.project,
-                    'subject': c.subject,
-                    'submitted': get_timestamp(c.submitted),
-                    'updated': get_timestamp(c.updated),
-                    'url': c.url,
-                    'owner': c.owner,
-                    'labels': c.labels
-                })
-    except ConnectionError as e:
-        nightly_changes.append({
-            'project': None,
-            'subject': None,
-            'submitted': 0,
-            'updated': 0,
-            'url': status_url,
-            'owner': None,
-            'labels': None
-            })
-    return {'last': last, 'res': nightly_changes }
+
+    for change in changes:
+        last = get_timestamp(change.updated)
+
+    return filter_changes(changes, device, versions), last
+
+
+def get_paginated_changes(gerrit, page=0):
+    return gerrit.changes(n=100, limit=100, page=page)

@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.11
 
 ARG VERSION=dev
 ENV VERSION=$VERSION
@@ -24,4 +24,4 @@ EXPOSE 8080
 
 ENV prometheus_multiproc_dir=/app/metrics/
 
-CMD gunicorn -b 0.0.0.0:8080 -w 8 app:app
+CMD gunicorn -b [::]:8080 -w 8 app:app
