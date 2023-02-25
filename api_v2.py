@@ -69,8 +69,8 @@ def api_v2_device_builds(device):
 
 
 @api.route('/changes')
-@extensions.cache.cached()
-def api_v2_changes(query_string=True):
+@extensions.cache.cached(query_string=True)
+def api_v2_changes():
     page = request.args.get('page', default=0, type=int)
     changes = get_paginated_changes(gerrit, page=page)
     response = []
