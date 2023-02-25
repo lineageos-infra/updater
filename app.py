@@ -108,7 +108,7 @@ def show_index():
 def web_device(device):
     oems = get_oems()
     device_data = get_device_data(device)
-    roms = get_device_builds(device)[::-1]
+    roms = get_device_builds(device)
     has_recovery = any([True for rom in roms if 'recovery' in rom]) and device_data.get('lineage_recovery', True)
 
     return render_template('device.html', oems=oems, active_device_data=device_data,
