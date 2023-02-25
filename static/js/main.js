@@ -81,7 +81,7 @@ function renderChanges(data, textStatus, xhr) {
         while (currentBuildIndex >= 0 && currentBuildIndex < builds.length && shouldPutBuildLabel(prevChangeTime, res[el].submitted, builds[currentBuildIndex].datetime)) {
             document.getElementById("changes").innerHTML += String.format('<li class="collection-header"><strong>Changes included in {release}</strong></li>',
                     { 'release': builds[currentBuildIndex].filename });
-            currentBuildIndex--;
+            currentBuildIndex++;
         }
         lastChangeTime = res[el].submitted - 1;
         prevChangeTime = lastChangeTime;
@@ -117,7 +117,7 @@ $(document).ready(function() {
             currentBuildIndex++;
         }
 
-        if (device != 'all' && lastChangeTime == -1) {
+        if (device != 'all' && lastChangeTime == 0) {
             document.getElementById("changes").innerHTML += '<li class="collection-header"><strong>Changes to be included in next build</strong></li>';
         }
 
