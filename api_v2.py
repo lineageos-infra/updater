@@ -71,17 +71,7 @@ def api_v2_device_builds(device):
 @api.route('/changes')
 @extensions.cache.cached()
 def api_v2_changes():
-    args = request.args.to_dict()
-
-    page = args.get('page')
-    page = 0 if page is None else page
-    try:
-        page = int(page)
-    except ValueError:
-        pass
-    if type(page) != int:
-        raise InvalidValueException('Page is not an integer')
-
+    page = request.args.get('page', default=0, type=int)
     changes = get_paginated_changes(gerrit, page=page)
     response = []
 
