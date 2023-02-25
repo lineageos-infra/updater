@@ -111,10 +111,10 @@ $(document).ready(function() {
 
     $.getJSON('/api/v1/' + device + '/nightly/changelog', null, function(data, textStatus, xhr) {
         builds = data.response;
-        currentBuildIndex = builds.length - 1;
+        currentBuildIndex = 0;
         while (currentBuildIndex >= 0 && currentBuildIndex < builds.length && Date.now() < builds[currentBuildIndex].datetime) {
             console.log('disregarding ' + builds[currentBuildIndex].datetime + ', ' + builds[currentBuildIndex].filename);
-            currentBuildIndex--;
+            currentBuildIndex++;
         }
 
         if (device != 'all' && lastChangeTime == -1) {
