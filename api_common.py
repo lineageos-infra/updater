@@ -35,7 +35,7 @@ def get_device_builds(device, version=1):
     device_builds = builds[device]
     device_builds.sort(key=lambda b: b['datetime'], reverse=True)
 
-    if not get_device_data(device).get('lineage_recovery', True):
+    if version == 1 and not get_device_data(device).get('lineage_recovery', True):
         for device_build in device_builds:
             del device_build['recovery']
 
