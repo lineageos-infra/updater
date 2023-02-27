@@ -12,9 +12,9 @@ from custom_exceptions import UpstreamApiException, DeviceNotFoundException
 import extensions
 
 @extensions.cache.memoize()
-def get_builds():
+def get_builds(version=1):
     try:
-        req = requests.get(Config.UPSTREAM_URL)
+        req = requests.get(Config.UPSTREAM_URL.format(version))
         if req.status_code != 200:
             raise UpstreamApiException('Unable to contact upstream API')
         return json.loads(req.text)
@@ -27,8 +27,8 @@ def get_devices_with_builds():
     return get_builds().keys()
 
 @extensions.cache.memoize()
-def get_device_builds(device):
-    builds = get_builds()
+def get_device_builds(device, version=1):
+    builds = get_builds(version)
     if device not in builds:
         raise DeviceNotFoundException('This device has no available builds. Please select another device.')
 

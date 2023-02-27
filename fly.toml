@@ -7,7 +7,7 @@ processes = []
 [env]
   CACHE_TYPE = "RedisCache"
   CACHE_REDIS_HOST = "lineageos-redis.internal"
-  UPSTREAM_URL = "https://mirrorbits.lineageos.org/api/v1/builds"
+  UPSTREAM_URL = "https://mirrorbits.lineageos.org/api/v{}/builds"
 
 [experimental]
   allowed_public_ports = []
