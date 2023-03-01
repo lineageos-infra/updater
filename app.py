@@ -110,6 +110,18 @@ def web_device(device):
     oems = get_oems()
     device_data = get_device_data(device)
     roms = get_device_builds(device)
+
+    for rom in roms:
+        if device_data.get('lineage_recovery', True):
+            # Pick recovery.img if exists, otherwise boot.img or None
+            if recovery := next((x for x in rom['files'] if x['filename'] == 'recovery.img'), None) or \
+                    next((x for x in rom['files'] if x['filename'] == 'boot.img'), None):
+                rom['recovery'] = recovery
+
+        rom['filename'] = rom['files'][0]['filename']
+        rom['filepath'] = rom['files'][0]['filepath']
+        rom['size'] = rom['files'][0]['size']
+
     has_recovery = any([True for rom in roms if 'recovery' in rom])
 
     return render_template('device.html', oems=oems, active_device_data=device_data,

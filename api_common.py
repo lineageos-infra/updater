@@ -12,9 +12,9 @@ from custom_exceptions import UpstreamApiException, DeviceNotFoundException
 import extensions
 
 @extensions.cache.memoize()
-def get_builds(version=1):
+def get_builds():
     try:
-        req = requests.get(Config.UPSTREAM_URL.format(version))
+        req = requests.get(Config.UPSTREAM_URL)
         if req.status_code != 200:
             raise UpstreamApiException('Unable to contact upstream API')
         return json.loads(req.text)
@@ -27,17 +27,25 @@ def get_devices_with_builds():
     return get_builds().keys()
 
 @extensions.cache.memoize()
-def get_device_builds(device, version=1):
-    builds = get_builds(version)
+def get_device_builds(device):
+    builds = get_builds()
     if device not in builds:
         raise DeviceNotFoundException('This device has no available builds. Please select another device.')
 
     device_builds = builds[device]
     device_builds.sort(key=lambda b: b['datetime'], reverse=True)
 
-    if version == 1 and not get_device_data(device).get('lineage_recovery', True):
-        for device_build in device_builds:
-            del device_build['recovery']
+    def sorting_key(item):
+        filename = item['filename']
+        if filename.endswith(".zip"):
+            return 1, filename
+        elif filename.endswith(".img"):
+            return 2, filename
+        else:
+            return 3, filename
+
+    for build in device_builds:
+        build['files'] = sorted(build['files'], key=sorting_key)
 
     return device_builds
 
@@ -103,13 +111,13 @@ def get_build_types(device, romtype, after, version):
 
     for rom in roms:
         data.append({
-            'id': rom['sha256'],
-            'url': '%s%s' % (Config.DOWNLOAD_BASE_URL, rom['filepath']),
+            'id': rom['files'][0]['sha256'],
+            'url': '%s%s' % (Config.DOWNLOAD_BASE_URL, rom['files'][0]['filepath']),
             'romtype': rom['type'],
             'datetime': rom['datetime'],
             'version': rom['version'],
-            'filename': rom['filename'],
-            'size': rom['size'],
+            'filename': rom['files'][0]['filename'],
+            'size': rom['files'][0]['size'],
         })
     return jsonify({'response': data})
 

@@ -55,25 +55,15 @@ def api_v2_device(device):
 @api.route('/devices/<string:device>/builds')
 @extensions.cache.cached()
 def api_v2_device_builds(device):
-    builds = get_device_builds(device, version=2)
+    builds = get_device_builds(device)
 
     def get_download_url(file):
         return Config.DOWNLOAD_BASE_URL + file['filepath']
-
-    def sorting_key(item):
-        filename = item['filename']
-        if filename.endswith(".zip"):
-            return 1, filename
-        elif filename.endswith(".img"):
-            return 2, filename
-        else:
-            return 3, filename
 
     for build in builds:
         for file in build['files']:
             file['url'] = get_download_url(file)
 
-        build['files'] = sorted(build['files'], key=sorting_key)
         build['files'][0]['date'] = build['date']
         build['files'][0]['datetime'] = build['datetime']
         build['files'][0]['type'] = build['type']
