@@ -30,7 +30,7 @@ def get_devices_with_builds():
 def get_device_builds(device):
     builds = get_builds()
     if device not in builds:
-        raise DeviceNotFoundException('This device has no available builds. Please select another device.')
+        return []
 
     device_builds = builds[device]
     device_builds.sort(key=lambda b: b['datetime'], reverse=True)
@@ -49,6 +49,21 @@ def get_device_builds(device):
 
     return device_builds
 
+@extensions.cache.memoize()
+def get_build_roster():
+    devices = []
+
+    if os.path.isfile(Config.LINEAGE_BUILD_TARGETS_PATH):
+        with open(Config.LINEAGE_BUILD_TARGETS_PATH) as f:
+            for line in f.readlines():
+                if line and not line.startswith('#'):
+                    devices.append(line.split()[0])
+    elif Config.OFFICIAL_LINEAGE_BUILD_TARGETS_URL:
+        for line in requests.get(Config.OFFICIAL_LINEAGE_BUILD_TARGETS_URL).text.splitlines():
+            if line and not line.startswith('#'):
+                devices.append(line.split()[0])
+
+    return devices
 
 @extensions.cache.memoize()
 def get_devices_data():
@@ -64,13 +79,16 @@ def get_devices_data():
         with open(Config.DEVICES_LOCAL_JSON_PATH) as f:
             devices_data += json.loads(f.read())
 
-    devices_data_with_builds = []
+    build_roster = get_build_roster()
     devices_with_builds = get_devices_with_builds()
-    for device_data in devices_data:
-        if device_data['model'] in devices_with_builds:
-            devices_data_with_builds.append(device_data)
 
-    return devices_data_with_builds
+    devices = []
+
+    for device_data in devices_data:
+        if device_data['model'] in devices_with_builds or device_data['model'] in build_roster:
+            devices.append(device_data)
+
+    return devices
 
 
 @extensions.cache.memoize()

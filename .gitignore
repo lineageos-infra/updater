@@ -3,10 +3,11 @@
 __pycache__
 .cache/*
 
-#json blobs
+#blobs
 devices_local.json
 devices.json
 device_deps.json
+lineage-build-targets
 
 #virtualenv
 bin
