@@ -49,11 +49,7 @@ class GerritThing(object):
     def _do_request(self, path, params):
         r = requests.get(self._url + path, params=params)
         text = r.text[5:]
-        try:
-            return json.loads(text)
-        except Exception:
-            print(text)
-            return {}
+        return json.loads(text)
 
 
 class GerritUser(GerritThing):
