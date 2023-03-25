@@ -46,7 +46,6 @@ def api_v2_device(device):
         'model': device_data['model'],
         'oem': device_data['oem'],
         'info_url': Config.WIKI_INFO_URL.format(device=device),
-        'install_url': Config.WIKI_INSTALL_URL.format(device=device),
         'versions': get_device_versions(device),
         'dependencies': get_device_dependencies(device),
     })
