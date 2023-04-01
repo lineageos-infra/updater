@@ -53,6 +53,29 @@ def get_device_dependencies(device):
     return dependencies[device]
 
 
+def get_type(project):
+    # Matches https://github.com/LineageOS/android/blob/aa01966/snippets/lineage.xml#L163-L173
+    type_overrides = {
+        'infrastructure': [
+            'LineageOS/charter',
+            'LineageOS/cm_crowdin',
+            'LineageOS/hudson',
+            'LineageOS/mirror',
+            'LineageOS/www',
+            'LineageOS/lineage_wiki',
+        ],
+        'tools': [
+            'LineageOS/contributors-cloud-generator',
+            'LineageOS/scripts',
+        ],
+    }
+
+    if type_override := next((x[0] for x in type_overrides.items() if project in x[1]), None):
+        return type_override
+
+    return 'device specific' if is_device_specific_repo(project) else 'platform'
+
+
 def is_device_specific_repo(project):
     return '_kernel_' in project or '_device_' in project
 

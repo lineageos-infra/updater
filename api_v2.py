@@ -3,7 +3,7 @@ import json
 from flask import Blueprint, jsonify, request
 
 from api_common import get_oems, get_device_builds, get_device_data, get_device_versions, group_changes_by_build
-from changelog import GerritServer, get_project_repo, get_paginated_changes, get_timestamp, get_device_dependencies
+from changelog import GerritServer, get_project_repo, get_paginated_changes, get_timestamp, get_device_dependencies, get_type
 from config import Config
 from custom_exceptions import InvalidValueException, UpstreamApiException, DeviceNotFoundException
 
@@ -85,6 +85,7 @@ def api_v2_changes():
             'subject': change.subject,
             'submitted': get_timestamp(change.submitted),
             'updated': get_timestamp(change.updated),
+            'type': get_type(change.project),
         })
 
     return jsonify(response)
