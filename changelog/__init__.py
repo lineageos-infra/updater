@@ -77,7 +77,11 @@ def get_type(project):
 
 
 def is_device_specific_repo(project):
-    return '_kernel_' in project or '_device_' in project
+    if '_kernel_' in project or '_device_' in project:
+        return True
+
+    repository = project.split("/", maxsplit=1)[1]
+    return repository in sorted({x for v in dependencies.values() for x in v})
 
 
 def is_related_change(device, project):
