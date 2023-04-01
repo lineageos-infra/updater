@@ -23,12 +23,21 @@ import json
 import os
 import requests
 
-# device_deps.json is generated using https://github.com/LineageOS/scripts/tree/master/device-deps-regenerator
-if os.path.isfile(Config.DEVICE_DEPS_PATH):
-    with open(Config.DEVICE_DEPS_PATH) as f:
-        dependencies = json.load(f)
-else:
-    dependencies = requests.get(Config.OFFICIAL_DEVICE_DEPS_JSON_URL).json()
+import extensions
+
+
+@extensions.cache.memoize()
+def get_dependencies():
+    # device_deps.json is generated using https://github.com/LineageOS/scripts/tree/master/device-deps-regenerator
+    if os.path.isfile(Config.DEVICE_DEPS_PATH):
+        with open(Config.DEVICE_DEPS_PATH) as f:
+            return json.load(f)
+    else:
+        return requests.get(Config.OFFICIAL_DEVICE_DEPS_JSON_URL).json()
+
+
+def get_dependencies_flat():
+    return sorted({x for v in get_dependencies().values() for x in v})
 
 
 def is_versions_branch(branch, versions=None):
@@ -47,6 +56,8 @@ def get_project_repo(project):
 
 
 def get_device_dependencies(device):
+    dependencies = get_dependencies()
+
     if device not in dependencies:
         return []
 
@@ -81,7 +92,7 @@ def is_device_specific_repo(project):
         return True
 
     repository = project.split("/", maxsplit=1)[1]
-    return repository in sorted({x for v in dependencies.values() for x in v})
+    return repository in get_dependencies_flat()
 
 
 def is_related_change(device, project):
