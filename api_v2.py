@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, redirect, request
 
 from api_common import get_oems, get_device_builds, get_device_data, get_device_versions
 from changelog import GerritServer, get_project_repo, get_paginated_changes, get_timestamp, get_device_dependencies, get_type
@@ -66,6 +66,31 @@ def api_v2_device_builds(device):
         build['files'][0]['type'] = build['type']
 
     return jsonify(builds)
+
+
+@api.route('/devices/<string:device>/latest/')
+@api.route('/devices/<string:device>/latest/<string:filename>')
+@extensions.cache.cached()
+def api_v2_device_latest(device, filename=None):
+    builds = get_device_builds(device)
+
+    def get_download_url(file):
+        return Config.DOWNLOAD_BASE_URL + file['filepath']
+
+    if builds := get_device_builds(device):
+        build = builds[0]
+
+        for file in build['files']:
+            if filename is None or file['filename'] == filename:
+                return redirect(get_download_url(file))
+        else:
+            return jsonify({
+                'error': f'Filename {filename} does not exist.'
+            }), 400
+
+    return jsonify({
+        'error': 'No builds are available for this device.'
+    }), 400
 
 
 @api.route('/changes')
