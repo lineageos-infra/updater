@@ -33,7 +33,7 @@ def get_dependencies():
         with open(Config.DEVICE_DEPS_PATH) as f:
             return json.load(f)
     else:
-        return requests.get(Config.OFFICIAL_DEVICE_DEPS_JSON_URL).json()
+        return requests.get(Config.OFFICIAL_DEVICE_DEPS_JSON_URL, timeout=60).json()
 
 
 def get_dependencies_flat():

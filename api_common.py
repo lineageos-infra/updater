@@ -14,7 +14,7 @@ import extensions
 @extensions.cache.memoize()
 def get_builds():
     try:
-        req = requests.get(Config.UPSTREAM_URL)
+        req = requests.get(Config.UPSTREAM_URL, timeout=60)
         if req.status_code != 200:
             raise UpstreamApiException('Unable to contact upstream API')
         return json.loads(req.text)
@@ -59,7 +59,7 @@ def get_build_roster():
                 if line and not line.startswith('#'):
                     devices.append(line.split()[0])
     elif Config.OFFICIAL_LINEAGE_BUILD_TARGETS_URL:
-        for line in requests.get(Config.OFFICIAL_LINEAGE_BUILD_TARGETS_URL).text.splitlines():
+        for line in requests.get(Config.OFFICIAL_LINEAGE_BUILD_TARGETS_URL, timeout=60).text.splitlines():
             if line and not line.startswith('#'):
                 devices.append(line.split()[0])
 
@@ -73,7 +73,7 @@ def get_devices_data():
         with open(Config.DEVICES_JSON_PATH) as f:
             devices_data += json.loads(f.read())
     else:
-        devices_data += requests.get(Config.OFFICIAL_DEVICES_JSON_URL).json()
+        devices_data += requests.get(Config.OFFICIAL_DEVICES_JSON_URL, timeout=60).json()
 
     if os.path.isfile(Config.DEVICES_LOCAL_JSON_PATH):
         with open(Config.DEVICES_LOCAL_JSON_PATH) as f:

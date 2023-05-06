@@ -47,7 +47,7 @@ class GerritThing(object):
         self._url = url
 
     def _do_request(self, path, params):
-        r = requests.get(self._url + path, params=params)
+        r = requests.get(self._url + path, params=params, timeout=60)
         text = r.text[5:]
         return json.loads(text)
 
