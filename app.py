@@ -80,9 +80,8 @@ def handle_upstream_exception(error):
         response = jsonify(error.to_dict())
         response.status_code = error.status_code
         return response
-    oems = get_oems()
     return render_template('error.html', header='Something went wrong', message=error.message,
-                           oems=oems), error.status_code
+                           oems={}), error.status_code
 
 
 ##########################
