@@ -78,6 +78,7 @@ def api_v2_changes():
     for change in changes:
         response.append({
             'url': change.url,
+            'project': change.project,
             'repository': get_project_repo(change.project),
             'branch': change.branch,
             'subject': change.subject,
