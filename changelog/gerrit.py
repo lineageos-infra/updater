@@ -16,20 +16,20 @@
 from __future__ import absolute_import
 
 from datetime import datetime
-from flask.json import JSONEncoder
+from flask.json.provider import DefaultJSONProvider
 
 import json
 import requests
 
 
-class GerritJSONEncoder(JSONEncoder):
+class GerritJSONProvider(DefaultJSONProvider):
     def default(self, obj):
         try:
             if isinstance(obj, GerritUser):
                 return {'id': obj.id, 'name': obj.name, 'username': obj.username, 'avatars': obj.avatars}
         except TypeError:
             pass
-        return JSONEncoder.default(self, obj)
+        return super().default(obj)
 
 
 def parse_gerrit_datetime(d):

@@ -8,6 +8,7 @@ from flask import Flask, jsonify, request, render_template, Response
 from prometheus_client import multiprocess, generate_latest, CollectorRegistry, CONTENT_TYPE_LATEST, Counter, Histogram
 
 from api_common import get_device_builds, get_oems, get_device_data
+from changelog.gerrit import GerritJSONProvider
 from custom_exceptions import DeviceNotFoundException, UpstreamApiException
 from config import Config
 from api_v1 import api as api_v1
@@ -19,6 +20,7 @@ app = Flask(__name__)
 app.config.from_object('config.FlaskConfig')
 app.register_blueprint(api_v1, url_prefix='/api/v1')
 app.register_blueprint(api_v2, url_prefix='/api/v2')
+app.json = GerritJSONProvider(app)
 app.url_map.strict_slashes = False
 extensions.setup(app)
 

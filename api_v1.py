@@ -1,14 +1,13 @@
 from flask import Blueprint, jsonify, request
 
 from api_common import get_builds, get_device_version, get_build_types, get_device_builds
-from changelog.gerrit import GerritServer, GerritJSONEncoder
+from changelog.gerrit import GerritServer
 from changelog import get_changes, get_timestamp
 from config import Config
 
 import extensions
 
 api = Blueprint('api_v1', __name__)
-api.json_encoder = GerritJSONEncoder
 
 gerrit = GerritServer(Config.GERRIT_URL)
 
