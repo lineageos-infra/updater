@@ -21,7 +21,7 @@ Development set up:
 ---
 1. Install requirements with `pip install -r requirements.txt`
 2. Configure your environment appropriately - see `config.py` for possible variables.
-3. Supply a device_deps.json, devices.json, and optional devices_local.json. (See https://github.com/LineageOS/hudson/tree/master/updater for example) 
+3. Supply a device_deps.json, devices.json, and optional devices_local.json. (See https://github.com/LineageOS/hudson/tree/main/updater for example) 
 4. Run with `FLASK_APP=app.py flask run`
 
 

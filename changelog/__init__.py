@@ -28,7 +28,7 @@ import extensions
 
 @extensions.cache.memoize()
 def get_dependencies():
-    # device_deps.json is generated using https://github.com/LineageOS/scripts/tree/master/device-deps-regenerator
+    # device_deps.json is generated using https://github.com/LineageOS/scripts/tree/main/device-deps-regenerator
     if os.path.isfile(Config.DEVICE_DEPS_PATH):
         with open(Config.DEVICE_DEPS_PATH) as f:
             return json.load(f)

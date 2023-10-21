@@ -161,6 +161,6 @@ class GerritServer(GerritThing):
         super(GerritServer, self).__init__(url)
 
     def changes(self, query='status:merged', n=50, page=0, limit=-1):
-        # O is a bitmask in hex - see https://github.com/gerrit-review/gerrit/blob/master/gerrit-extension-api/src/main/java/com/google/gerrit/extensions/client/ListChangesOption.java
+        # O is a bitmask in hex - see https://github.com/gerrit-review/gerrit/blob/main/gerrit-extension-api/src/main/java/com/google/gerrit/extensions/client/ListChangesOption.java
         params = {'q': query, 'n': n, 'O': '81'}
         return GerritListing(self._url, '/changes/', params, GerritChange, page * n, limit)

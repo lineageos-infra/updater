@@ -12,11 +12,11 @@ class Config(object):
 
     DEVICES_JSON_PATH = os.environ.get('DEVICES_JSON_PATH', 'devices.json')
     DEVICES_LOCAL_JSON_PATH = os.environ.get('DEVICES_LOCAL_JSON_PATH', 'devices_local.json')
-    OFFICIAL_DEVICES_JSON_URL = os.environ.get('OFFICIAL_DEVICES_JSON_URL', 'https://raw.githubusercontent.com/LineageOS/hudson/master/updater/devices.json')
+    OFFICIAL_DEVICES_JSON_URL = os.environ.get('OFFICIAL_DEVICES_JSON_URL', 'https://raw.githubusercontent.com/LineageOS/hudson/main/updater/devices.json')
     DEVICE_DEPS_PATH = os.environ.get('DEVICE_DEPS_PATH', 'device_deps.json')
-    OFFICIAL_DEVICE_DEPS_JSON_URL = os.environ.get('OFFICIAL_DEVICE_DEPS_JSON_URL', 'https://raw.githubusercontent.com/LineageOS/hudson/master/updater/device_deps.json')
+    OFFICIAL_DEVICE_DEPS_JSON_URL = os.environ.get('OFFICIAL_DEVICE_DEPS_JSON_URL', 'https://raw.githubusercontent.com/LineageOS/hudson/main/updater/device_deps.json')
     LINEAGE_BUILD_TARGETS_PATH = os.environ.get('LINEAGE_BUILD_TARGETS_PATH', 'lineage-build-targets')
-    OFFICIAL_LINEAGE_BUILD_TARGETS_URL = os.environ.get('OFFICIAL_LINEAGE_BUILD_TARGETS_URL', 'https://raw.githubusercontent.com/LineageOS/hudson/master/lineage-build-targets')
+    OFFICIAL_LINEAGE_BUILD_TARGETS_URL = os.environ.get('OFFICIAL_LINEAGE_BUILD_TARGETS_URL', 'https://raw.githubusercontent.com/LineageOS/hudson/main/lineage-build-targets')
 
 
 class FlaskConfig(object):
