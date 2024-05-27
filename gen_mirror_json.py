@@ -18,7 +18,7 @@ FILE_BASE = sys.argv[1]
 builds = {}
 
 for f in [os.path.join(dp, f) for dp, dn, fn in os.walk(FILE_BASE) for f in fn]:
-    data = open(f)
+    data = open(f, 'rb')
     filename = f.split('/')[-1]
     # lineage-14.1-20171129-nightly-hiaeul-signed.zip
     _, version, builddate, buildtype, device = os.path.splitext(filename)[0].split('-')
