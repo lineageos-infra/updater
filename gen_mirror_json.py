@@ -27,7 +27,7 @@ for f in [os.path.join(dp, f) for dp, dn, fn in os.walk(FILE_BASE) for f in fn]:
     for buf in iter(lambda: data.read(128 * 1024), b''):
         sha256.update(buf)
         try:
-            with zipfile.ZipFile('{}{}'.format(BASE_PATH, filepath), 'r') as update_zip:
+            with zipfile.ZipFile(f'{FILE_BASE}/{filename}', 'r') as update_zip:
                 build_prop = update_zip.read('system/build.prop').decode('utf-8')
                 timestamp = int(re.findall('ro.build.date.utc=([0-9]+)', build_prop)[0])
         except Exception:
