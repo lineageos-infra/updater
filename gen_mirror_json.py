@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from __future__ import print_function
 import hashlib
 import json
@@ -11,7 +11,7 @@ from datetime import datetime
 from time import mktime
 
 if len(sys.argv) < 2:
-    print("usage python {} /path/to/mirror/base/url".format(sys.argv[0]))
+    print("usage python3 {} /path/to/mirror/base/url".format(sys.argv[0]))
     sys.exit()
 
 FILE_BASE = sys.argv[1]
