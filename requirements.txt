@@ -21,5 +21,5 @@ redis==5.0.3
 requests==2.32.0
 six==1.16.0
 types-python-dateutil==2.9.0.20240316
-urllib3==2.2.1
+urllib3==2.2.2
 Werkzeug==3.0.3
