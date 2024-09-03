@@ -8,7 +8,7 @@ charset-normalizer==3.3.2
 click==8.1.7
 Flask==3.0.3
 Flask-Caching==2.3.0
-Flask-Cors==4.0.1
+Flask-Cors==5.0.0
 gunicorn==22.0.0
 idna==3.7
 itsdangerous==2.2.0
