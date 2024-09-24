@@ -71,7 +71,7 @@ class GerritUser(GerritThing):
         except KeyError:
             self.email = 'unknown'
         self.avatars = {}
-        for i in obj['avatars']:
+        for i in obj.get('avatars', []):
             self.avatars[i['height']] = i['url']
 
 
