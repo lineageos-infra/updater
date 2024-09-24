@@ -1,5 +1,5 @@
-FROM golang:1.17-alpine as overmind
-RUN GO111MODULE=on go get -u github.com/DarthSim/overmind/v2
+FROM golang:1.23.1-alpine as overmind
+RUN GO111MODULE=on go install github.com/DarthSim/overmind/v2@latest
 
 FROM python:3.11-alpine
 COPY --from=overmind /go/bin/overmind /usr/local/bin/overmind
