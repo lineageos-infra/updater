@@ -4,7 +4,7 @@ blinker==1.8.2
 cachelib==0.9.0
 certifi==2024.8.30
 chardet==5.2.0
-charset-normalizer==3.3.2
+charset-normalizer==3.4.0
 click==8.1.7
 Flask==3.0.3
 Flask-Caching==2.3.0
@@ -13,13 +13,13 @@ gunicorn==23.0.0
 idna==3.10
 itsdangerous==2.2.0
 Jinja2==3.1.4
-MarkupSafe==2.1.5
+MarkupSafe==3.0.2
 packaging==24.1
 prometheus_client==0.21.0
 python-dateutil==2.9.0.post0
-redis==5.0.8
+redis==5.2.0
 requests==2.32.3
 six==1.16.0
-types-python-dateutil==2.9.0.20240906
+types-python-dateutil==2.9.0.20241003
 urllib3==2.2.3
-Werkzeug==3.0.4
+Werkzeug==3.0.6
