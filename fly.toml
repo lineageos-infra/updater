@@ -26,10 +26,6 @@ kill_timeout = "5s"
     soft_limit = 200
     hard_limit = 450
 
-[[mounts]]
-  destination = "/data"
-  source = "redis"
-
 [metrics]
   port = 8080
   path = "/metrics"
