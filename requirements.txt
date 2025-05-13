@@ -6,7 +6,7 @@ certifi==2025.1.31
 chardet==5.2.0
 charset-normalizer==3.4.1
 click==8.1.8
-Flask==3.1.0
+Flask==3.1.1
 Flask-Caching==2.3.1
 flask-cors==5.0.1
 gunicorn==23.0.0
