@@ -14,7 +14,7 @@ kill_timeout = "5s"
 [env]
   CACHE_REDIS_HOST = "localhost"
   CACHE_TYPE = "RedisCache"
-  UPSTREAM_URL = "https://mirrorbits.lineageos.org/api/v2/builds"
+  UPSTREAM_URL = "https://mirrorbits.lineageos.org/api/v2/builds/"
 [http_service]
   internal_port = 8080
   force_https = true
