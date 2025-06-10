@@ -18,7 +18,7 @@ packaging==24.2
 prometheus_client==0.21.1
 python-dateutil==2.9.0.post0
 redis==5.2.1
-requests==2.32.3
+requests==2.32.4
 six==1.17.0
 types-python-dateutil==2.9.0.20241206
 urllib3==2.3.0
