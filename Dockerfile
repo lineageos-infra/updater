@@ -1,7 +1,7 @@
 FROM golang:1.23.1-alpine as overmind
 RUN GO111MODULE=on go install github.com/DarthSim/overmind/v2@latest
 
-FROM python:3.11-alpine
+FROM python:3.14-alpine
 COPY --from=overmind /go/bin/overmind /usr/local/bin/overmind
 
 RUN apk add --no-cache curl build-base tmux redis
