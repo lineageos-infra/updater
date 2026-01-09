@@ -24,4 +24,4 @@ six==1.17.0
 types-python-dateutil==2.9.0.20251108
 tzdata==2025.2
 urllib3==2.6.3
-Werkzeug==3.1.4
+Werkzeug==3.1.5
