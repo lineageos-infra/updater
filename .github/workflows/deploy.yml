@@ -1,4 +1,4 @@
-name: Deploy to Fly
+name: Deploy to app01
 on:
   push:
     branches:
@@ -10,14 +10,10 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      # This step checks out a copy of your repository.
-      - uses: actions/checkout@v2
-      # This step runs `flyctl deploy`.
-      - uses: superfly/flyctl-actions@master
-        env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      - uses: lineageos-infra/app01-deploy@main
         with:
-          args: "deploy"
+          api_key: ${{ secrets.APP01_API_KEY }}
+          app: updater_backend
   notify:
     name: Notify
     runs-on: ubuntu-latest
