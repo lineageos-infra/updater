@@ -11,7 +11,7 @@ Flask-Caching==2.3.1
 flask-cors==6.0.1
 gunicorn==23.0.0
 honcho==2.0.0
-idna==3.11
+idna==3.15
 itsdangerous==2.2.0
 Jinja2==3.1.6
 MarkupSafe==3.0.3
