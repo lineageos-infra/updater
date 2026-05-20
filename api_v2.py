@@ -49,10 +49,11 @@ def api_v2_device(device):
     })
 
 
-@api.route('/devices/<string:device>/builds')
+@api.route('/devices/<string:device>/builds', defaults={'type': None})
+@api.route('/devices/<string:device>/builds/<string:type>')
 @extensions.cache.cached()
-def api_v2_device_builds(device):
-    builds = get_device_builds(device)
+def api_v2_device_builds(device, type):
+    builds = get_device_builds(device, type)
 
     def get_download_url(file):
         return Config.DOWNLOAD_BASE_URL + file['filepath']
