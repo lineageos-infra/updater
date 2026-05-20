@@ -27,12 +27,14 @@ def get_devices_with_builds():
     return get_builds().keys()
 
 @extensions.cache.memoize()
-def get_device_builds(device):
+def get_device_builds(device, type=None):
     builds = get_builds()
     if device not in builds:
         return []
 
     device_builds = builds[device]
+    if type:
+        device_builds = [x for x in device_builds if x['type'] == type]
     device_builds.sort(key=lambda b: b['datetime'], reverse=True)
 
     def sorting_key(item):
@@ -115,8 +117,7 @@ def get_oems():
 
 @extensions.cache.memoize()
 def get_build_types(device, romtype, after, version):
-    roms = get_device_builds(device)
-    roms = [x for x in roms if x['type'] == romtype]
+    roms = get_device_builds(device, romtype)
     for rom in roms:
         rom['date'] = arrow.get(rom['date']).datetime
     if after:
