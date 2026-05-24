@@ -14,10 +14,19 @@ import extensions
 @extensions.cache.memoize()
 def get_builds():
     try:
-        req = requests.get(Config.UPSTREAM_URL, timeout=60)
-        if req.status_code != 200:
-            raise UpstreamApiException('Unable to contact upstream API')
-        return json.loads(req.text)
+        if os.path.isfile(Config.UPSTREAM_PATH):
+            with open(Config.UPSTREAM_PATH) as f:
+                return json.load(f)
+        elif Config.UPSTREAM_URL:
+            req = requests.get(Config.UPSTREAM_URL, timeout=60)
+            if req.status_code != 200:
+                raise UpstreamApiException('Unable to contact upstream API')
+            return json.loads(req.text)
+        else:
+            raise UpstreamApiException('No upstream API configured')
+    except UpstreamApiException as e:
+        print(e)
+        raise e
     except Exception as e:
         print(e)
         raise UpstreamApiException('Unable to contact upstream API')
