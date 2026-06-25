@@ -63,9 +63,9 @@ def api_v2_device_builds(device):
 
         build['files'][0]['date'] = build['date']
         build['files'][0]['datetime'] = build['datetime']
-        build['files'][0]['os_sdk_level'] = build['os_sdk_level']
-        build['files'][0]['os_patch_level'] = build['os_patch_level']
-        build['files'][0]['ota_property_files'] = build['ota_property_files']
+        build['files'][0]['os_sdk_level'] = build.pop('os_sdk_level')
+        build['files'][0]['os_patch_level'] = build.pop('os_patch_level')
+        build['files'][0]['ota_property_files'] = build.pop('ota_property_files')
         build['files'][0]['type'] = build['type']
 
     return jsonify(builds)
