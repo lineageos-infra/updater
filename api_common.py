@@ -66,7 +66,7 @@ def get_build_roster():
 
     if os.path.isfile(Config.LINEAGE_BUILD_TARGETS_PATH):
         with open(Config.LINEAGE_BUILD_TARGETS_PATH) as f:
-            for line in f.readlines():
+            for line in f.read().splitlines():
                 if line and not line.startswith('#'):
                     devices.append(line.split()[0])
     elif Config.OFFICIAL_LINEAGE_BUILD_TARGETS_URL:
